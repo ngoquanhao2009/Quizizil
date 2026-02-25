@@ -302,7 +302,7 @@
 
       <div id="quiz" class="hidden">
         <div class="topbar">
-          <span>⏳ <span id="time">15</span>s</span>
+          <span>⏳ <span id="time">01:30</span></span>
           <span>⭐ <span id="score">0</span></span>
           <span>🧩 <span id="position">1</span>/<span id="total">28</span></span>
         </div>
@@ -330,34 +330,50 @@
 
   <script>
     const questionBank = [
-      { q: "Hệ điều hành nào được phát triển từ mã nguồn mở và ra mắt lần đầu năm 1991?", a: ["Windows", "Linux", "macOS", "Android"], c: 1 },
-      { q: "Ngôn ngữ lập trình nào được sử dụng phổ biến nhất trong việc phát triển hệ điều hành?", a: ["C++", "Java", "Python", "Ruby"], c: 0 },
-      { q: "Không gian lưu trữ trực tuyến được cấp cho người dùng gọi là?", a: ["Nhà lưu trữ", "Cầu kết nối", "Bát online", "Ổ đĩa trực tuyến"], c: 3 },
-      { q: "Tải tệp lên ổ đĩa trực tuyến để?", a: ["Xóa file máy tính", "Lưu trữ và sử dụng", "Mua bán dữ liệu", "Giải trí"], c: 1 },
-      { q: "Hành vi nào bị nghiêm cấm trong môi trường mạng?", a: ["Sử dụng mật mã", "Thực hiện tấn công mạng", "Nghiên cứu an ninh mạng", "Tuyên truyền cách phòng chống tội phạm"], c: 1 },
-      { q: "Khi có yêu cầu chuyển tiền hoặc cung cấp thông tin từ số lạ, cần làm gì?", a: ["Dừng lại, không gửi", "Chuyển tiền ngay", "Cung cấp thông tin cá nhân", "Cung cấp mã OTP"], c: 0 },
-      { q: "Cập nhật dữ liệu là?", a: ["Quá trình lưu trữ dữ liệu", "Quá trình thêm, xóa, chỉnh sửa dữ liệu", "Quá trình tìm kiếm/lọc dữ liệu", "Quá trình phân tích dữ liệu"], c: 1 },
-      { q: "Quá trình thêm, xóa và chỉnh sửa dữ liệu thường được gọi là?", a: ["Lưu trữ dữ liệu", "Cập nhật dữ liệu", "Truy xuất dữ liệu", "Khai thác thông tin"], c: 1 },
-      { q: "Công việc nào KHÔNG phải là cập nhật dữ liệu?", a: ["Thêm dữ liệu mới", "Xóa dữ liệu không còn ý nghĩa", "Sửa dữ liệu để chính xác", "Tìm kiếm dữ liệu theo tiêu chí"], c: 3 },
-      { q: "Phát biểu nào sai khi nói về khóa chính?", a: ["Một bảng có thể có nhiều khóa chính", "Mỗi bảng có ít nhất một khóa", "Chọn khóa dựa trên quan hệ logic dữ liệu", "Nên chọn khóa có ít thuộc tính"], c: 0 },
-      { q: "Vì sao nên chọn Aid làm khóa chính thay vì TenNS?", a: ["Aid là duy nhất", "Aid là kiểu số", "Aid đứng trước TenNS", "Aid ngắn hơn"], c: 0 },
-      { q: "CSDL quan hệ là gì?", a: ["CSDL lưu trữ dữ liệu dạng bảng có quan hệ với nhau", "Mô hình dữ liệu nhiều bảng", "Mô hình hướng đối tượng", "Mô hình cơ sở quan hệ CSDL"], c: 0 },
-      { q: "Trong mô hình quan hệ, về mặt cấu trúc dữ liệu thể hiện trong?", a: ["Cột (Field)", "Hàng (Record)", "Bảng (Table)", "Báo cáo (Report)"], c: 2 },
-      { q: "Tên trường có dấu cách cần đặt trong dấu nào?", a: ["( )", "' '", "[ ]", '" "'], c: 2 },
-      { q: "Trong SQL, mệnh đề SELECT dùng để?", a: ["Xác định điều kiện lọc", "Thêm dữ liệu vào bảng", "Xác định dữ liệu lấy từ đâu", "Xác định thông tin muốn hiển thị"], c: 3 },
-      { q: "Trong SQL, mệnh đề FROM dùng để?", a: ["Xác định điều kiện lọc", "Xác định dữ liệu được lấy từ đâu", "Xác định thông tin muốn hiển thị", "Xóa dữ liệu trong bảng"], c: 1 },
-      { q: "Truy vấn SELECT ... WHERE [Giới tính] = 'Nữ' cho biết điều gì?", a: ["Danh sách học sinh nữ với các trường được chọn", "Danh sách học sinh nam", "Danh sách tất cả học sinh", "Danh sách chỉ họ tên và giới tính"], c: 0 },
-      { q: "Khi thực hiện thao tác lọc dữ liệu, ta sử dụng?", a: ["Mẫu hỏi (Query)", "Biểu mẫu (Form)", "Liên kết bảng", "Báo cáo (Report)"], c: 0 },
-      { q: "Trong CSDL, lọc dữ liệu theo yêu cầu gọi là?", a: ["Tạo biểu mẫu", "Thiết kế bảng", "Truy vấn dữ liệu", "Tạo báo cáo"], c: 2 },
-      { q: "Để lọc ra học sinh khá theo Điểm trung bình, dùng biểu thức nào?", a: [">=6.5 OR <8", ">=6.5 AND <8", ">=6.5 NO <8", ">=6.5 BETWEEN <8"], c: 1 },
-      { q: "Việc ghi điểm vào sổ điểm thường xuyên gọi là?", a: ["Lưu trữ dữ liệu", "Khai thác thông tin", "Truy xuất dữ liệu", "Cập nhật dữ liệu"], c: 3 },
-      { q: "Ngôn ngữ truy vấn CSDL phổ biến hiện nay là?", a: ["Excel", "Word", "Access", "SQL"], c: 3 },
-      { q: "Trong mô hình CSDL quan hệ, mỗi hàng trong bảng phải?", a: ["Có thể trùng hoàn toàn", "Có ít nhất một trường trống", "Được xác định duy nhất bởi khóa chính", "Chỉ chứa dữ liệu số"], c: 2 },
-      { q: "Trong SQL, mệnh đề WHERE dùng để?", a: ["Sắp xếp dữ liệu", "Xác định điều kiện lọc bản ghi", "Thêm bản ghi", "Xác định bảng chứa dữ liệu"], c: 1 },
-      { q: "An mở file Baitap1.docx trong ổ D để nộp bài là thao tác truy xuất dữ liệu.", a: ["Đúng", "Sai"], c: 0 },
-      { q: "Câu truy vấn SELECT [Họ và tên], [Lương], [Trợ cấp] ... WHERE (Lương < 7000000) chỉ hiển thị các trường yêu cầu và bản ghi thỏa điều kiện.", a: ["Đúng", "Sai"], c: 0 },
-      { q: "Hệ CSDL phải có CSDL và hệ quản trị CSDL (DBMS).", a: ["Đúng", "Sai"], c: 0 },
-      { q: "SELECT có thể dùng để xóa dữ liệu.", a: ["Đúng", "Sai"], c: 1 }
+      { q: "Câu 1. Hệ điều hành nào được phát triển từ mã nguồn mở và ra mắt lần đầu năm 1991?", a: ["Windows", "Linux", "macOS", "Android"], c: 1 },
+      { q: "Câu 2. Ngôn ngữ lập trình nào được sử dụng phổ biến nhất trong việc phát triển hệ điều hành?", a: ["C++", "Java", "Python", "Ruby"], c: 0 },
+      { q: "Câu 3. Người dùng đăng ký sử dụng dịch vụ và được cấp một không gian lưu trữ trực tuyến gọi là?", a: ["Nhà lưu trữ", "Cầu kết nối", "Bát online", "Ổ đĩa trực tuyến"], c: 3 },
+      { q: "Câu 4. Tải tệp lên ổ đĩa trực tuyến cho người dùng để…", a: ["Xóa các tệp và file trong máy tính mình đi", "Lưu trữ và sử dụng", "Mua bán thông tin lưu trữ của nhau", "Giải trí"], c: 1 },
+      { q: "Câu 5. Những hành vi, hành động nào sau đây bị nghiêm cấm trong môi trường mạng?", a: ["Sử dụng mật mã để bảo vệ thông tin mạng.", "Thực hiện tấn công mạng, khủng bố mạng, gián điệp mạng, tội phạm mạng; gây sự cố, tấn công, xâm nhập, chiếm quyền điều khiển, làm sai lệch, gián đoạn, ngưng trệ, tê liệt hoặc phá hoại hệ thống thông tin quan trọng về an ninh quốc gia.", "Nghiên cứu, phân tích thông tin an ninh mạng.", "Tuyên truyền cách phòng chống tội phạm trong môi trường mạng."], c: 1 },
+      { q: "Câu 6. Khi có một yêu cầu thanh toán hoặc chuyển tiền, cung cấp thông tin cá nhân ngay lập tức từ số điện thoại lạ chúng ta cần:", a: ["Dừng lại, không gửi", "Chuyển tiền ngay", "Cung cấp thông tin cá nhân", "Cung cấp số tài khoản ngân hàng, mã OTP"], c: 0 },
+      { q: "Câu 7. Cập nhật dữ liệu là ...", a: ["Quá trình ghi (lưu trữ) thông tin (dữ liệu) trong một phương tiện lưu trữ.", "Quá trình thêm, xóa và chỉnh sửa dữ liệu.", "Quá trình tìm kiếm, sắp xếp hay lọc ra các dữ liệu theo những tiêu chí nào đó từ dữ liệu đã có.", "Quá trình phân tích, thống kê, tính toán từ dữ liệu đã có để được thông tin cần thiết."], c: 1 },
+      { q: "Câu 8. Quá trình thêm, xóa và chỉnh sửa dữ liệu thường được gọi là ...", a: ["Lưu trữ dữ liệu.", "Cập nhật dữ liệu.", "Truy xuất dữ liệu.", "Khai thác thông tin."], c: 1 },
+      { q: "Câu 9. Công việc nào dưới đây KHÔNG phải là công việc cập nhật dữ liệu?", a: ["Ghi chép (thêm) dữ liệu mới thu thập được.", "Xóa dữ liệu không còn ý nghĩa.", "Sửa chữa dữ liệu đã có để đảm bảo tính chính xác của dữ liệu.", "Tìm kiếm các dữ liệu thỏa mãn một tiêu chí xác định."], c: 3 },
+      { q: "Câu 10. Phát biểu nào sai trong các phát biểu sau khi nói về khoá chính?", a: ["Một bảng có thể có nhiều khoá chính", "Mỗi bảng có ít nhất một khoá", "Xác định khoá phụ thuộc vào quan hệ logic của các dữ liệu chứ không phụ thuộc vào giá trị các dữ liệu", "Nên chọn khoá chính là khoá có ít thuộc tính nhất"], c: 0 },
+      { q: "Câu 11. Giả sử một bảng có 2 trường Aid (số bảo hiểm) và TenNS (họ tên) thì nên chọn trường Aid làm khoá chính hơn vì.", a: ["Trường Aid là duy nhất, trong khi đó trường TenNS không phải là duy nhất", "Trường Aid là kiểu số, trong khi đó trường TenNS không phải là kiểu số", "Trường Aid đứng trước trường TenNS", "Trường Aid là trường ngắn hơn"], c: 0 },
+      { q: "Câu 12. CSDL quan hệ là:", a: ["Là CSDL lưu trữ dữ liệu dưới dạng các bảng có quan hệ với nhau.", "Mô hình dữ liệu quan hệ nhiều bảng với nhau", "Mô hình hướng đối tượng trong bảng", "Mô hình cơ sở quan hệ CSDL."], c: 0 },
+      { q: "Câu 13. Trong mô hình quan hệ, về mặt cấu trúc thì dữ liệu được thể hiện trong các:", a: ["Cột (Field).", "Hàng (Record).", "Bảng (Table).", "Báo cáo (Report)"], c: 2 },
+      { q: "Câu 14. Em hãy điền vào chỗ trống: nếu tên trường có chứa dấu cách thì cần dùng dấu nào để đánh dấu bắt đầu và kết thúc tên trường?", a: ["( )", "‘ ’", "[ ]", "“ ”"], c: 2 },
+      { q: "Câu 15. Trong mẫu câu truy vấn của SQL, mệnh đề SELECT dùng để làm gì?", a: ["Xác định điều kiện lọc dữ liệu", "Thêm dữ liệu vào bảng", "Xác định dữ liệu được lấy từ đâu", "Xác định thông tin ta muốn hiển thị"], c: 3 },
+      { q: "Câu 16. Trong mẫu câu truy vấn của SQL, mệnh đề FROM dùng để làm gì?", a: ["Xác định điều kiện lọc dữ liệu", "Xác định dữ liệu được lấy từ đâu", "Xác định thông tin ta muốn hiển thị", "Xóa dữ liệu trong bảng"], c: 1 },
+      { q: "Câu 17. Cho truy vấn SELECT [Họ và tên], [Giới tính], [Toán] FROM [HỌC SINH 11] WHERE [Giới tính] = “Nữ”, truy vấn cho biết thông tin nào?", a: ["Đưa ra danh sách gồm: họ và tên, giới tính, điểm môn Toán của tất cả các học sinh nữ", "Đưa ra danh sách gồm: họ và tên, giới tính, điểm môn Toán của tất cả các học sinh nam", "Đưa ra danh sách gồm: họ và tên, giới tính, điểm môn Toán của tất cả các học sinh", "Đưa ra danh sách gồm: họ và tên, giới tính của tất cả các học sinh"], c: 0 },
+      { q: "Câu 18. Khi thực hiện thao tác lọc dữ liệu ta sử dụng:", a: ["Mẫu hỏi (Query)", "Biểu mẫu (Form)", "Liên kết bảng", "Báo cáo (report)"], c: 0 },
+      { q: "Câu 19. Trong CSDL, việc thực hiện lọc dữ liệu theo yêu cầu nào đó gọi là gì?", a: ["Tạo biểu mẫu (tạo Form)", "Thiết kế bảng", "Truy vấn dữ liệu", "Tạo báo cáo"], c: 2 },
+      { q: "Câu 20. Để lọc ra tất cả học sinh khá, ta dùng biểu thức nào sau đây đối với “Điểm Trung bình”?", a: [">=6.5 OR <8", ">=6.5 AND <8", ">=6.5 NO <8", ">=6.5 BETWEEN <8"], c: 1 },
+      { q: "Câu 21. Việc ghi điểm vào sổ điểm được thực hiện thường xuyên, mỗi khi có điểm đánh giá thường xuyên, giữa kì hay cuối kì. Việc ghi chép này gọi là ...?", a: ["Lưu trữ dữ liệu.", "Khai thác thông tin.", "Truy xuất dữ liệu.", "Cập nhật dữ liệu."], c: 3 },
+      { q: "Câu 22. Ngôn ngữ truy vấn CSDL phổ biến hiện nay là:", a: ["ExceL", "Word", "Access", "SQL"], c: 3 },
+      { q: "Câu 23. Trong mô hình cơ sở dữ liệu quan hệ, mỗi hàng (record) trong một bảng phải:", a: ["Có thể trùng lặp hoàn toàn với hàng khác", "Có ít nhất một trường để trống", "Được xác định duy nhất bởi khóa chính", "Chỉ chứa dữ liệu kiểu số"], c: 2 },
+      { q: "Câu 24. Trong câu lệnh SQL, mệnh đề WHERE dùng để:", a: ["Sắp xếp dữ liệu theo thứ tự tăng hoặc giảm", "Xác định điều kiện lọc các bản ghi", "Thêm một bản ghi mới vào bảng", "Xác định bảng chứa dữ liệu"], c: 1 },
+
+      { q: "Câu 25a. An mở ổ D và tìm file Baitap1.docx để nộp bài là thao tác cập nhật dữ liệu.", a: ["Đúng", "Sai"], c: 1 },
+      { q: "Câu 25b. An mở ổ D và tìm file Baitap1.docx để nộp bài là thao tác truy xuất dữ liệu.", a: ["Đúng", "Sai"], c: 0 },
+      { q: "Câu 25c. An mở ổ D và tìm file Baitap1.docx để nộp bài là thao tác khai thác thông tin.", a: ["Đúng", "Sai"], c: 1 },
+      { q: "Câu 25d. An mở ổ D và tìm file Baitap1.docx để nộp bài là thao tác thu thập dữ liệu.", a: ["Đúng", "Sai"], c: 1 },
+
+      { q: "Câu 26a. Truy vấn SQL đã cho hiển thị những bản ghi có Lương < 7000000 trong bảng KT-LƯƠNG.", a: ["Đúng", "Sai"], c: 0 },
+      { q: "Câu 26b. Truy vấn SQL đã cho hiển thị các trường Họ và tên, Lương, Trợ cấp của các bản ghi thỏa điều kiện Lương < 7000000.", a: ["Đúng", "Sai"], c: 0 },
+      { q: "Câu 26c. Truy vấn SQL đã cho lấy bản ghi thỏa Lương < 7000000 và chỉ hiển thị 3 trường yêu cầu.", a: ["Đúng", "Sai"], c: 0 },
+      { q: "Câu 26d. Truy vấn SQL đã cho tạo kết quả là bảng con gồm 3 trường đã chọn và các bản ghi thỏa Lương < 7000000.", a: ["Đúng", "Sai"], c: 0 },
+
+      { q: "Câu 27a. Access + CSDL quản lí học vụ của trường học là một hệ CSDL.", a: ["Đúng", "Sai"], c: 0 },
+      { q: "Câu 27b. Chương trình truy cập trực tiếp tệp dữ liệu thô (không qua DBMS) là hệ CSDL chuẩn.", a: ["Đúng", "Sai"], c: 1 },
+      { q: "Câu 27c. Chương trình truy cập bảng qua MySQL là một hệ CSDL.", a: ["Đúng", "Sai"], c: 0 },
+      { q: "Câu 27d. MySQL lưu trữ và quản lí các bảng dữ liệu là một thành phần của hệ CSDL.", a: ["Đúng", "Sai"], c: 0 },
+
+      { q: "Câu 28a. Truy vấn SELECT [Tên sản phẩm], [Đơn giá] ... WHERE [Đơn giá] > 1000000 hiển thị toàn bộ sản phẩm trong SANPHAM.", a: ["Đúng", "Sai"], c: 1 },
+      { q: "Câu 28b. Truy vấn trên hiển thị các sản phẩm có đơn giá > 1.000.000 và chỉ hiển thị 2 trường Tên sản phẩm, Đơn giá.", a: ["Đúng", "Sai"], c: 0 },
+      { q: "Câu 28c. Truy vấn trên hiển thị tất cả các trường của sản phẩm có đơn giá > 1.000.000.", a: ["Đúng", "Sai"], c: 1 },
+      { q: "Câu 28d. Truy vấn trên xóa các sản phẩm có đơn giá > 1.000.000.", a: ["Đúng", "Sai"], c: 1 }
     ];
 
     const questionLibraries = {
@@ -368,7 +384,7 @@
     };
 
     const CONFIG = {
-      timePerQuestion: 15,
+      timePerQuestion: 90,
       leaderboardKey: "quizRank"
     };
 
@@ -424,6 +440,12 @@
       }));
     }
 
+    function formatTime(totalSeconds) {
+      const minutes = Math.floor(totalSeconds / 60);
+      const seconds = totalSeconds % 60;
+      return `${String(minutes).padStart(2, "0")}:${String(seconds).padStart(2, "0")}`;
+    }
+
     function startQuiz() {
       player = elements.name.value.trim();
       selectedSubject = elements.subject.value;
@@ -467,11 +489,11 @@
     function startTimer() {
       clearInterval(timer);
       timeLeft = CONFIG.timePerQuestion;
-      elements.time.textContent = timeLeft;
+      elements.time.textContent = formatTime(timeLeft);
 
       timer = setInterval(() => {
         timeLeft -= 1;
-        elements.time.textContent = timeLeft;
+        elements.time.textContent = formatTime(timeLeft);
         if (timeLeft <= 0) {
           clearInterval(timer);
           nextQuestion();
@@ -676,7 +698,7 @@
       elements.start.classList.remove("hidden");
       elements.score.textContent = "0";
       elements.progress.style.width = "0%";
-      elements.time.textContent = CONFIG.timePerQuestion;
+      elements.time.textContent = formatTime(CONFIG.timePerQuestion);
       elements.position.textContent = "1";
       elements.answerBox.classList.remove("show");
       elements.answerBox.textContent = "";
