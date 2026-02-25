@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Quizizi Elite</title>
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+  <style>
+    body {
+      margin: 0;
+      font-family: Segoe UI, system-ui, sans-serif;
+      background: linear-gradient(135deg, #141e30, #243b55);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      color: white;
+      overflow: hidden;
+    }
+
+    .container {
+      width: min(92vw, 560px);
+      background: rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(15px);
+      padding: 24px;
+      border-radius: 20px;
+      text-align: center;
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+      transition: 0.3s;
+      position: relative;
+    }
+
+    input,
+    button {
+      padding: 10px 14px;
+      border-radius: 10px;
+      border: none;
+      margin-top: 10px;
+      font-size: 15px;
+    }
+
+    input {
+      width: min(80%, 320px);
+    }
+
+    button {
+      cursor: pointer;
+      font-weight: 700;
+    }
+
+    .answer {
+      width: 100%;
+      margin: 8px 0;
+      background: #3498db;
+      color: white;
+      transition: 0.2s;
+    }
+
+    .answer:hover {
+      transform: scale(1.02);
+    }
+
+    .correct {
+      background: #2ecc71 !important;
+    }
+
+    .wrong {
+      background: #e74c3c !important;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    .topbar {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 10px;
+      font-size: 14px;
+      gap: 10px;
+    }
+
+    .progress-bar {
+      height: 8px;
+      background: rgba(255, 255, 255, 0.2);
+      border-radius: 10px;
+      overflow: hidden;
+      margin-bottom: 15px;
+    }
+
+    .progress {
+      height: 100%;
+      background: #2ecc71;
+      width: 0;
+      transition: 0.4s;
+    }
+
+    .flash {
+      box-shadow: 0 0 0 9999px rgba(231, 76, 60, 0.2) inset;
+    }
+
+    @keyframes shake {
+      0% { transform: translateX(0); }
+      25% { transform: translateX(-5px); }
+      50% { transform: translateX(5px); }
+      75% { transform: translateX(-5px); }
+      100% { transform: translateX(0); }
+    }
+
+    .shake {
+      animation: shake 0.4s;
+    }
+
+    ol {
+      text-align: left;
+      margin: 0 auto;
+      max-width: 320px;
+      padding-left: 24px;
+    }
+
+    li {
+      margin: 6px 0;
+    }
+
+    .meta {
+      font-size: 13px;
+      opacity: 0.9;
+      margin-top: 8px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container" id="container">
+    <div id="start">
+      <h2>🎯 Quizizi Elite</h2>
+      <p class="meta">Bộ đề ôn tập lớp 11 · 28 câu</p>
+      <input id="name" placeholder="Nhập tên" />
+      <br />
+      <button id="startBtn">Bắt đầu</button>
+    </div>
+
+    <div id="quiz" class="hidden">
+      <div class="topbar">
+        <span>⏳ <span id="time">15</span>s</span>
+        <span>⭐ <span id="score">0</span></span>
+        <span>🧩 <span id="position">1</span>/<span id="total">28</span></span>
+      </div>
+      <div class="progress-bar"><div class="progress" id="progress"></div></div>
+      <h3 id="question"></h3>
+      <div id="answers"></div>
+    </div>
+
+    <div id="result" class="hidden">
+      <h2>🏆 Hoàn thành</h2>
+      <p id="final"></p>
+      <h3>Top 5</h3>
+      <ol id="rank"></ol>
+      <button id="restartBtn">Chơi lại</button>
+    </div>
+  </div>
+
+  <audio id="soundCorrect" src="https://assets.mixkit.co/sfx/preview/mixkit-game-level-completed-2059.mp3"></audio>
+  <audio id="soundWrong" src="https://assets.mixkit.co/sfx/preview/mixkit-wrong-answer-fail-notification-946.mp3"></audio>
+
+  <script>
+    const questionBank = [
+      { q: "Hệ điều hành nào được phát triển từ mã nguồn mở và ra mắt lần đầu năm 1991?", a: ["Windows", "Linux", "macOS", "Android"], c: 1 },
+      { q: "Ngôn ngữ lập trình nào được sử dụng phổ biến nhất trong việc phát triển hệ điều hành?", a: ["C++", "Java", "Python", "Ruby"], c: 0 },
+      { q: "Không gian lưu trữ trực tuyến được cấp cho người dùng gọi là?", a: ["Nhà lưu trữ", "Cầu kết nối", "Bát online", "Ổ đĩa trực tuyến"], c: 3 },
+      { q: "Tải tệp lên ổ đĩa trực tuyến để?", a: ["Xóa file máy tính", "Lưu trữ và sử dụng", "Mua bán dữ liệu", "Giải trí"], c: 1 },
+      { q: "Hành vi nào bị nghiêm cấm trong môi trường mạng?", a: ["Sử dụng mật mã", "Thực hiện tấn công mạng", "Nghiên cứu an ninh mạng", "Tuyên truyền cách phòng chống tội phạm"], c: 1 },
+      { q: "Khi có yêu cầu chuyển tiền hoặc cung cấp thông tin từ số lạ, cần làm gì?", a: ["Dừng lại, không gửi", "Chuyển tiền ngay", "Cung cấp thông tin cá nhân", "Cung cấp mã OTP"], c: 0 },
+      { q: "Cập nhật dữ liệu là?", a: ["Quá trình lưu trữ dữ liệu", "Quá trình thêm, xóa, chỉnh sửa dữ liệu", "Quá trình tìm kiếm/lọc dữ liệu", "Quá trình phân tích dữ liệu"], c: 1 },
+      { q: "Quá trình thêm, xóa và chỉnh sửa dữ liệu thường được gọi là?", a: ["Lưu trữ dữ liệu", "Cập nhật dữ liệu", "Truy xuất dữ liệu", "Khai thác thông tin"], c: 1 },
+      { q: "Công việc nào KHÔNG phải là cập nhật dữ liệu?", a: ["Thêm dữ liệu mới", "Xóa dữ liệu không còn ý nghĩa", "Sửa dữ liệu để chính xác", "Tìm kiếm dữ liệu theo tiêu chí"], c: 3 },
+      { q: "Phát biểu nào sai khi nói về khóa chính?", a: ["Một bảng có thể có nhiều khóa chính", "Mỗi bảng có ít nhất một khóa", "Chọn khóa dựa trên quan hệ logic dữ liệu", "Nên chọn khóa có ít thuộc tính"], c: 0 },
+      { q: "Vì sao nên chọn Aid làm khóa chính thay vì TenNS?", a: ["Aid là duy nhất", "Aid là kiểu số", "Aid đứng trước TenNS", "Aid ngắn hơn"], c: 0 },
+      { q: "CSDL quan hệ là gì?", a: ["CSDL lưu trữ dữ liệu dạng bảng có quan hệ với nhau", "Mô hình dữ liệu nhiều bảng", "Mô hình hướng đối tượng", "Mô hình cơ sở quan hệ CSDL"], c: 0 },
+      { q: "Trong mô hình quan hệ, về mặt cấu trúc dữ liệu thể hiện trong?", a: ["Cột (Field)", "Hàng (Record)", "Bảng (Table)", "Báo cáo (Report)"], c: 2 },
+      { q: "Tên trường có dấu cách cần đặt trong dấu nào?", a: ["( )", "' '", "[ ]", '" "'], c: 2 },
+      { q: "Trong SQL, mệnh đề SELECT dùng để?", a: ["Xác định điều kiện lọc", "Thêm dữ liệu vào bảng", "Xác định dữ liệu lấy từ đâu", "Xác định thông tin muốn hiển thị"], c: 3 },
+      { q: "Trong SQL, mệnh đề FROM dùng để?", a: ["Xác định điều kiện lọc", "Xác định dữ liệu được lấy từ đâu", "Xác định thông tin muốn hiển thị", "Xóa dữ liệu trong bảng"], c: 1 },
+      { q: "Truy vấn SELECT ... WHERE [Giới tính] = 'Nữ' cho biết điều gì?", a: ["Danh sách học sinh nữ với các trường được chọn", "Danh sách học sinh nam", "Danh sách tất cả học sinh", "Danh sách chỉ họ tên và giới tính"], c: 0 },
+      { q: "Khi thực hiện thao tác lọc dữ liệu, ta sử dụng?", a: ["Mẫu hỏi (Query)", "Biểu mẫu (Form)", "Liên kết bảng", "Báo cáo (Report)"], c: 0 },
+      { q: "Trong CSDL, lọc dữ liệu theo yêu cầu gọi là?", a: ["Tạo biểu mẫu", "Thiết kế bảng", "Truy vấn dữ liệu", "Tạo báo cáo"], c: 2 },
+      { q: "Để lọc ra học sinh khá theo Điểm trung bình, dùng biểu thức nào?", a: [">=6.5 OR <8", ">=6.5 AND <8", ">=6.5 NO <8", ">=6.5 BETWEEN <8"], c: 1 },
+      { q: "Việc ghi điểm vào sổ điểm thường xuyên gọi là?", a: ["Lưu trữ dữ liệu", "Khai thác thông tin", "Truy xuất dữ liệu", "Cập nhật dữ liệu"], c: 3 },
+      { q: "Ngôn ngữ truy vấn CSDL phổ biến hiện nay là?", a: ["Excel", "Word", "Access", "SQL"], c: 3 },
+      { q: "Trong mô hình CSDL quan hệ, mỗi hàng trong bảng phải?", a: ["Có thể trùng hoàn toàn", "Có ít nhất một trường trống", "Được xác định duy nhất bởi khóa chính", "Chỉ chứa dữ liệu số"], c: 2 },
+      { q: "Trong SQL, mệnh đề WHERE dùng để?", a: ["Sắp xếp dữ liệu", "Xác định điều kiện lọc bản ghi", "Thêm bản ghi", "Xác định bảng chứa dữ liệu"], c: 1 },
+      { q: "An mở file Baitap1.docx trong ổ D để nộp bài là thao tác truy xuất dữ liệu.", a: ["Đúng", "Sai"], c: 0 },
+      { q: "Câu truy vấn SELECT [Họ và tên], [Lương], [Trợ cấp] ... WHERE (Lương < 7000000) chỉ hiển thị các trường yêu cầu và bản ghi thỏa điều kiện.", a: ["Đúng", "Sai"], c: 0 },
+      { q: "Hệ CSDL phải có CSDL và hệ quản trị CSDL (DBMS).", a: ["Đúng", "Sai"], c: 0 },
+      { q: "SELECT có thể dùng để xóa dữ liệu.", a: ["Đúng", "Sai"], c: 1 }
+    ];
+
+    const CONFIG = {
+      timePerQuestion: 15,
+      leaderboardKey: "quizRank"
+    };
+
+    let questions = [];
+    let index = 0;
+    let score = 0;
+    let timeLeft = CONFIG.timePerQuestion;
+    let timer = null;
+    let player = "";
+
+    const elements = {
+      container: document.getElementById("container"),
+      start: document.getElementById("start"),
+      quiz: document.getElementById("quiz"),
+      result: document.getElementById("result"),
+      name: document.getElementById("name"),
+      question: document.getElementById("question"),
+      answers: document.getElementById("answers"),
+      time: document.getElementById("time"),
+      score: document.getElementById("score"),
+      final: document.getElementById("final"),
+      rank: document.getElementById("rank"),
+      progress: document.getElementById("progress"),
+      position: document.getElementById("position"),
+      total: document.getElementById("total"),
+      soundCorrect: document.getElementById("soundCorrect"),
+      soundWrong: document.getElementById("soundWrong"),
+      startBtn: document.getElementById("startBtn"),
+      restartBtn: document.getElementById("restartBtn")
+    };
+
+    function shuffle(array) {
+      for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+      }
+      return array;
+    }
+
+    function normalizeQuestions(source) {
+      return source.map((item) => ({
+        q: item.q,
+        options: item.a.map((text, idx) => ({ text, correct: idx === item.c }))
+      }));
+    }
+
+    function startQuiz() {
+      player = elements.name.value.trim();
+      if (!player) {
+        alert("Nhập tên 😌");
+        return;
+      }
+
+      questions = normalizeQuestions(questionBank);
+      shuffle(questions);
+      questions.forEach((q) => shuffle(q.options));
+
+      index = 0;
+      score = 0;
+      elements.score.textContent = score;
+      elements.total.textContent = questions.length;
+
+      elements.start.classList.add("hidden");
+      elements.result.classList.add("hidden");
+      elements.quiz.classList.remove("hidden");
+
+      loadQuestion();
+    }
+
+    function startTimer() {
+      clearInterval(timer);
+      timeLeft = CONFIG.timePerQuestion;
+      elements.time.textContent = timeLeft;
+
+      timer = setInterval(() => {
+        timeLeft -= 1;
+        elements.time.textContent = timeLeft;
+        if (timeLeft <= 0) {
+          clearInterval(timer);
+          nextQuestion();
+        }
+      }, 1000);
+    }
+
+    function updateProgress() {
+      const percent = (index / questions.length) * 100;
+      elements.progress.style.width = `${percent}%`;
+      elements.position.textContent = Math.min(index + 1, questions.length);
+    }
+
+    function loadQuestion() {
+      const current = questions[index];
+      updateProgress();
+      startTimer();
+
+      elements.question.textContent = current.q;
+      elements.answers.innerHTML = "";
+
+      current.options.forEach((option) => {
+        const btn = document.createElement("button");
+        btn.textContent = option.text;
+        btn.className = "answer";
+        btn.addEventListener("click", () => checkAnswer(option.correct, btn));
+        elements.answers.appendChild(btn);
+      });
+    }
+
+    function playSound(audioEl) {
+      audioEl.currentTime = 0;
+      audioEl.play().catch(() => {});
+    }
+
+    function wrongEffect(button) {
+      button.classList.add("wrong");
+      elements.container.classList.add("shake", "flash");
+      playSound(elements.soundWrong);
+      setTimeout(() => {
+        elements.container.classList.remove("shake", "flash");
+      }, 450);
+    }
+
+    function checkAnswer(isCorrect, button) {
+      clearInterval(timer);
+      Array.from(elements.answers.children).forEach((btn) => {
+        btn.disabled = true;
+      });
+
+      if (isCorrect) {
+        button.classList.add("correct");
+        score += 1;
+        elements.score.textContent = score;
+        playSound(elements.soundCorrect);
+      } else {
+        wrongEffect(button);
+      }
+
+      setTimeout(nextQuestion, 800);
+    }
+
+    function nextQuestion() {
+      index += 1;
+      if (index < questions.length) {
+        loadQuestion();
+      } else {
+        finishQuiz();
+      }
+    }
+
+    function saveScore() {
+      const data = JSON.parse(localStorage.getItem(CONFIG.leaderboardKey) || "[]");
+      data.push({ name: player, score, total: questions.length, time: Date.now() });
+      data.sort((first, second) => {
+        if (second.score !== first.score) {
+          return second.score - first.score;
+        }
+        return first.time - second.time;
+      });
+      const top5 = data.slice(0, 5);
+      localStorage.setItem(CONFIG.leaderboardKey, JSON.stringify(top5));
+    }
+
+    function showRank() {
+      const data = JSON.parse(localStorage.getItem(CONFIG.leaderboardKey) || "[]");
+      elements.rank.innerHTML = "";
+      data.forEach((entry) => {
+        const li = document.createElement("li");
+        li.textContent = `${entry.name} - ${entry.score}/${questions.length}`;
+        elements.rank.appendChild(li);
+      });
+      if (!data.length) {
+        const li = document.createElement("li");
+        li.textContent = "Chưa có dữ liệu";
+        elements.rank.appendChild(li);
+      }
+    }
+
+    function finishQuiz() {
+      clearInterval(timer);
+      elements.quiz.classList.add("hidden");
+      elements.result.classList.remove("hidden");
+      elements.final.textContent = `${player} đạt ${score}/${questions.length} điểm`;
+      elements.progress.style.width = "100%";
+
+      if (score === questions.length) {
+        confetti({ particleCount: 220, spread: 110, origin: { y: 0.65 } });
+      }
+
+      saveScore();
+      showRank();
+    }
+
+    function restart() {
+      clearInterval(timer);
+      elements.quiz.classList.add("hidden");
+      elements.result.classList.add("hidden");
+      elements.start.classList.remove("hidden");
+      elements.score.textContent = "0";
+      elements.progress.style.width = "0%";
+      elements.time.textContent = CONFIG.timePerQuestion;
+      elements.position.textContent = "1";
+      elements.name.focus();
+    }
+
+    elements.startBtn.addEventListener("click", startQuiz);
+    elements.restartBtn.addEventListener("click", restart);
+    elements.name.addEventListener("keydown", (event) => {
+      if (event.key === "Enter") {
+        startQuiz();
+      }
+    });
+  </script>
+</body>
+</html>
