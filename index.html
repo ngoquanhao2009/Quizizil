@@ -3,29 +3,85 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Quizizi Elite</title>
+  <title>Trắc Nghiệm Đề Cương | by ngoquanhao2009</title>
+  <link rel="icon" type="image/png" href="logo.png" />
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
   <style>
     body {
       margin: 0;
       font-family: Segoe UI, system-ui, sans-serif;
-      background: linear-gradient(135deg, #141e30, #243b55);
+      background: linear-gradient(-45deg, #0f172a, #1e1b4b, #0f172a, #1e293b);
+      background-size: 400% 400%;
+      animation: gradientBG 15s ease infinite;
       display: flex;
       justify-content: center;
       align-items: center;
-      height: 100vh;
+      min-height: 100vh;
       color: white;
-      overflow: hidden;
+      overflow-x: hidden;
+      padding: 16px;
+      box-sizing: border-box;
+    }
+
+    .page {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-align: left;
+    }
+
+    .brand-logo {
+      width: 64px;
+      height: 64px;
+      object-fit: cover;
+      border-radius: 14px;
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      box-shadow: 0 0 24px rgba(139, 92, 246, 0.45);
+    }
+
+    .main-title {
+      margin: 0;
+      text-align: left;
+      font-size: clamp(26px, 4vw, 38px);
+      font-weight: 800;
+      line-height: 1.1;
+      background: linear-gradient(90deg, #8b5cf6, #22d3ee, #8b5cf6);
+      background-size: 200%;
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+      animation: shine 6s linear infinite;
+      text-shadow: 0 0 18px rgba(34, 211, 238, 0.2);
+    }
+
+    .main-title span {
+      display: block;
+      font-size: 14px;
+      color: #94a3b8;
+      margin-top: 4px;
+      background: none;
+      background-clip: border-box;
+      -webkit-background-clip: border-box;
     }
 
     .container {
       width: min(92vw, 560px);
-      background: rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(15px);
+      background: rgba(15, 23, 42, 0.72);
+      border: 1px solid rgba(255, 255, 255, 0.1);
       backdrop-filter: blur(15px);
       padding: 24px;
       border-radius: 20px;
       text-align: center;
-      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+      box-shadow: 0 0 40px rgba(139, 92, 246, 0.25), 0 15px 40px rgba(0, 0, 0, 0.35);
       transition: 0.3s;
       position: relative;
     }
@@ -102,6 +158,26 @@
 
     .flash {
       box-shadow: 0 0 0 9999px rgba(231, 76, 60, 0.2) inset;
+    }
+
+    .fade-in {
+      animation: fadeIn 0.5s ease;
+    }
+
+    @keyframes gradientBG {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    @keyframes shine {
+      0% { background-position: 0%; }
+      100% { background-position: 200%; }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
     @keyframes shake {
@@ -201,41 +277,51 @@
   </style>
 </head>
 <body>
-  <div class="container" id="container">
-    <div id="start">
-      <h2>🎯 Quizizi Elite</h2>
-      <p class="meta">Bộ đề ôn tập lớp 11 · 28 câu</p>
-      <input id="name" placeholder="Nhập tên" />
-      <br />
-      <select id="subject">
-        <option value="">-- Chọn môn học --</option>
-        <option value="tin11">Tin học 11</option>
-      </select>
-      <br />
-      <button id="startBtn">Bắt đầu</button>
+  <div class="page">
+    <div class="brand">
+      <img src="logo.png" alt="Logo Trắc Nghiệm Đề Cương" class="brand-logo" />
+      <h1 class="main-title">
+        Trắc Nghiệm Đề Cương
+        <span>by ngoquanhao2009</span>
+      </h1>
     </div>
 
-    <div id="quiz" class="hidden">
-      <div class="topbar">
-        <span>⏳ <span id="time">15</span>s</span>
-        <span>⭐ <span id="score">0</span></span>
-        <span>🧩 <span id="position">1</span>/<span id="total">28</span></span>
+    <div class="container" id="container">
+      <div id="start">
+        <h2>🎯 Quizizi Elite</h2>
+        <p class="meta">Bộ đề ôn tập lớp 11 · 28 câu</p>
+        <input id="name" placeholder="Nhập tên" />
+        <br />
+        <select id="subject">
+          <option value="">-- Chọn môn học --</option>
+          <option value="tin11">Tin học 11</option>
+        </select>
+        <br />
+        <button id="startBtn">Bắt đầu</button>
       </div>
-      <div class="progress-bar"><div class="progress" id="progress"></div></div>
-      <h3 id="question"></h3>
-      <div id="answers"></div>
-      <div id="answerBox" class="answer-box"></div>
-    </div>
 
-    <div id="result" class="hidden">
-      <h2>🏆 Hoàn thành</h2>
-      <p id="final"></p>
-      <div id="statsBox" class="stat-box hidden"></div>
-      <h3>Top 5</h3>
-      <ol id="rank"></ol>
-      <button id="reviewBtn" class="review-btn hidden">Xem lại câu sai</button>
-      <div id="reviewPanel" class="hidden"></div>
-      <button id="restartBtn">Chơi lại</button>
+      <div id="quiz" class="hidden">
+        <div class="topbar">
+          <span>⏳ <span id="time">15</span>s</span>
+          <span>⭐ <span id="score">0</span></span>
+          <span>🧩 <span id="position">1</span>/<span id="total">28</span></span>
+        </div>
+        <div class="progress-bar"><div class="progress" id="progress"></div></div>
+        <h3 id="question"></h3>
+        <div id="answers"></div>
+        <div id="answerBox" class="answer-box"></div>
+      </div>
+
+      <div id="result" class="hidden">
+        <h2>🏆 Hoàn thành</h2>
+        <p id="final"></p>
+        <div id="statsBox" class="stat-box hidden"></div>
+        <h3>Top 5</h3>
+        <ol id="rank"></ol>
+        <button id="reviewBtn" class="review-btn hidden">Xem lại câu sai</button>
+        <div id="reviewPanel" class="hidden"></div>
+        <button id="restartBtn">Chơi lại</button>
+      </div>
     </div>
   </div>
 
@@ -403,6 +489,10 @@
       const current = questions[index];
       updateProgress();
       startTimer();
+      elements.container.classList.add("fade-in");
+      setTimeout(() => {
+        elements.container.classList.remove("fade-in");
+      }, 500);
 
       elements.question.textContent = current.q;
       elements.answers.innerHTML = "";
