@@ -31,6 +31,7 @@
     }
 
     input,
+    select,
     button {
       padding: 10px 14px;
       border-radius: 10px;
@@ -39,7 +40,8 @@
       font-size: 15px;
     }
 
-    input {
+    input,
+    select {
       width: min(80%, 320px);
     }
 
@@ -205,6 +207,11 @@
       <p class="meta">Bộ đề ôn tập lớp 11 · 28 câu</p>
       <input id="name" placeholder="Nhập tên" />
       <br />
+      <select id="subject">
+        <option value="">-- Chọn môn học --</option>
+        <option value="tin11">Tin học 11</option>
+      </select>
+      <br />
       <button id="startBtn">Bắt đầu</button>
     </div>
 
@@ -267,6 +274,13 @@
       { q: "SELECT có thể dùng để xóa dữ liệu.", a: ["Đúng", "Sai"], c: 1 }
     ];
 
+    const questionLibraries = {
+      tin11: {
+        label: "Tin học 11",
+        questions: questionBank
+      }
+    };
+
     const CONFIG = {
       timePerQuestion: 15,
       leaderboardKey: "quizRank"
@@ -278,6 +292,8 @@
     let timeLeft = CONFIG.timePerQuestion;
     let timer = null;
     let player = "";
+    let selectedSubject = "";
+    let selectedSubjectLabel = "";
     let wrongAnswers = [];
     let stats = [];
 
@@ -287,6 +303,7 @@
       quiz: document.getElementById("quiz"),
       result: document.getElementById("result"),
       name: document.getElementById("name"),
+      subject: document.getElementById("subject"),
       question: document.getElementById("question"),
       answers: document.getElementById("answers"),
       answerBox: document.getElementById("answerBox"),
@@ -323,12 +340,20 @@
 
     function startQuiz() {
       player = elements.name.value.trim();
+      selectedSubject = elements.subject.value;
+      const subjectPack = questionLibraries[selectedSubject];
       if (!player) {
         alert("Nhập tên 😌");
         return;
       }
+      if (!subjectPack) {
+        alert("Chọn môn học trước khi bắt đầu nhé 😌");
+        return;
+      }
 
-      questions = normalizeQuestions(questionBank);
+      selectedSubjectLabel = subjectPack.label;
+
+      questions = normalizeQuestions(subjectPack.questions);
       shuffle(questions);
       questions.forEach((q) => shuffle(q.options));
       wrongAnswers = [];
@@ -536,7 +561,7 @@
       clearInterval(timer);
       elements.quiz.classList.add("hidden");
       elements.result.classList.remove("hidden");
-      elements.final.textContent = `${player} đạt ${score}/${questions.length} điểm`;
+      elements.final.textContent = `${player} · ${selectedSubjectLabel} · ${score}/${questions.length} điểm`;
       elements.progress.style.width = "100%";
 
       if (score === questions.length) {
