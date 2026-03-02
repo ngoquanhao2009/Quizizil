@@ -350,6 +350,7 @@
 
   <audio id="soundCorrect" src="https://assets.mixkit.co/sfx/preview/mixkit-game-level-completed-2059.mp3"></audio>
   <audio id="soundWrong" src="https://assets.mixkit.co/sfx/preview/mixkit-wrong-answer-fail-notification-946.mp3"></audio>
+  <audio id="bgMusic" src="videoplayback (1).m4a" loop preload="auto"></audio>
 
   <script>
     const questionBank = [
@@ -444,11 +445,6 @@
     let stats = [];
     let selectedAnswerIndexes = new Set();
     let submitted = false;
-    let bgmEnabled = false;
-    let bgmContext = null;
-    let bgmMasterGain = null;
-    let bgmInterval = null;
-    let bgmStep = 0;
 
     const elements = {
       container: document.getElementById("container"),
@@ -475,6 +471,7 @@
       total: document.getElementById("total"),
       soundCorrect: document.getElementById("soundCorrect"),
       soundWrong: document.getElementById("soundWrong"),
+      bgMusic: document.getElementById("bgMusic"),
       startBtn: document.getElementById("startBtn"),
       restartBtn: document.getElementById("restartBtn")
     };
@@ -600,74 +597,19 @@
     }
 
     function setMusicButtonState() {
-      elements.musicBtn.textContent = bgmEnabled ? "🔇 Tắt nhạc" : "🎵 Bật nhạc";
-    }
-
-    function playBgmNote(freq) {
-      if (!bgmContext || !bgmMasterGain) {
-        return;
-      }
-      const now = bgmContext.currentTime;
-      const oscillator = bgmContext.createOscillator();
-      const gain = bgmContext.createGain();
-
-      oscillator.type = "triangle";
-      oscillator.frequency.setValueAtTime(freq, now);
-      gain.gain.setValueAtTime(0.0001, now);
-      gain.gain.exponentialRampToValueAtTime(0.06, now + 0.03);
-      gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.32);
-
-      oscillator.connect(gain);
-      gain.connect(bgmMasterGain);
-      oscillator.start(now);
-      oscillator.stop(now + 0.34);
-    }
-
-    async function startBgm() {
-      if (!bgmContext) {
-        bgmContext = new (window.AudioContext || window.webkitAudioContext)();
-      }
-
-      if (bgmContext.state === "suspended") {
-        await bgmContext.resume();
-      }
-
-      if (!bgmMasterGain) {
-        bgmMasterGain = bgmContext.createGain();
-        bgmMasterGain.gain.value = 0.45;
-        bgmMasterGain.connect(bgmContext.destination);
-      }
-
-      if (bgmInterval) {
-        clearInterval(bgmInterval);
-      }
-
-      const melody = [261.63, 329.63, 392.0, 329.63, 293.66, 349.23, 440.0, 349.23];
-      bgmStep = 0;
-      bgmInterval = setInterval(() => {
-        playBgmNote(melody[bgmStep % melody.length]);
-        bgmStep += 1;
-      }, 360);
-    }
-
-    function stopBgm() {
-      if (bgmInterval) {
-        clearInterval(bgmInterval);
-        bgmInterval = null;
-      }
+      elements.musicBtn.textContent = elements.bgMusic.paused ? "🎵 Bật nhạc" : "🔇 Tắt nhạc";
     }
 
     async function toggleBgm() {
-      if (bgmEnabled) {
-        bgmEnabled = false;
-        stopBgm();
+      if (!elements.bgMusic.paused) {
+        elements.bgMusic.pause();
         setMusicButtonState();
         return;
       }
 
-      bgmEnabled = true;
+      elements.bgMusic.volume = 0.45;
+      await elements.bgMusic.play();
       setMusicButtonState();
-      await startBgm();
     }
 
     function wrongEffect(button) {
@@ -915,7 +857,7 @@
     elements.submitBtn.addEventListener("click", () => submitAnswer(false));
     elements.musicBtn.addEventListener("click", () => {
       toggleBgm().catch(() => {
-        bgmEnabled = false;
+        elements.bgMusic.pause();
         setMusicButtonState();
       });
     });
