@@ -87,10 +87,7 @@
     }
 
     .music-btn {
-      position: absolute;
-      top: 12px;
-      right: 12px;
-      margin-top: 0;
+      margin-top: 6px;
       padding: 8px 12px;
       font-size: 13px;
       border-radius: 8px;
@@ -310,7 +307,6 @@
     </div>
 
     <div class="container" id="container">
-      <button id="musicBtn" class="music-btn" type="button">🎵 Bật nhạc</button>
       <div id="start">
         <h2>🎯 Quizizi Elite</h2>
         <p class="meta">trên bước đường thành công sẽ có dấu xe của kẻ lười biếng</p>
@@ -331,6 +327,7 @@
           <span>🧩 <span id="position">1</span>/<span id="total">28</span></span>
         </div>
         <div class="progress-bar"><div class="progress" id="progress"></div></div>
+        <p class="meta" id="progressText">Đang ở câu 1/28</p>
         <h3 id="question"></h3>
         <div id="answers"></div>
         <button id="submitBtn">Nộp đáp án</button>
@@ -348,6 +345,7 @@
         <button id="restartBtn">Chơi lại</button>
       </div>
     </div>
+    <button id="musicBtn" class="music-btn" type="button">🎵 Bật nhạc</button>
   </div>
 
   <audio id="soundCorrect" src="https://assets.mixkit.co/sfx/preview/mixkit-game-level-completed-2059.mp3"></audio>
@@ -472,6 +470,7 @@
       reviewBtn: document.getElementById("reviewBtn"),
       reviewPanel: document.getElementById("reviewPanel"),
       progress: document.getElementById("progress"),
+      progressText: document.getElementById("progressText"),
       position: document.getElementById("position"),
       total: document.getElementById("total"),
       soundCorrect: document.getElementById("soundCorrect"),
@@ -563,6 +562,7 @@
       const percent = (index / questions.length) * 100;
       elements.progress.style.width = `${percent}%`;
       elements.position.textContent = Math.min(index + 1, questions.length);
+      elements.progressText.textContent = `Đang ở câu ${Math.min(index + 1, questions.length)}/${questions.length}`;
     }
 
     function loadQuestion() {
