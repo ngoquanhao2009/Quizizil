@@ -86,6 +86,18 @@
       position: relative;
     }
 
+    .music-btn {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      margin-top: 0;
+      padding: 8px 12px;
+      font-size: 13px;
+      border-radius: 8px;
+      background: #334155;
+      color: #e2e8f0;
+    }
+
     input,
     select,
     button {
@@ -298,6 +310,7 @@
     </div>
 
     <div class="container" id="container">
+      <button id="musicBtn" class="music-btn" type="button">🎵 Bật nhạc</button>
       <div id="start">
         <h2>🎯 Quizizi Elite</h2>
         <p class="meta">trên bước đường thành công sẽ có dấu xe của kẻ lười biếng</p>
@@ -433,6 +446,11 @@
     let stats = [];
     let selectedAnswerIndexes = new Set();
     let submitted = false;
+    let bgmEnabled = false;
+    let bgmContext = null;
+    let bgmMasterGain = null;
+    let bgmInterval = null;
+    let bgmStep = 0;
 
     const elements = {
       container: document.getElementById("container"),
@@ -449,6 +467,7 @@
       score: document.getElementById("score"),
       final: document.getElementById("final"),
       rank: document.getElementById("rank"),
+      musicBtn: document.getElementById("musicBtn"),
       statsBox: document.getElementById("statsBox"),
       reviewBtn: document.getElementById("reviewBtn"),
       reviewPanel: document.getElementById("reviewPanel"),
@@ -578,6 +597,77 @@
     function playSound(audioEl) {
       audioEl.currentTime = 0;
       audioEl.play().catch(() => {});
+    }
+
+    function setMusicButtonState() {
+      elements.musicBtn.textContent = bgmEnabled ? "🔇 Tắt nhạc" : "🎵 Bật nhạc";
+    }
+
+    function playBgmNote(freq) {
+      if (!bgmContext || !bgmMasterGain) {
+        return;
+      }
+      const now = bgmContext.currentTime;
+      const oscillator = bgmContext.createOscillator();
+      const gain = bgmContext.createGain();
+
+      oscillator.type = "triangle";
+      oscillator.frequency.setValueAtTime(freq, now);
+      gain.gain.setValueAtTime(0.0001, now);
+      gain.gain.exponentialRampToValueAtTime(0.06, now + 0.03);
+      gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.32);
+
+      oscillator.connect(gain);
+      gain.connect(bgmMasterGain);
+      oscillator.start(now);
+      oscillator.stop(now + 0.34);
+    }
+
+    async function startBgm() {
+      if (!bgmContext) {
+        bgmContext = new (window.AudioContext || window.webkitAudioContext)();
+      }
+
+      if (bgmContext.state === "suspended") {
+        await bgmContext.resume();
+      }
+
+      if (!bgmMasterGain) {
+        bgmMasterGain = bgmContext.createGain();
+        bgmMasterGain.gain.value = 0.45;
+        bgmMasterGain.connect(bgmContext.destination);
+      }
+
+      if (bgmInterval) {
+        clearInterval(bgmInterval);
+      }
+
+      const melody = [261.63, 329.63, 392.0, 329.63, 293.66, 349.23, 440.0, 349.23];
+      bgmStep = 0;
+      bgmInterval = setInterval(() => {
+        playBgmNote(melody[bgmStep % melody.length]);
+        bgmStep += 1;
+      }, 360);
+    }
+
+    function stopBgm() {
+      if (bgmInterval) {
+        clearInterval(bgmInterval);
+        bgmInterval = null;
+      }
+    }
+
+    async function toggleBgm() {
+      if (bgmEnabled) {
+        bgmEnabled = false;
+        stopBgm();
+        setMusicButtonState();
+        return;
+      }
+
+      bgmEnabled = true;
+      setMusicButtonState();
+      await startBgm();
     }
 
     function wrongEffect(button) {
@@ -823,11 +913,19 @@
     elements.restartBtn.addEventListener("click", restart);
     elements.reviewBtn.addEventListener("click", showWrongAnswers);
     elements.submitBtn.addEventListener("click", () => submitAnswer(false));
+    elements.musicBtn.addEventListener("click", () => {
+      toggleBgm().catch(() => {
+        bgmEnabled = false;
+        setMusicButtonState();
+      });
+    });
     elements.name.addEventListener("keydown", (event) => {
       if (event.key === "Enter") {
         startQuiz();
       }
     });
+
+    setMusicButtonState();
   </script>
 </body>
 </html>
