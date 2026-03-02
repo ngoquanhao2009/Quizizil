@@ -118,6 +118,11 @@
       transform: scale(1.02);
     }
 
+    .answer.selected {
+      background: #7c3aed;
+      box-shadow: 0 0 0 2px rgba(167, 139, 250, 0.45) inset;
+    }
+
     .correct {
       background: #16a34a !important;
       color: white;
@@ -154,6 +159,12 @@
       background: #2ecc71;
       width: 0;
       transition: 0.4s;
+    }
+
+    #question {
+      white-space: pre-line;
+      text-align: left;
+      line-height: 1.45;
     }
 
     .flash {
@@ -309,6 +320,7 @@
         <div class="progress-bar"><div class="progress" id="progress"></div></div>
         <h3 id="question"></h3>
         <div id="answers"></div>
+        <button id="submitBtn">Nộp đáp án</button>
         <div id="answerBox" class="answer-box"></div>
       </div>
 
@@ -355,25 +367,46 @@
       { q: "Câu 23. Trong mô hình cơ sở dữ liệu quan hệ, mỗi hàng (record) trong một bảng phải:", a: ["Có thể trùng lặp hoàn toàn với hàng khác", "Có ít nhất một trường để trống", "Được xác định duy nhất bởi khóa chính", "Chỉ chứa dữ liệu kiểu số"], c: 2 },
       { q: "Câu 24. Trong câu lệnh SQL, mệnh đề WHERE dùng để:", a: ["Sắp xếp dữ liệu theo thứ tự tăng hoặc giảm", "Xác định điều kiện lọc các bản ghi", "Thêm một bản ghi mới vào bảng", "Xác định bảng chứa dữ liệu"], c: 1 },
 
-      { q: "Câu 25a. An mở ổ D và tìm file Baitap1.docx để nộp bài là thao tác cập nhật dữ liệu.", a: ["Đúng", "Sai"], c: 1 },
-      { q: "Câu 25b. An mở ổ D và tìm file Baitap1.docx để nộp bài là thao tác truy xuất dữ liệu.", a: ["Đúng", "Sai"], c: 0 },
-      { q: "Câu 25c. An mở ổ D và tìm file Baitap1.docx để nộp bài là thao tác khai thác thông tin.", a: ["Đúng", "Sai"], c: 1 },
-      { q: "Câu 25d. An mở ổ D và tìm file Baitap1.docx để nộp bài là thao tác thu thập dữ liệu.", a: ["Đúng", "Sai"], c: 1 },
-
-      { q: "Câu 26a. Truy vấn SQL đã cho hiển thị những bản ghi có Lương < 7000000 trong bảng KT-LƯƠNG.", a: ["Đúng", "Sai"], c: 0 },
-      { q: "Câu 26b. Truy vấn SQL đã cho hiển thị các trường Họ và tên, Lương, Trợ cấp của các bản ghi thỏa điều kiện Lương < 7000000.", a: ["Đúng", "Sai"], c: 0 },
-      { q: "Câu 26c. Truy vấn SQL đã cho lấy bản ghi thỏa Lương < 7000000 và chỉ hiển thị 3 trường yêu cầu.", a: ["Đúng", "Sai"], c: 0 },
-      { q: "Câu 26d. Truy vấn SQL đã cho tạo kết quả là bảng con gồm 3 trường đã chọn và các bản ghi thỏa Lương < 7000000.", a: ["Đúng", "Sai"], c: 0 },
-
-      { q: "Câu 27a. Access + CSDL quản lí học vụ của trường học là một hệ CSDL.", a: ["Đúng", "Sai"], c: 0 },
-      { q: "Câu 27b. Chương trình truy cập trực tiếp tệp dữ liệu thô (không qua DBMS) là hệ CSDL chuẩn.", a: ["Đúng", "Sai"], c: 1 },
-      { q: "Câu 27c. Chương trình truy cập bảng qua MySQL là một hệ CSDL.", a: ["Đúng", "Sai"], c: 0 },
-      { q: "Câu 27d. MySQL lưu trữ và quản lí các bảng dữ liệu là một thành phần của hệ CSDL.", a: ["Đúng", "Sai"], c: 0 },
-
-      { q: "Câu 28a. Truy vấn SELECT [Tên sản phẩm], [Đơn giá] ... WHERE [Đơn giá] > 1000000 hiển thị toàn bộ sản phẩm trong SANPHAM.", a: ["Đúng", "Sai"], c: 1 },
-      { q: "Câu 28b. Truy vấn trên hiển thị các sản phẩm có đơn giá > 1.000.000 và chỉ hiển thị 2 trường Tên sản phẩm, Đơn giá.", a: ["Đúng", "Sai"], c: 0 },
-      { q: "Câu 28c. Truy vấn trên hiển thị tất cả các trường của sản phẩm có đơn giá > 1.000.000.", a: ["Đúng", "Sai"], c: 1 },
-      { q: "Câu 28d. Truy vấn trên xóa các sản phẩm có đơn giá > 1.000.000.", a: ["Đúng", "Sai"], c: 1 }
+      {
+        q: "Câu 25: Giờ kiểm tra môn Tin học, An muốn mở file bài tập “Baitap1.docx” đã lưu trong ổ đĩa D của máy tính để nộp cho giáo viên. An thực hiện thao tác mở ổ đĩa D và tìm kiếm file “Baitap1.docx”.\nMột số bạn cho rằng:",
+        a: [
+          "a) An đang thực hiện thao tác cập nhật dữ liệu.",
+          "b) An đang thực hiện thao tác truy xuất dữ liệu.",
+          "c) An đang thực hiện thao tác khai thác thông tin.",
+          "d) An đang thực hiện thao tác thu thập dữ liệu."
+        ],
+        c: [1]
+      },
+      {
+        q: "Câu 26: Trong các phát biểu dưới đây, phát biểu nào đúng với câu truy vấn SQL sau?\nSELECT [Họ và tên], [Lương], [Trợ cấp]\nFROM [KT-LƯƠNG]\nWHERE (Lương <7000000)",
+        a: [
+          "a) Hiển thị những bản ghi có giá trị trường Lương chưa đến 7000000 trong bảng KT-LƯƠNG.",
+          "b) Hiển thị các trường Họ và tên, Lương, Trợ cấp của những bản ghi thoả mãn điều kiện (Lương < 7000000).",
+          "c) Lấy ra từ bảng KT-LƯƠNG các bản ghi thoả mãn điều kiện (Lương < 7000000), chỉ hiển thị các trường Họ và tên, Lương, Trợ cấp của những bản ghi này.",
+          "d) Lấy ra từ bảng KT-LƯƠNG một bảng con chỉ có các trường Họ và tên, Lương, Trợ cấp và chỉ gồm các bản ghi thoả mãn điều kiện (Lương<7000000)."
+        ],
+        c: [0, 1, 2, 3]
+      },
+      {
+        q: "Câu 27: Hệ thống nào sau đây là hệ CSDL?",
+        a: [
+          "a) Phần mềm hệ quản trị CSDL Microsoft Access và CSDL quản lí học vụ của một trường học.",
+          "b) Chương trình “Quản lí học sinh” truy cập và cập nhật trực tiếp vào tệp dữ liệu “Họcsinh” (gồm các trường Mãsố, Họtên, MãLớp) và tệp dữ liệu Lớp (gồm các trường MãLớp, TênLớp).",
+          "c) Chương trình “Quản lí học sinh” truy cập và cập nhật bảng Họcsinh (Mãsố, Họtên, Mãlớp) và bảng Lớp (Mãlớp, Tênlớp) thông qua phần mềm hệ quản trị CSDL MySQL.",
+          "d) Phần mềm hệ quản trị CSDL MySQL lưu trữ bảng HọcSinh (Mãsố, Họtên, Mãlớp) và bảng Lớp (MãLớp, TênLớp)."
+        ],
+        c: [0, 2, 3]
+      },
+      {
+        q: "Câu 28: Cho câu truy vấn:\nSELECT [Tên sản phẩm], [Đơn giá]\nFROM [SANPHAM]\nWHERE [Đơn giá] > 1000000",
+        a: [
+          "a) Hiển thị toàn bộ sản phẩm trong bảng SANPHAM.",
+          "b) Hiển thị các sản phẩm có đơn giá lớn hơn 1.000.000 và chỉ hiển thị 2 trường Tên sản phẩm, Đơn giá.",
+          "c) Hiển thị tất cả các trường của sản phẩm có đơn giá lớn hơn 1.000.000.",
+          "d) Xóa các sản phẩm có đơn giá lớn hơn 1.000.000."
+        ],
+        c: [1]
+      }
     ];
 
     const questionLibraries = {
@@ -398,6 +431,8 @@
     let selectedSubjectLabel = "";
     let wrongAnswers = [];
     let stats = [];
+    let selectedAnswerIndexes = new Set();
+    let submitted = false;
 
     const elements = {
       container: document.getElementById("container"),
@@ -409,6 +444,7 @@
       question: document.getElementById("question"),
       answers: document.getElementById("answers"),
       answerBox: document.getElementById("answerBox"),
+      submitBtn: document.getElementById("submitBtn"),
       time: document.getElementById("time"),
       score: document.getElementById("score"),
       final: document.getElementById("final"),
@@ -436,7 +472,10 @@
     function normalizeQuestions(source) {
       return source.map((item) => ({
         q: item.q,
-        options: item.a.map((text, idx) => ({ text, correct: idx === item.c }))
+        options: item.a.map((text, idx) => ({
+          text,
+          correct: (Array.isArray(item.c) ? item.c : [item.c]).includes(idx)
+        }))
       }));
     }
 
@@ -496,7 +535,7 @@
         elements.time.textContent = formatTime(timeLeft);
         if (timeLeft <= 0) {
           clearInterval(timer);
-          nextQuestion();
+          submitAnswer(true);
         }
       }, 1000);
     }
@@ -520,14 +559,18 @@
       elements.answers.innerHTML = "";
       elements.answerBox.classList.remove("show");
       elements.answerBox.textContent = "";
+      selectedAnswerIndexes = new Set();
+      submitted = false;
+      elements.submitBtn.disabled = false;
 
-      current.options.forEach((option) => {
+      current.options.forEach((option, optionIndex) => {
         const btn = document.createElement("button");
         btn.textContent = option.text;
         btn.className = "answer";
         btn.dataset.correct = option.correct ? "1" : "0";
+        btn.dataset.optionIndex = String(optionIndex);
         btn.dataset.answer = option.text;
-        btn.addEventListener("click", () => checkAnswer(option, btn));
+        btn.addEventListener("click", () => toggleAnswer(optionIndex, btn));
         elements.answers.appendChild(btn);
       });
     }
@@ -546,31 +589,97 @@
       }, 450);
     }
 
-    function checkAnswer(selectedOption, button) {
+    function toggleAnswer(optionIndex, button) {
+      if (submitted) {
+        return;
+      }
+
+      if (selectedAnswerIndexes.has(optionIndex)) {
+        selectedAnswerIndexes.delete(optionIndex);
+        button.classList.remove("selected");
+      } else {
+        selectedAnswerIndexes.add(optionIndex);
+        button.classList.add("selected");
+      }
+    }
+
+    function submitAnswer(isTimeout = false) {
+      if (submitted) {
+        return;
+      }
+
+      if (!isTimeout && selectedAnswerIndexes.size === 0) {
+        alert("Chọn ít nhất 1 đáp án rồi bấm nộp nhé 😌");
+        return;
+      }
+
       clearInterval(timer);
+      submitted = true;
+      elements.submitBtn.disabled = true;
+
+      const current = questions[index];
       const buttons = Array.from(elements.answers.children);
       buttons.forEach((btn) => {
         btn.disabled = true;
       });
 
-      if (selectedOption.correct) {
+      const correctIndexes = current.options
+        .map((option, optionIndex) => (option.correct ? optionIndex : -1))
+        .filter((value) => value >= 0);
+      const allCorrectChosen =
+        selectedAnswerIndexes.size === correctIndexes.length &&
+        correctIndexes.every((correctIndex) => selectedAnswerIndexes.has(correctIndex));
+
+      if (allCorrectChosen) {
         stats[index].correct += 1;
-        button.classList.add("correct");
+        correctIndexes.forEach((correctIndex) => {
+          const btn = buttons.find((item) => Number(item.dataset.optionIndex) === correctIndex);
+          if (btn) {
+            btn.classList.add("correct");
+          }
+        });
         score += 1;
         elements.score.textContent = score;
         playSound(elements.soundCorrect);
       } else {
         stats[index].wrong += 1;
-        wrongEffect(button);
-        const correctButton = buttons.find((btn) => btn.dataset.correct === "1");
-        if (correctButton) {
-          correctButton.classList.add("correct");
+
+        const selectedWrongButton = buttons.find((btn) => {
+          const optionIndex = Number(btn.dataset.optionIndex);
+          return selectedAnswerIndexes.has(optionIndex) && !correctIndexes.includes(optionIndex);
+        });
+        if (selectedWrongButton) {
+          wrongEffect(selectedWrongButton);
+        } else {
+          elements.container.classList.add("shake", "flash");
+          playSound(elements.soundWrong);
+          setTimeout(() => {
+            elements.container.classList.remove("shake", "flash");
+          }, 450);
         }
 
-        const correctAnswer = questions[index].options.find((option) => option.correct)?.text || "";
+        buttons.forEach((btn) => {
+          const optionIndex = Number(btn.dataset.optionIndex);
+          if (correctIndexes.includes(optionIndex)) {
+            btn.classList.add("correct");
+          } else if (selectedAnswerIndexes.has(optionIndex)) {
+            btn.classList.add("wrong");
+          }
+        });
+
+        const selectedAnswer = Array.from(selectedAnswerIndexes)
+          .sort((first, second) => first - second)
+          .map((answerIndex) => current.options[answerIndex]?.text)
+          .filter(Boolean)
+          .join(" | ") || "(không chọn đáp án nào)";
+        const correctAnswer = correctIndexes
+          .map((correctIndex) => current.options[correctIndex]?.text)
+          .filter(Boolean)
+          .join(" | ");
+
         wrongAnswers.push({
-          question: questions[index].q,
-          selected: selectedOption.text,
+          question: current.q,
+          selected: selectedAnswer,
           correct: correctAnswer
         });
 
@@ -713,6 +822,7 @@
     elements.startBtn.addEventListener("click", startQuiz);
     elements.restartBtn.addEventListener("click", restart);
     elements.reviewBtn.addEventListener("click", showWrongAnswers);
+    elements.submitBtn.addEventListener("click", () => submitAnswer(false));
     elements.name.addEventListener("keydown", (event) => {
       if (event.key === "Enter") {
         startQuiz();
