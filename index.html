@@ -315,6 +315,7 @@
         <select id="subject">
           <option value="">-- Chọn môn học --</option>
           <option value="tin11">Tin học 11</option>
+          <option value="ls11gk2">Kiểm tra giữa kì II môn Lịch Sử 11</option>
         </select>
         <br />
         <button id="startBtn">Bắt đầu</button>
@@ -421,10 +422,117 @@
       }
     ];
 
+    const historyQuestionBank = [
+      { q: "Câu 1. Tình hình kinh tế nước ta thời nhà Trần từ nửa sau thế kỉ XIV, có đặc điểm là", a: ["kinh tế có bước phát triển mới, nông nghiệp ổn định.", "kinh tế suy yếu, nhiều năm bị mất mùa, đói kém.", "kinh tế phát triển vượt bậc do chính sách mở cửa của nhà nước.", "kinh tế thương nghiệp, thủ công nghiệp phát triển mạnh."], c: 1 },
+      { q: "Câu 2. Nguyên nhân nào sau đây dẫn đến kinh tế nước ta vào nửa sau thế kỉ XIV, rơi vào tình trạng khủng hoảng?", a: ["Nhà nước chỉ chú trọng phát triển ngành thương nghiệp.", "Nhà nước thực hiện chính sách mở cửa, tự do buôn bán.", "Nhà nước không còn chăm lo đến sản xuất nông nghiệp.", "Nhà nước chỉ chú trọng phát triển ngành thủ công nghiệp."], c: 2 },
+      { q: "Câu 3. Một trong những nội dung cải cách về kinh tế, xã hội của Hồ Quý Ly và Triều Hồ là", a: ["thực hiện chính sách hạn điền.", "thống kê số nhân khẩu trong cả nước.", "hạn chế sự phát triển của phật giáo.", "đề cao sử dụng chữ Nôm."], c: 0 },
+      { q: "Câu 4. Một trong những nội dung cải cách về văn hóa, giáo dục của Hồ Quý Ly và Triều Hồ là", a: ["thực hiện chính sách hạn điền.", "tăng cường phòng thủ ở những nơi trọng yếu.", "hạn chế sự phát triển của phật giáo.", "chấn chỉnh lại chế độ thi cử."], c: 3 },
+      { q: "Câu 5. Tình trạng nào sau đây thể hiện sự suy yếu về chính trị của nhà Trần nửa sau thế kỉ XIV?", a: ["Tầng lớp quý tộc suy thoái, xuất hiện các cuộc khởi nghĩa của nô lệ", "Chính quyền địa phương khủng hoảng; hạn hán, mất mùa diễn ra thường xuyên", "Quan hệ với Chăm-pa và nhà Minh căng thẳng, mất mùa diễn ra thường xuyên", "Triều chính bị gian thần lũng đoạn, việc nước không còn được quan tâm"], c: 3 },
+      { q: "Câu 6. Nội dung nào sau đây là một trong những nguyên nhân dẫn đến sự suy yếu của triều đại nhà Trần ở nửa sau thế kỉ XIV?", a: ["Đất nước bị quân Minh xâm lược, đô hộ và bóc lột về kinh tế", "Nhà nước không quan tâm sản xuất, quan lại ăn chơi hưởng lạc.", "Chiến tranh giữa các phe phái quyền lực đối lập diễn ra liên miên", "Nhà Trần tiến hành nhiều cuộc chiến tranh xâm lược tốn kém."], c: 1 },
+      { q: "Câu 7. Từ nửa sau thế kỉ XIV, tình hình chính trị nhà Trần rơi khủng hoảng nghiêm trọng đến mức", a: ["không có khả năng bảo vệ đất nước.", "chỉ đủ khả năng bảo vệ lãnh thổ đất nước.", "chỉ đàn áp được các cuộc khởi nghĩa của nông dân.", "phải tiến hành cải cách toàn diện đất nước."], c: 3 },
+      { q: "Câu 8. Nội dung nào sau đây là cải cách trên lĩnh vực quân sự - quốc phòng của Hồ Quý Ly và triều Hồ cuối thế kỉ XIV đầu thế kỉ XV?", a: ["Xây dựng phòng tuyến chống giặc trên sông Như Nguyệt.", "Ban hành quy chế và hình luật mới của quốc gia.", "Cải tiến vũ khí, chế tạo súng thần cơ, đóng thuyền chiến.", "Bố trí mai phục và đóng cọc gỗ trên sông Bạch Đằng."], c: 2 },
+      { q: "Câu 9. Sau khi lên nắm quyền, Triều Hồ đã thực hiện biện pháp gì để tăng cường lực lượng quân đội và phòng thủ những nơi trọng yếu?", a: ["Tiến hành các biện pháp nhằm tăng cường bắt lính nhập ngũ.", "Cho thống kê nhân khẩu từ 2 tuổi trở lên, thực hiện chế độ quân dịch.", "Thực hiện các chính sách khuyến khích nhân dân tham gia quân đội.", "Xây dựng và huấn luyện quân đội tinh nhuệ, trang bị hiện đại."], c: 1 },
+      { q: "Câu 10. Với cuộc cải cách của Hồ Quý Ly và triều Hồ cuối thế kỉ XIV, đầu thế kỉ XV, hệ tư tưởng nào từng bước trở thành ý thức hệ tư tưởng chủ đạo của xã hội Đại Việt?", a: ["Nho giáo", "Phật giáo", "Đạo giáo", "Thiên chúa giáo"], c: 0 },
+      { q: "Câu 11. Cuộc cải cách của vua Lê Thánh Tông được tiến hành trong bối cảnh lịch sử nào sau đây?", a: ["Nội bộ triều đình có nhiều mâu thuẫn, biến động.", "Nền kinh tế sa sút, nạn đói diễn ra thường xuyên", "Đất nước đứng trước nguy cơ bị nhà Minh xâm lược", "Chế độ phong kiến lâm vào khủng hoảng trầm trọng"], c: 0 },
+      { q: "Câu 12. Nội dung nào sau đây phản ảnh đúng mục đích cải cách của vua Lê Thánh Tông?", a: ["Tăng cường quyền lực của hoàng đế và củng cố bộ máy nhà nước", "Giải quyết tình trạng khủng hoảng trầm trọng của đất nước bấy giờ", "Biến nước ta trở thành cường quốc lớn mạnh hàng đầu trong khu vực.", "Tăng cường tiềm lực đất nước chuẩn bị đối phó với giặc ngoại xâm"], c: 0 },
+      { q: "Câu 13. Trong bộ máy chính quyền trung ương thời Minh Mạng, Cơ mật viện có vai trò tư vấn cho nhà vua về", a: ["văn hóa.", "quân sự.", "giáo dục.", "luật pháp."], c: 1 },
+      { q: "Câu 14. Dưới thời Minh Mạng, triều đình tăng cường quyền kiểm soát đối với vùng dân tộc thiểu số thông qua việc", a: ["thiết lập chế độ thổ quan", "bãi bỏ quyền thế tập của tù trưởng.", "gả công chúa cho các tù trưởng", "bỏ lưu quan (quan lại người Kinh)"], c: 1 },
+      { q: "Câu 15. Một trong những di sản lớn nhất trong cuộc cải cách của vua Minh Mạng (nửa đầu thế kỉ XIX) còn giá trị đến ngày nay là", a: ["cách thức tổ chức bộ máy nhà nước ở trung ương.", "cách thức phân chia đơn vị hành chính cấp tỉnh.", "tập trung cao độ quyền lực vào trong tay nhà vua.", "ưu tiên bổ nhiệm quan lại là người ở địa phương."], c: 1 },
+      { q: "Câu 17. Một trong những cải cách quan trọng của vua Minh Mạng đối với vùng dân tộc thiểu số miền núi là", a: ["thực hiện chính sách cai trị chéo ở các địa phương.", "bãi bỏ chế độ cai trị của các tù trưởng địa phương.", "tăng cường quyền lực cho các tù trưởng địa phương.", "khôi phục các phong tục tập quán cũ của địa phương."], c: 1 },
+      { q: "Câu 18. Một trong những tác dụng tích cực của cải cách hành chính thời vua Minh Mạng là góp phần", a: ["tạo điều kiện phát triển kinh tế theo hướng tư bản", "hạn chế sự tham nhũng và lộng hành của quan lại.", "khích lệ người dân tích cực thi cử và ra làm quan.", "phát triển nền văn hóa mang đậm bản sắc dân tộc."], c: 1 },
+      { q: "Câu 19. Cuộc cải cách hành chính của vua Minh Mạng (nửa đầu thế kỉ XIX) không nhằm mục đích nào sau đây?", a: ["Khắc phục tình trạng phân quyền, thiếu thống nhất.", "Tăng cường tính thống nhất và tiềm lực của đất nước.", "Tập trung quyền lực và hoàn thiện bộ máy nhà nước.", "Xóa bỏ tình trạng “bế quan tỏa cảng” của đất nước"], c: 3 },
+      { q: "Câu 20. Một trong những hạn chế trong cải cách của vua Minh Mạng nửa đầu thế kỉ XIX là", a: ["cải cách nặng về củng cố vương triều, ít chú ý đến cải thiện dân sinh", "cải cách làm tăng thêm tình trạng cát cứ, phân quyền ở các địa phương", "sự giám sát, ràng buộc lẫn nhau giữa các cơ quan, chức quan mờ nhạt", "bộ máy nhà nước cồng kềnh, hoạt động kém hiệu quả hơn thời kì trước"], c: 0 },
+      { q: "Câu 21. Nội dung nào sau đây phản ánh đúng điểm giống nhau trong cải cách của Hồ Quý Ly (thế kỉ XV) và vua Minh Mạng (nửa đầu thế kỉ XIX)?", a: ["Được tiến hành khi đất nước đang lâm vào tình trạng khủng hoảng trầm trọng.", "Cải cách nhằm tăng cường quyền lực của vua và hiệu quả của bộ máy nhà nước", "Cải cách nhằm hướng đến cải thiện dân sinh, phát triển kinh tế - xã hội đất nước", "Cải cách nặng về mô phỏng, dập khuôn bên ngoài mà ít có sự sáng tạo, cải biến"], c: 1 },
+      { q: "Câu 22. Để theo dõi, giám sát hoạt động của Lục Bộ, vua Lê Thánh Tông đã đặt ra cơ quan nào sau đây?", a: ["Bộ Lễ.", "Bộ Lại.", "Lục Khoa.", "Bộ Hình."], c: 2 },
+      { q: "Câu 23. Để giúp việc cho hoạt động của Lục Bộ, vua Lê Thánh Tông đã đặt ra cơ quan nào sau đây?", a: ["Bộ Lễ.", "Bộ Lại.", "Lục Tự.", "Bộ Hình."], c: 2 },
+      { q: "Câu 24. Ở địa phương, vua Lê Thánh Tông đã thực hiện cải cách chia các đơn vị hành chính như thế nào?", a: ["5 đạo thừa tuyên và phủ Trung Đô.", "12 đạo thừa tuyên và phủ Trung Đô.", "12 đạo thừa tuyên và 1 Trực Doanh.", "5 đạo thừa tuyên và 1 Trực Doanh."], c: 1 },
+      { q: "Câu 25. Năm 1471, vua Lê Thánh Tông đã đặt thêm một đạo thừa tuyên là", a: ["Quảng Nam.", "Sơn Nam.", "Hải Dương.", "Kinh Bắc."], c: 0 },
+      { q: "Câu 26. Ở địa phương, vua Lê Thánh Tông đã chọn quan lại đứng đầu ở mỗi đạo thừa tuyên là", a: ["Đô ty là người có quyền lực đứng đầu.", "Thừa ty là người có quyền lực đứng đầu.", "Hiến ty là người có quyền lực đứng đầu.", "Đô ty, Thừa ty, Hiến ty có quyền lực ngang nhau."], c: 0 },
+      { q: "Câu 27. Ở địa phương, vua Lê Thánh Tông đã chia thành các đơn vị hành chính nhỏ, cấp cuối cùng là", a: ["cấp phủ.", "cấp huyện.", "cấp châu.", "cấp xã."], c: 3 },
+      { q: "Câu 28. Một trong những cải cách quan trọng của vua Minh Mạng đối với vùng dân tộc thiểu số miền núi là", a: ["thực hiện chính sách cai trị chéo ở các địa phương.", "bãi bỏ chế độ cai trị của các tù trưởng địa phương.", "tăng cường quyền lực cho các tù trưởng địa phương.", "khôi phục các phong tục tập quán cũ của địa phương."], c: 1 },
+      { q: "Câu 29. Một trong những cải cách quan trọng của vua Minh Mạng đối với vùng dân tộc thiểu số miền núi là", a: ["thực hiện chính sách cai trị chéo ở các địa phương.", "tăng cường quyền lực cho các tù trưởng địa phương.", "bổ dụng quan lại triều đình đến cai trị trực tiếp.", "triều đình nắm quyền cai trị gián tiếp các địa phương."], c: 2 },
+      { q: "Câu 30. Để củng cố thể chế quân chủ chuyên chế, vào nửa đầu thế kỉ XIX nhà Nguyễn đã", a: ["tiến hành cải cách đất nước.", "thực hiện chính sách đóng cửa.", "ban hành chính sách kinh tế mới.", "tiến hành đổi mới đất nước."], c: 0 },
+      { q: "Câu 31. Một trong những việc làm mà vua Lê Thánh Tông đã thực hiện để khuyến khích sự phát triển của giáo dục là", a: ["đưa giáo dục trở thành bắt buộc trong nhân dân.", "đưa các quan đại thần về làm thầy dạy học.", "xây dựng lại Văn Miếu, mở rộng nhà Thái Học.", "thống nhất nội dung dạy học ở các cấp học."], c: 2 },
+      { q: "Câu 32. Để tôn vinh những người thi đỗ đại khoa, vua Lê Thánh Tông đã thực hiện chính sách gì?", a: ["Đưa về lại quê quán để làm quan.", "Thăng chức tước thành hàng tam phẩm.", "Tổ chức vinh danh trong cả nước.", "Cho xây dựng bia đá ở Văn Miếu."], c: 3 },
+      { q: "Câu 33. Trong thời đại trị vì của vua Lê Thánh Tông, Nhà nước đã tổ chức được bao nhiêu khoa thi Hội?", a: ["8 khoa thi Hội.", "9 khoa thi Hội.", "10 khoa thi Hội.", "12 khoa thi Hội."], c: 3 },
+      { q: "Câu 34. Nội dung nào sau đây phản ánh đúng chức năng của Nội các trong bộ máy hành chính thời vua Minh Mạng?", a: ["Nội các là cơ quan hỗ trợ cho hoạt động của Cơ mật viện.", "Nội các là cơ quan quan trọng nhất trong bộ máy hành chính.", "Nội các là cơ quan chuyên trách về chính trị, xã hội.", "Nội các như một cơ quan hành chính ở trung ương."], c: 2 },
+      { q: "Câu 35. Nội dung nào sau đây phản ánh đúng nhiệm vụ của Nội các trong bộ máy hành chính thời vua Minh Mạng?", a: ["Chuyển và tiếp nhận công văn giữa triều đình và các địa phương.", "Soạn thảo và ban hành các văn bản pháp luật cho triều đình.", "Tư vấn và đề xuất các loại thuế khóa mới cho triều đình.", "Quyết định những vấn đề trọng tâm về kinh tế, an ninh, quân sự."], c: 3 },
+      { q: "Câu 36. Nội dung nào sau đây phản ánh đúng nhiệm vụ của Nội các trong bộ máy hành chính thời vua Minh Mạng?", a: ["Soạn thảo và ban hành các văn bản pháp luật.", "Giám sát các hoạt động của bộ máy hành chính.", "Khởi thảo các chế cáo, lưu giữ công văn.", "Thi hành luật thay thế cho nhà vua."], c: 2 },
+      { q: "Câu 37. Những chính sách cải cách trên các lĩnh vực do Hồ Quý Ly và Triều Hồ thực hiện mang lại ý nghĩa", a: ["làm thay đổi hoàn toàn diện mạo của đất nước.", "tăng cường được sức mạnh quân đội đủ sức chống lại ngoại xâm.", "bước đầu ổn định được tình hình xã hội của đất nước.", "ổn định hoàn toàn tình hình chính trị xã hội của đất nước."], c: 2 },
+      { q: "Câu 38. Những chính sách cải cách trên các lĩnh vực do Hồ Quý Ly và Triều Hồ thực hiện mang lại ý nghĩa", a: ["làm thay đổi hoàn toàn diện mạo của đất nước.", "tăng cường được sức mạnh quân đội đủ sức chống lại ngoại xâm.", "củng cố được tiềm lực của đất nước, chuẩn bị đối phó với ngoại xâm.", "ổn định hoàn toàn tình hình chính trị xã hội của đất nước."], c: 2 },
+      { q: "Câu 39. Một trong những ý nghĩa mà Hồ Quý Ly và Triều Hồ đạt được khi thực hiện chính sách cải cách là", a: ["làm chuyển biến toàn bộ các hoạt động của quốc gia.", "tạo cơ sở cho vương triều Lê Sơ phát triển vững mạnh.", "củng cố được tiềm lực của đất nước, chuẩn bị đối phó với ngoại xâm.", "tăng cường sức mạnh đất nước đủ sức chống lại nạn ngoại xâm."], c: 2 },
+      { q: "Câu 40. Nội dung nào sau đây phản ánh đúng ý nghĩa mà Hồ Quý Ly và Triều Hồ đạt được khi thực hiện chính sách cải cách?", a: ["Hoàn thành thống nhất đất nước về mặt hành chính.", "Bộ máy nhà nước hoạt động có hiệu quả hơn.", "Bước đầu ổn định được tình hình xã hội của đất nước.", "Tăng cường sức mạnh đất nước đủ sức chống lại nạn ngoại xâm."], c: 2 },
+
+      {
+        q: "Câu 1 (Đúng/Sai): Đọc đoạn tư liệu sau:\nNăm 1402, “Định lại các lệ thuế và tô ruộng. Triều trước mỗi mẫu thu 3 thăng thóc, nay thu 5 thăng. Bãi dâu triều trước thu mỗi mẫu 9 quan hoặc 7 quan tiền, nay thu hạng thượng đẳng mỗi mẫu 5 quan tiền giấy, hạng trung đẳng mỗi mẫu 4 quan tiền giấy, hạng hạ đẳng 3 quan tiền giấy. Tiền nộp hàng năm của đinh nam trước thu 3 quan, nay chiểu theo số ruộng, người nào chỉ có 5 sào ruộng thì thu 5 tiền giấy, từ 6 sào đến 1 mẫu thì thu 1 quan,… Đinh nam không có ruộng và trẻ mồ côi, đàn bà góa, thì dẫu có ruộng cũng thôi không thu”.\n(Ngô Sĩ Liên và các sử thần triều Hậu Lê, Đại Việt sử kí toàn thư, NXB Khoa học xã hội, HN, 1998, tr.203, 204)",
+        a: [
+          "a) Trong cải cách của mình, Hồ Quý Ly đã cho điều chỉnh thuế khóa, tăng thuế ruộng, hạ thuế bãi dâu.",
+          "b) Nội dung cải cách trên đã hạn chế đáng kể sở hữu ruộng đất quy mô lớn của tư nhân.",
+          "c) Thể lệ thu thuế trong cải cách của Hồ Quý Ly được chia theo các hạng đất chứ không cào bằng như trước.",
+          "d) Chính sách thu thuế của Hồ Quý Ly thể hiện sự nhân đạo và tiến bộ với một số đối tượng đặc biệt khó khăn trong xã hội."
+        ],
+        c: [0, 2, 3]
+      },
+      {
+        q: "Câu 2 (Đúng/Sai): Đọc đoạn tư liệu sau đây:\n“Con gái hứa gả chồng mà chưa thành hôn nếu người con trai bị ác tật hay phạm tội hoặc phá tán gia sản thì cho phép người con gái kêu quan mà trả lại đồ lễ. Nếu người con gái bị ác tật hay phạm tội thì không phải trả lại đồ lễ, trái luật bị phạt 80 trượng” (Điều 322).\n“Phá trộm đê làm thiệt hại nhà cửa, lúa má của dân thì xử tội đồ hay tội lưu và bắt đền thiệt hại” (Điều 596).\n(Quốc triều hình luật (Luật hình triều Lê) (Viện Sử học dịch), NXB Chính trị Quốc gia Sự thật, Hà Nội, 2017, tr.113 – 114, 190)",
+        a: [
+          "a) Quốc triều hình luật là bộ luật tiêu biểu của quốc gia Đại Việt được ban hành dưới triều vua Lê Thánh Tông.",
+          "b) Điều 322 của bộ Quốc triều hình luật là một điều luật tiến bộ, đã bảo vệ quyền lợi của người phụ nữ trong xã hội.",
+          "c) Điều 596 của bộ Quốc triều hình luật là một trong những điều luật quy định hình thức xử phạt của phạm nhân vi phạm trên lĩnh vực chính trị.",
+          "d) Với điều 596, ta có thể thấy rằng bộ Quốc triều hình luật hướng tới bảo vệ những quyền lợi chân chính của nhân dân, nhất là nông dân."
+        ],
+        c: [0, 1, 3]
+      },
+      {
+        q: "Câu 3 (Đúng/Sai): Đọc đoạn tư liệu sau đây:\nTrong công cuộc cải cách bộ máy chính quyền, vua Lê Thánh Tông đã bãi bỏ nhiều cơ quan, chức quan có nhiều quyền lực. Vị trí và vai trò của các chức quan đại thần suy giảm so với trước. Mọi công việc trong triều đình tập trung về Lục bộ. Lục bộ trở thành sáu cơ quan chức năng cao cấp chủ chốt trong bộ máy triều đình, do nhà vua trực tiếp điều hành, chịu trách nhiệm trước nhà vua. Lục bộ cũng đồng thời chịu sự giám sát của Lục khoa tương ứng.",
+        a: [
+          "a) Đoạn tư liệu cung cấp thông tin về cải cách của vua Lê Thánh Tông trên các lĩnh vực hành chính, quân đội, luật pháp.",
+          "b) Với cải cách của Lê Thánh Tông, nhà vua trực tiếp nắm quyền điều hành mọi việc, thông qua đầu mối lớn là Lục bộ, không thông qua bộ phận trung gian.",
+          "c) Lê Thánh Tông thành lập Lục khoa kiểm tra, giám sát các công việc của Lục bộ, nhằm ngăn ngừa sự lạm quyền của Lục bộ.",
+          "d) Cải cách của vua Lê Thánh Tông khiến nhiều chức quan đại thần bị suy giảm quyền hành."
+        ],
+        c: [1, 2, 3]
+      },
+      {
+        q: "Câu 4 (Đúng/Sai): Đọc đoạn tư liệu sau đây:\n“Năm 1477, vua Lê Thánh Tông ban hành chính sách lộc điền và quân điền. Với chế độ quân điền, người dân đều được cấp cho ruộng đất công để cày cấy. Thể lệ thuế khóa (thuế đinh, thuế ruộng, thuế đất bãi trồng dâu) được nhà nước quy định theo hạng. Việc canh nông được khuyến khích. Nhà nước đặt Hà đê quan và Khuyến nông quan để quản lý việc đê điều, nông nghiệp; đặt Đồn điền quan để khuyến khích việc khẩn hoang, mở rộng diện tích”.\n(Sách giáo khoa Lịch sử 11, Bộ chân trời sáng tạo, tr.70)",
+        a: [
+          "a) Chính sách quân điền và chính sách lộc điền được ban hành năm 1477 là một trong những cải cách của vua Lê Thánh Tông trên lĩnh vực chính trị, hành chính.",
+          "b) Người dân được nhận ruộng đất theo chế độ lộc điền phải thực hiện một số nghĩa vụ đối với Nhà nước.",
+          "c) Hà đê quan, Khuyến nông quan, Đồn điền quan là những chức quan phụ trách quản lý và phát triển nông nghiệp.",
+          "d) Thể lệ thuế khóa đối với người dân được cấp ruộng đất để cày cấy thu theo từng hạng đất chứ không thu cào bằng."
+        ],
+        c: [2, 3]
+      },
+      {
+        q: "Câu 5 (Đúng/Sai): Đọc đoạn tư liệu sau đây:\n“Trong thì Nội các ở bên tả, Cơ mật viện ở bên hữu, ngoài thì võ có Ngũ quân Đô thống phủ, văn có đường quan Lục bộ: tả hữu có người, trong ngoài giúp nhau. Phàm những việc Lục bộ làm chưa đúng, thì Nội các hạch ra, những việc Nội các làm chưa hợp lẽ thì Cơ mật viện hạch ra, khiến cho ràng rịt nhau mới mong đến được thịnh trị”.\n(Lời dụ của Minh Mạng, trích trong: Quốc sử quán triều Nguyễn, Đại Nam thực lục, Tập 3, NXB Giáo dục, Hà Nội, 2004, tr.435)",
+        a: [
+          "a) Lời dụ của vua Minh Mạng phản ánh tổ chức bộ máy chính quyền phong kiến ở cấp trung ương và địa phương.",
+          "b) Nội các, Cơ mật viện, Lục bộ là những cơ quan chủ chốt trực tiếp giúp việc cho vua và chịu trách nhiệm trước nhà vua.",
+          "c) Vua Minh Mạng rất coi trọng việc kiểm tra, giám sát lẫn nhau giữa các cơ quan chủ chốt trong triều.",
+          "d) Ngũ quân Đô thống phủ là cơ quan chuyên môn giúp đỡ Lục bộ về tổ chức quân đội, võ bị ở các địa phương."
+        ],
+        c: [1, 2]
+      },
+      {
+        q: "Câu 6 (Đúng/Sai): Đọc đoạn tư liệu sau đây:\n“Cuộc cải cách của vua Minh Mạng diễn ra trên nhiều lĩnh vực và lĩnh vực nào cũng để lại dấu ấn tích cực và bài học lịch sử cho hậu thế. Một trong những dấu ấn cải cách trên lĩnh vực văn hóa của vua Minh Mạng là việc thành lập Quốc sử quán vào tháng 7 – 1820. Quốc sử quán vừa là một nội dung trong cải cách của Minh Mạng, vừa là cơ quan ghi lại rõ nhất những nội dung của cuộc cải cách dưới thời Minh Mạng và hoạt động của triều Nguyễn. Trong 125 năm tồn tại, Quốc sử quán đã để lại rất nhiều công trình đồ sộ về lịch sử, địa lý, văn hóa và con người Việt Nam. Đây là nguồn tài liệu quý giá cho các nhà nghiên cứu hiện nay trong việc nghiên cứu về Việt Nam thời Nguyễn”.\n(Sách giáo khoa Lịch sử 11, Bộ chân trời sáng tạo, tr.75)",
+        a: [
+          "a) Đoạn trích cung cấp thông tin về những dấu ấn cải cách của vua Minh Mạng trên các lĩnh vực chính trị, xã hội, văn hóa.",
+          "b) Quốc sử quán được thành lập dưới thời vua Minh Mạng là một cơ quan chuyên làm nhiệm vụ thu thập và biên soạn sách sử.",
+          "c) Việc tìm hiểu, nghiên cứu về Việt Nam dưới thời Nguyễn chỉ có thể được thực hiện thông qua nguồn tài liệu mà Quốc sử quán triều Nguyễn ghi chép và để lại.",
+          "d) Cuộc cải cách của vua Minh Mạng diễn ra trên nhiều lĩnh vực, nhưng để lại dấu ấn sâu sắc nhất là lĩnh vực văn hóa."
+        ],
+        c: [1]
+      }
+    ];
+
     const questionLibraries = {
       tin11: {
         label: "Tin học 11",
         questions: questionBank
+      },
+      ls11gk2: {
+        label: "Kiểm tra giữa kì II môn Lịch Sử 11",
+        questions: historyQuestionBank
       }
     };
 
