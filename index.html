@@ -779,7 +779,11 @@
 
       questions = normalizeQuestions(subjectPack.questions);
       shuffle(questions);
-      questions.forEach((q) => shuffle(q.options));
+      questions.forEach((q) => {
+        if (q.type === "multiple" && q.options) {
+          shuffle(q.options);
+        }
+      });
       wrongAnswers = [];
       stats = questions.map((q) => ({ question: q.q, correct: 0, wrong: 0 }));
 
