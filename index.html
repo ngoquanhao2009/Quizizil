@@ -108,6 +108,19 @@
     input,
     select {
       width: min(80%, 320px);
+      background: #1e293b;
+      color: white;
+      border: 1px solid #334155;
+    }
+
+    input::placeholder {
+      color: #94a3b8;
+    }
+
+    input:focus {
+      outline: none;
+      border-color: #22d3ee;
+      box-shadow: 0 0 10px rgba(34, 211, 238, 0.3);
     }
 
     button {
@@ -343,6 +356,7 @@
         <h3 id="question"></h3>
         <img id="questionImage" class="question-image hidden" alt="Hình minh họa câu hỏi" />
         <div id="answers"></div>
+        <input id="shortAnswerInput" type="text" placeholder="Nhập câu trả lời..." class="hidden" />
         <button id="submitBtn">Nộp đáp án</button>
         <div id="answerBox" class="answer-box"></div>
       </div>
@@ -644,7 +658,21 @@
       },
       sinh11gk2: {
         label: "Kiểm tra giữa kì II môn Sinh học 11",
-        questions: biologyQuestionBank
+        questions: [
+          ...biologyQuestionBank,
+          { q: "Câu 1: Một học sinh nhận xét về vai trò của vị giác trong cung phản xạ.\n\na) Giúp động vật chọn lựa loại thức ăn ăn được và không ăn được.\nb) Giúp động vật định hướng đường đi, nhận ra con mới sinh.\nc) Có thể gây ra nhiều phản ứng như tránh trượt ngã, giữ vật chính xác.\nd) Hỗ trợ cảm giác vị, nhờ đó tăng hoạt động tiêu hoá và hấp thụ chất dinh dưỡng.\n\nCó bao nhiêu phát biểu là đúng?", type: "short", answer: ["2", "hai"] },
+          { q: "Câu 2: Một học sinh nhận xét về vai trò của vị giác trong cung phản xạ.\n\na) Giúp động vật chọn lựa loại thức ăn ăn được và không ăn được.\nb) Giúp động vật định hướng đường đi, nhận ra con mới sinh.\nc) Có thể gây ra nhiều phản ứng như tránh trượt ngã, giữ vật chính xác.\nd) Hỗ trợ cảm giác vị, nhờ đó tăng hoạt động tiêu hoá và hấp thụ chất dinh dưỡng.\n\nCó bao nhiêu phát biểu là sai?", type: "short", answer: ["2", "hai"] },
+          { q: "Câu 3: Một học sinh nhận xét về vai trò của khứu giác trong cung phản xạ.\n\na) Giúp động vật chọn lựa loại thức ăn ăn được và không ăn được.\nb) Giúp động vật định hướng đường đi, nhận ra con mới sinh.\nc) Có thể gây ra nhiều phản ứng như tránh trượt ngã, giữ vật chính xác.\nd) Hỗ trợ cảm giác vị, nhờ đó tăng hoạt động tiêu hoá và hấp thụ chất dinh dưỡng.\n\nCó bao nhiêu phát biểu là sai?", type: "short", answer: ["1", "một"] },
+          { q: "Câu 4: Cho các giai đoạn của quá trình truyền tin qua synapse hóa học:\n1. Xung thần kinh lan truyền đến chùy synapse.\n2. Chất trung gian hóa học gắn vào thụ thể ở màng sau synapse.\n3. Ca²⁺ đi vào trong chùy synapse làm túi chứa chất trung gian hóa học vỡ ra.\n4. Hình thành điện thế hoạt động và lan truyền đi tiếp.\n\nCác loại thuốc giảm đau gây tê thường tác động trực tiếp để ngăn cản giai đoạn nào để chặn đứng tín hiệu đau?", type: "short", answer: ["1-3-2-4", "1 3 2 4", "1324"] },
+          { q: "Câu 5: Xét các cơ chế tác động lên hệ thần kinh của thuốc giảm đau:\n1. Ức chế enzyme tổng hợp Prostaglandin tại mô bị tổn thương.\n2. Ngăn chặn sự khử cực trên màng sợi thần kinh (khóa kênh Na+).\n3. Gắn vào thụ thể Opioid tại chất xám tủy sống để chặn tín hiệu hướng tâm.\n4. Tác động lên vùng dưới đồi để điều chỉnh ngưỡng chịu đựng đau.\n\nCó bao nhiêu cơ chế tác động trực tiếp vào việc ngăn chặn sự hình thành hoặc dẫn truyền xung thần kinh?", type: "short", answer: ["3", "ba"] },
+          { q: "Câu 6: Trong một thí nghiệm về phản xạ đau, thời gian kích thích đến khi não nhận được tín hiệu là 20ms. Sau khi sử dụng thuốc giảm đau làm chậm tốc độ dẫn truyền qua synapse thêm 15ms và kéo dài thời gian trơ thêm 10ms. Tổng thời gian tối thiểu (ms) để tín hiệu đau truyền tới não sau khi dùng thuốc là bao nhiêu?", type: "short", answer: ["35", "35ms"] },
+          { q: "Câu 7: Có bao nhiêu hình thức học tập ở động vật?", type: "short", answer: ["5", "năm"] },
+          { q: "Câu 8: Trong thí nghiệm của nhà sinh lý học Pavlov về điều kiện hóa đáp ứng, có bao nhiêu loại kích thích được kết hợp với nhau để tạo ra phản xạ có điều kiện cho con chó?", type: "short", answer: ["2", "hai"] },
+          { q: "Câu 9: Có bao nhiêu kiểu điều kiện hóa chính được phân loại trong các hình thức học tập ở động vật?", type: "short", answer: ["2", "hai"] },
+          { q: "Câu 10: Sự tăng lên về chiều cao của thân cây / Sự tăng kích thước lá cây / Sự ra hoa và tạo quả / Sự tăng khối lượng cơ thể của con lợn / Sự phân hóa tế bào hình thành các mô mới.\n\nCó bao nhiêu quá trình được xếp vào nhóm biểu hiện của sinh trưởng ở sinh vật?", type: "short", answer: ["3", "ba"] },
+          { q: "Câu 11: Quá trình phát triển ở sinh vật bao gồm mấy biến đổi cơ bản?", type: "short", answer: ["3", "ba"] },
+          { q: "Câu 12: Một hạt nảy mầm thành cây con / Một tế bào vi khuẩn phân chia làm đôi / Con sâu biến đổi thành nhộng rồi thành bướm / Một cái cây cao thêm 10cm.\n\nCó bao nhiêu ví dụ mô tả sự phát triển ở sinh vật?", type: "short", answer: ["2", "hai"] }
+        ]
       }
     };
 
@@ -676,6 +704,7 @@
       question: document.getElementById("question"),
       questionImage: document.getElementById("questionImage"),
       answers: document.getElementById("answers"),
+      shortAnswerInput: document.getElementById("shortAnswerInput"),
       answerBox: document.getElementById("answerBox"),
       submitBtn: document.getElementById("submitBtn"),
       time: document.getElementById("time"),
@@ -706,14 +735,25 @@
     }
 
     function normalizeQuestions(source) {
-      return source.map((item) => ({
-        q: item.q,
-        img: item.img || "",
-        options: item.a.map((text, idx) => ({
-          text,
-          correct: (Array.isArray(item.c) ? item.c : [item.c]).includes(idx)
-        }))
-      }));
+      return source.map((item) => {
+        if (item.type === "short") {
+          return {
+            q: item.q,
+            img: item.img || "",
+            type: "short",
+            answers: Array.isArray(item.answer) ? item.answer : [item.answer]
+          };
+        }
+        return {
+          q: item.q,
+          img: item.img || "",
+          type: "multiple",
+          options: item.a.map((text, idx) => ({
+            text,
+            correct: (Array.isArray(item.c) ? item.c : [item.c]).includes(idx)
+          }))
+        };
+      });
     }
 
     function formatTime(totalSeconds) {
@@ -801,23 +841,40 @@
         elements.questionImage.classList.add("hidden");
         elements.questionImage.removeAttribute("src");
       }
-      elements.answers.innerHTML = "";
+      
       elements.answerBox.classList.remove("show");
       elements.answerBox.textContent = "";
       selectedAnswerIndexes = new Set();
       submitted = false;
       elements.submitBtn.disabled = false;
 
-      current.options.forEach((option, optionIndex) => {
-        const btn = document.createElement("button");
-        btn.textContent = option.text;
-        btn.className = "answer";
-        btn.dataset.correct = option.correct ? "1" : "0";
-        btn.dataset.optionIndex = String(optionIndex);
-        btn.dataset.answer = option.text;
-        btn.addEventListener("click", () => toggleAnswer(optionIndex, btn));
-        elements.answers.appendChild(btn);
-      });
+      if (current.type === "short") {
+        elements.answers.innerHTML = "";
+        elements.answers.classList.add("hidden");
+        elements.shortAnswerInput.classList.remove("hidden");
+        elements.shortAnswerInput.value = "";
+        elements.shortAnswerInput.focus();
+        elements.shortAnswerInput.addEventListener("keypress", (event) => {
+          if (event.key === "Enter") {
+            submitAnswer(false);
+          }
+        });
+      } else {
+        elements.shortAnswerInput.classList.add("hidden");
+        elements.shortAnswerInput.removeEventListener("keypress", null);
+        elements.answers.classList.remove("hidden");
+        elements.answers.innerHTML = "";
+        current.options.forEach((option, optionIndex) => {
+          const btn = document.createElement("button");
+          btn.textContent = option.text;
+          btn.className = "answer";
+          btn.dataset.correct = option.correct ? "1" : "0";
+          btn.dataset.optionIndex = String(optionIndex);
+          btn.dataset.answer = option.text;
+          btn.addEventListener("click", () => toggleAnswer(optionIndex, btn));
+          elements.answers.appendChild(btn);
+        });
+      }
     }
 
     function playSound(audioEl) {
@@ -869,83 +926,125 @@
         return;
       }
 
-      if (!isTimeout && selectedAnswerIndexes.size === 0) {
-        alert("Chọn ít nhất 1 đáp án rồi bấm nộp nhé 😌");
-        return;
-      }
-
-      clearInterval(timer);
-      submitted = true;
-      elements.submitBtn.disabled = true;
-
       const current = questions[index];
-      const buttons = Array.from(elements.answers.children);
-      buttons.forEach((btn) => {
-        btn.disabled = true;
-      });
 
-      const correctIndexes = current.options
-        .map((option, optionIndex) => (option.correct ? optionIndex : -1))
-        .filter((value) => value >= 0);
-      const allCorrectChosen =
-        selectedAnswerIndexes.size === correctIndexes.length &&
-        correctIndexes.every((correctIndex) => selectedAnswerIndexes.has(correctIndex));
+      if (current.type === "short") {
+        // Handle short answer
+        const userAnswer = elements.shortAnswerInput.value.trim().toLowerCase();
+        
+        if (!isTimeout && !userAnswer) {
+          alert("Nhập câu trả lời rồi bấm nộp nhé 😌");
+          return;
+        }
 
-      if (allCorrectChosen) {
-        stats[index].correct += 1;
-        correctIndexes.forEach((correctIndex) => {
-          const btn = buttons.find((item) => Number(item.dataset.optionIndex) === correctIndex);
-          if (btn) {
-            btn.classList.add("correct");
-          }
-        });
-        score += 1;
-        elements.score.textContent = score;
-        playSound(elements.soundCorrect);
-      } else {
-        stats[index].wrong += 1;
+        clearInterval(timer);
+        submitted = true;
+        elements.submitBtn.disabled = true;
+        elements.shortAnswerInput.disabled = true;
 
-        const selectedWrongButton = buttons.find((btn) => {
-          const optionIndex = Number(btn.dataset.optionIndex);
-          return selectedAnswerIndexes.has(optionIndex) && !correctIndexes.includes(optionIndex);
-        });
-        if (selectedWrongButton) {
-          wrongEffect(selectedWrongButton);
+        const correctAnswers = current.answers.map((ans) => ans.toLowerCase());
+        const isCorrect = correctAnswers.includes(userAnswer);
+
+        if (isCorrect) {
+          score += 1;
+          elements.score.textContent = score;
+          playSound(elements.soundCorrect);
+          elements.answerBox.textContent = `✅ Chính xác! Bạn nhập: "${userAnswer}"`;
+          elements.answerBox.classList.add("show");
+          elements.answerBox.style.background = "#0f8a0f";
         } else {
-          elements.container.classList.add("shake", "flash");
           playSound(elements.soundWrong);
+          elements.container.classList.add("shake", "flash");
           setTimeout(() => {
             elements.container.classList.remove("shake", "flash");
           }, 450);
+          const correctAnswer = current.answers.join(" hoặc ");
+          elements.answerBox.textContent = `❌ Sai rồi! Đáp án đúng: ${correctAnswer}`;
+          elements.answerBox.classList.add("show");
+          elements.answerBox.style.background = "#8a0f0f";
+          
+          wrongAnswers.push({
+            question: current.q,
+            selected: userAnswer || "(không nhập gì)",
+            correct: correctAnswer
+          });
+        }
+      } else {
+        // Handle multiple choice
+        if (!isTimeout && selectedAnswerIndexes.size === 0) {
+          alert("Chọn ít nhất 1 đáp án rồi bấm nộp nhé 😌");
+          return;
         }
 
+        clearInterval(timer);
+        submitted = true;
+        elements.submitBtn.disabled = true;
+
+        const buttons = Array.from(elements.answers.children);
         buttons.forEach((btn) => {
-          const optionIndex = Number(btn.dataset.optionIndex);
-          if (correctIndexes.includes(optionIndex)) {
-            btn.classList.add("correct");
-          } else if (selectedAnswerIndexes.has(optionIndex)) {
-            btn.classList.add("wrong");
+          btn.disabled = true;
+        });
+
+        const correctIndexes = current.options
+          .map((option, optionIndex) => (option.correct ? optionIndex : -1))
+          .filter((value) => value >= 0);
+        const allCorrectChosen =
+          selectedAnswerIndexes.size === correctIndexes.length &&
+          correctIndexes.every((correctIndex) => selectedAnswerIndexes.has(correctIndex));
+
+        if (allCorrectChosen) {
+          correctIndexes.forEach((correctIndex) => {
+            const btn = buttons.find((item) => Number(item.dataset.optionIndex) === correctIndex);
+            if (btn) {
+              btn.classList.add("correct");
+            }
+          });
+          score += 1;
+          elements.score.textContent = score;
+          playSound(elements.soundCorrect);
+        } else {
+          const selectedWrongButton = buttons.find((btn) => {
+            const optionIndex = Number(btn.dataset.optionIndex);
+            return selectedAnswerIndexes.has(optionIndex) && !correctIndexes.includes(optionIndex);
+          });
+          if (selectedWrongButton) {
+            wrongEffect(selectedWrongButton);
+          } else {
+            elements.container.classList.add("shake", "flash");
+            playSound(elements.soundWrong);
+            setTimeout(() => {
+              elements.container.classList.remove("shake", "flash");
+            }, 450);
           }
-        });
 
-        const selectedAnswer = Array.from(selectedAnswerIndexes)
-          .sort((first, second) => first - second)
-          .map((answerIndex) => current.options[answerIndex]?.text)
-          .filter(Boolean)
-          .join(" | ") || "(không chọn đáp án nào)";
-        const correctAnswer = correctIndexes
-          .map((correctIndex) => current.options[correctIndex]?.text)
-          .filter(Boolean)
-          .join(" | ");
+          buttons.forEach((btn) => {
+            const optionIndex = Number(btn.dataset.optionIndex);
+            if (correctIndexes.includes(optionIndex)) {
+              btn.classList.add("correct");
+            } else if (selectedAnswerIndexes.has(optionIndex)) {
+              btn.classList.add("wrong");
+            }
+          });
 
-        wrongAnswers.push({
-          question: current.q,
-          selected: selectedAnswer,
-          correct: correctAnswer
-        });
+          const selectedAnswer = Array.from(selectedAnswerIndexes)
+            .sort((first, second) => first - second)
+            .map((answerIndex) => current.options[answerIndex]?.text)
+            .filter(Boolean)
+            .join(" | ") || "(không chọn đáp án nào)";
+          const correctAnswer = correctIndexes
+            .map((correctIndex) => current.options[correctIndex]?.text)
+            .filter(Boolean)
+            .join(" | ");
 
-        elements.answerBox.textContent = `Đáp án đúng là: ${correctAnswer}`;
-        elements.answerBox.classList.add("show");
+          wrongAnswers.push({
+            question: current.q,
+            selected: selectedAnswer,
+            correct: correctAnswer
+          });
+
+          elements.answerBox.textContent = `Đáp án đúng là: ${correctAnswer}`;
+          elements.answerBox.classList.add("show");
+        }
       }
 
       setTimeout(nextQuestion, 1500);
@@ -1072,11 +1171,15 @@
       elements.position.textContent = "1";
       elements.answerBox.classList.remove("show");
       elements.answerBox.textContent = "";
+      elements.answerBox.style.background = "#1e293b";
       elements.reviewBtn.classList.add("hidden");
       elements.reviewPanel.classList.add("hidden");
       elements.reviewPanel.innerHTML = "";
       elements.statsBox.classList.add("hidden");
       elements.statsBox.innerHTML = "";
+      elements.shortAnswerInput.classList.add("hidden");
+      elements.shortAnswerInput.value = "";
+      elements.shortAnswerInput.disabled = false;
       elements.name.focus();
     }
 
