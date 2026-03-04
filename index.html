@@ -111,6 +111,8 @@
       background: #1e293b;
       color: white;
       border: 1px solid #334155;
+      pointer-events: auto;
+      z-index: 10;
     }
 
     input::placeholder {
@@ -856,6 +858,7 @@
         elements.answers.innerHTML = "";
         elements.answers.classList.add("hidden");
         elements.shortAnswerInput.classList.remove("hidden");
+        elements.shortAnswerInput.disabled = false;
         elements.shortAnswerInput.value = "";
         elements.shortAnswerInput.focus();
         elements.shortAnswerInput.addEventListener("keypress", (event) => {
