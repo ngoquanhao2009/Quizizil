@@ -331,106 +331,60 @@
     .visitor-counter {
       display: flex;
       align-items: center;
-      gap: 12px;
-      backdrop-filter: blur(15px);
-      background: rgba(15, 23, 42, 0.72);
-      border: 1px solid rgba(34, 211, 238, 0.3);
-      padding: 12px 20px;
-      border-radius: 15px;
-      box-shadow: 0 0 30px rgba(34, 211, 238, 0.2), inset 0 0 20px rgba(34, 211, 238, 0.05);
-      animation: counterPulse 2s ease-in-out infinite;
+      gap: 8px;
+      background: rgba(15, 23, 42, 0.6);
+      border: 1px solid rgba(34, 211, 238, 0.25);
+      padding: 8px 14px;
+      border-radius: 12px;
+      box-shadow: 0 0 12px rgba(34, 211, 238, 0.15);
     }
 
     .fox-container {
       position: relative;
-      width: 50px;
-      height: 50px;
+      width: 32px;
+      height: 32px;
       display: flex;
       align-items: center;
       justify-content: center;
+      flex-shrink: 0;
     }
 
     .fox {
-      font-size: 40px;
-      filter: drop-shadow(0 0 8px rgba(34, 211, 238, 0.6));
-      animation: foxFloat 3s ease-in-out infinite, foxRotate 6s linear infinite;
+      font-size: 28px;
+      animation: foxFloat 4s ease-in-out infinite;
       transform-origin: center;
+      will-change: transform;
     }
 
     @keyframes foxFloat {
       0%, 100% {
-        transform: translateY(0px) translateX(0px);
-      }
-      25% {
-        transform: translateY(-8px) translateX(5px);
+        transform: translateY(0px);
       }
       50% {
-        transform: translateY(-12px) translateX(-8px);
-      }
-      75% {
-        transform: translateY(-6px) translateX(3px);
-      }
-    }
-
-    @keyframes foxRotate {
-      0% {
-        transform: rotateZ(0deg);
-      }
-      100% {
-        transform: rotateZ(360deg);
+        transform: translateY(-6px);
       }
     }
 
     .counter-display {
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: 6px;
       font-weight: 700;
+      white-space: nowrap;
     }
 
     .counter-label {
-      font-size: 14px;
+      font-size: 12px;
       color: #94a3b8;
-      text-shadow: 0 0 10px rgba(34, 211, 238, 0.3);
     }
 
     .counter-value {
-      font-size: 24px;
-      background: linear-gradient(90deg, #22d3ee, #06b6d4, #0891b2);
-      background-size: 200%;
-      background-clip: text;
-      -webkit-background-clip: text;
-      color: transparent;
-      animation: gradientShift 3s ease infinite, counterFlip 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
+      font-size: 18px;
+      color: #22d3ee;
       display: inline-block;
-      min-width: 40px;
+      min-width: 35px;
       text-align: right;
-    }
-
-    @keyframes gradientShift {
-      0% { background-position: 0%; }
-      50% { background-position: 100%; }
-      100% { background-position: 0%; }
-    }
-
-    @keyframes counterFlip {
-      0% {
-        transform: rotateX(90deg) translateY(-10px);
-        opacity: 0;
-      }
-      100% {
-        transform: rotateX(0deg) translateY(0px);
-        opacity: 1;
-      }
-    }
-
-    @keyframes counterPulse {
-      0%, 100% {
-        box-shadow: 0 0 30px rgba(34, 211, 238, 0.2), inset 0 0 20px rgba(34, 211, 238, 0.05), 0 0 0 0 rgba(34, 211, 238, 0.4);
-      }
-      50% {
-        box-shadow: 0 0 30px rgba(34, 211, 238, 0.3), inset 0 0 20px rgba(34, 211, 238, 0.1), 0 0 0 10px rgba(34, 211, 238, 0);
-      }
+      font-weight: 800;
     }
   </style>
 </head>
@@ -505,7 +459,7 @@
   <audio id="bgMusic" src="videoplayback (1).m4a" loop preload="auto"></audio>
 
   <script>
-    // Visitor Counter Logic
+    // Visitor Counter - Simple & Optimized
     const VISITOR_KEY = "quizVisitorCount";
     
     function initializeVisitorCounter() {
@@ -515,17 +469,10 @@
       
       const counterElement = document.getElementById("visitorCount");
       if (counterElement) {
-        // Animate counter number change
-        const oldValue = parseInt(counterElement.textContent) || 0;
         counterElement.textContent = count;
-        counterElement.style.animation = "none";
-        setTimeout(() => {
-          counterElement.style.animation = "counterFlip 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards";
-        }, 10);
       }
     }
     
-    // Initialize counter on page load
     window.addEventListener("load", initializeVisitorCounter);
 
     const questionBank = [
