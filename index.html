@@ -480,6 +480,7 @@
           <option value="ls11gk2">Kiểm tra giữa kì II môn Lịch Sử 11</option>
           <option value="sinh11gk2">Kiểm tra giữa kì II môn Sinh học 11</option>
           <option value="readingidea">Bài đọc ý tưởng (2 phần)</option>
+          <option value="tester">TESTER</option>
         </select>
         <br />
         <button id="startBtn">Bắt đầu</button>
@@ -880,6 +881,16 @@ Thông điệp trung tâm của chương trình là: công nghệ nên đóng va
         shuffleQuestions: false,
         reading: readingIdeaMaterial,
         questions: readingIdeaQuestionBank
+      },
+      tester: {
+        label: "TESTER",
+        questions: [
+          {
+            q: "Bạn đã vào môn TESTER thành công. Đây là câu hỏi tạm để kiểm tra truy cập.",
+            a: ["OK", "NO", "Lỗi", "Thoát"],
+            c: 0
+          }
+        ]
       }
     };
 
@@ -1006,6 +1017,10 @@ Thông điệp trung tâm của chương trình là: công nghệ nên đóng va
       }
       if (!subjectPack) {
         alert("Chọn môn học trước khi bắt đầu nhé 😌");
+        return;
+      }
+      if (selectedSubject === "tester" && player !== "110809@") {
+        alert("Sai tên truy cập. Môn TESTER chỉ cho phép tên: 110809@");
         return;
       }
 
