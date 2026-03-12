@@ -533,10 +533,6 @@
         <div class="progress-bar"><div class="progress" id="progress"></div></div>
         <p class="meta" id="progressText">Đang ở câu 1/28</p>
         <div id="quizLayout" class="quiz-layout">
-          <div id="readingPane" class="reading-pane hidden">
-            <h3 id="readingTitle" class="reading-title"></h3>
-            <div id="readingContent" class="reading-content"></div>
-          </div>
           <div class="question-pane">
             <h3 id="question"></h3>
             <img id="questionImage" class="question-image hidden" alt="Hình minh họa câu hỏi" />
@@ -544,6 +540,10 @@
             <input id="shortAnswerInput" type="text" placeholder="Nhập câu trả lời..." class="hidden" />
             <button id="submitBtn">Nộp đáp án</button>
             <div id="answerBox" class="answer-box"></div>
+          </div>
+          <div id="readingPane" class="reading-pane hidden">
+            <h3 id="readingTitle" class="reading-title"></h3>
+            <div id="readingContent" class="reading-content"></div>
           </div>
         </div>
       </div>
@@ -793,34 +793,18 @@
     ];
 
     const readingIdeaMaterial = {
-      title: "Bài đọc 2 phần",
-      sections: [
-        {
-          heading: "Reading 1",
-          range: "Câu 1 - 5",
-          content: `For sensitive eaters like Emma, enjoying a variety of foods can be surprisingly difficult. Many dishes that other people find delicious may (1) ______ completely different to her because her sense of taste is unusually strong. Spicy snacks feel too hot, and some vegetables are so bitter that they are (2) ______ unpleasant for her to swallow. Her strong physical (3) ______ to certain foods often stops her from trying new things, even when she wants to. When she was younger, her parents believed she would eventually adjust, but she continued to experience flavors (4) ______ from those around her. As a result, she relied heavily on plain meals such as rice or pasta. Now that she is older and wants to improve her eating habits, she is working with a nutritionist to help her develop a more balanced (5) ______ without feeling overwhelmed by strong tastes.`
-        },
-        {
-          heading: "Reading 2",
-          range: "Câu 6 - 10",
-          content: `For someone like Lily, who has always been sensitive to strong flavors, living on her own for the first time quickly became a challenge. Her unusual taste sensitivity was not a (1) ______ concern when she lived with her parents, because they helped prepare balanced meals for her. But once she moved into her own apartment, she noticed that she rarely ate (2) ______. Without anyone to guide or encourage her, she began repeating the same meals every week, choosing only dishes that felt safe and familiar. Over time, she started to worry about possible (3) ______ issues caused by her lack of nutrients. She felt tired more often and knew that her body needed a wider variety of food.
+      title: "Reading Comprehension",
+      content: `For sensitive eaters like Emma, enjoying a variety of foods can be surprisingly difficult. Many dishes that other people find delicious may taste completely different to her because her sense of taste is unusually strong. Spicy snacks feel too hot, and some vegetables are so bitter that they are extremely unpleasant for her to swallow. Her strong physical reactions to certain foods often stop her from trying new things, even when she wants to.
 
-Lily realized that the answer wasn't forcing herself (4) ______ foods she had always avoided. Instead, she looked for alternatives that suited her palate. She searched for vegetables with (5) ______ milder flavors and discovered several options she had never tried before. Although she still has a limited list of foods she truly enjoys, she is proud that her diet is now more balanced and nutritious.`
-        }
-      ]
+When she was younger, her parents believed she would eventually adjust, but she continued to experience flavors differently from those around her. As a result, she relied heavily on plain meals such as rice or pasta. Now that she is older and wants to improve her eating habits, she is working with a nutritionist to help her develop a more balanced diet without feeling overwhelmed by strong tastes.`
     };
 
     const readingIdeaQuestionBank = [
-      { q: "Reading 1 - Câu 1: Chọn từ thích hợp cho ô (1).", a: ["see", "hear", "taste", "touch"], c: 2 },
-      { q: "Reading 1 - Câu 2: Chọn từ thích hợp cho ô (2).", a: ["extremely", "extreme", "extremity", "extremist"], c: 0 },
-      { q: "Reading 1 - Câu 3: Chọn từ thích hợp cho ô (3).", a: ["react", "reactions", "reactivity", "reactive"], c: 1 },
-      { q: "Reading 1 - Câu 4: Chọn từ thích hợp cho ô (4).", a: ["different", "differently", "same", "indifferent"], c: 0 },
-      { q: "Reading 1 - Câu 5: Chọn từ thích hợp cho ô (5).", a: ["diet", "money", "price", "need"], c: 0 },
-      { q: "Reading 2 - Câu 1: Chọn từ thích hợp cho ô (1).", a: ["seriousion", "seriously", "serious", "seriousness"], c: 2 },
-      { q: "Reading 2 - Câu 2: Chọn từ thích hợp cho ô (2).", a: ["properly", "proper", "properness", "improperly"], c: 0 },
-      { q: "Reading 2 - Câu 3: Chọn từ thích hợp cho ô (3).", a: ["health", "financial", "family", "social"], c: 0 },
-      { q: "Reading 2 - Câu 4: Chọn từ thích hợp cho ô (4).", a: ["eating", "to eat", "ate", "eaten"], c: 1 },
-      { q: "Reading 2 - Câu 5: Chọn từ thích hợp cho ô (5).", a: ["much", "very", "slight", "slightly"], c: 3 }
+      { q: "Question 1: Which word best completes this sentence based on the passage? Many dishes may ______ completely different to Emma.", a: ["see", "hear", "taste", "touch"], c: 2, explanation: "'Taste' is correct because the passage discusses Emma's strong sense of taste." },
+      { q: "Question 2: Which adverb fits best? Some vegetables are so bitter that they are ______ unpleasant for her to swallow.", a: ["extremely", "extreme", "extremity", "extremist"], c: 0, explanation: "'Extremely' correctly modifies the adjective 'unpleasant'." },
+      { q: "Question 3: Which noun is correct? Her strong physical ______ to certain foods often stop her from trying new things.", a: ["react", "reactions", "reactivity", "reactive"], c: 1, explanation: "'Reactions' is the correct plural noun in this context." },
+      { q: "Question 4: Which word fits? She continued to experience flavors ______ from those around her.", a: ["different", "differently", "same", "indifferent"], c: 0, explanation: "'Different' is used in the phrase 'different from'." },
+      { q: "Question 5: Which noun completes the last sentence? She is trying to develop a more balanced ______.", a: ["diet", "money", "price", "need"], c: 0, explanation: "'Diet' is correct because the sentence is about eating habits." }
     ];
 
     const testerQuestionBank = [
@@ -928,6 +912,8 @@ Lily realized that the answer wasn't forcing herself (4) ______ foods she had al
     let submitted = false;
     let activeQuizMode = "default";
     let activeReading = null;
+    let readingSelections = [];
+    let readingResults = [];
 
     const elements = {
       container: document.getElementById("container"),
@@ -979,13 +965,15 @@ Lily realized that the answer wasn't forcing herself (4) ______ foods she had al
             q: item.q,
             img: item.img || "",
             type: "short",
-            answers: Array.isArray(item.answer) ? item.answer : [item.answer]
+            answers: Array.isArray(item.answer) ? item.answer : [item.answer],
+            explanation: item.explanation || ""
           };
         }
         return {
           q: item.q,
           img: item.img || "",
           type: "multiple",
+          explanation: item.explanation || "",
           options: item.a.map((text, idx) => ({
             text,
             correct: (Array.isArray(item.c) ? item.c : [item.c]).includes(idx)
@@ -1091,6 +1079,8 @@ Lily realized that the answer wasn't forcing herself (4) ______ foods she had al
           shuffle(q.options);
         }
       });
+      readingSelections = Array(questions.length).fill(null);
+      readingResults = [];
       wrongAnswers = [];
       stats = questions.map((q) => ({ question: q.q, correct: 0, wrong: 0 }));
 
@@ -1115,6 +1105,12 @@ Lily realized that the answer wasn't forcing herself (4) ______ foods she had al
     }
 
     function startTimer() {
+      if (activeQuizMode === "reading") {
+        clearInterval(timer);
+        elements.time.textContent = "--:--";
+        return;
+      }
+
       clearInterval(timer);
       timeLeft = CONFIG.timePerQuestion;
       elements.time.textContent = formatTime(timeLeft);
@@ -1133,7 +1129,11 @@ Lily realized that the answer wasn't forcing herself (4) ______ foods she had al
       const percent = (index / questions.length) * 100;
       elements.progress.style.width = `${percent}%`;
       elements.position.textContent = Math.min(index + 1, questions.length);
-      elements.progressText.textContent = `Đang ở câu ${Math.min(index + 1, questions.length)}/${questions.length}`;
+      if (activeQuizMode === "reading") {
+        elements.progressText.textContent = `Question ${Math.min(index + 1, questions.length)} of ${questions.length}`;
+      } else {
+        elements.progressText.textContent = `Đang ở câu ${Math.min(index + 1, questions.length)}/${questions.length}`;
+      }
     }
 
     function loadQuestion() {
@@ -1159,6 +1159,7 @@ Lily realized that the answer wasn't forcing herself (4) ______ foods she had al
       selectedAnswerIndexes = new Set();
       submitted = false;
       elements.submitBtn.disabled = false;
+      elements.submitBtn.textContent = activeQuizMode === "reading" && index === questions.length - 1 ? "Submit" : activeQuizMode === "reading" ? "Next" : "Nộp đáp án";
       elements.shortAnswerInput.removeEventListener("keypress", handleShortAnswerEnter);
 
       if (current.type === "short") {
@@ -1183,7 +1184,66 @@ Lily realized that the answer wasn't forcing herself (4) ______ foods she had al
           btn.addEventListener("click", () => toggleAnswer(optionIndex, btn));
           elements.answers.appendChild(btn);
         });
+
+        if (activeQuizMode === "reading") {
+          const savedAnswer = readingSelections[index];
+          if (typeof savedAnswer === "number") {
+            selectedAnswerIndexes.add(savedAnswer);
+            const selectedBtn = elements.answers.querySelector(`[data-option-index="${savedAnswer}"]`);
+            if (selectedBtn) {
+              selectedBtn.classList.add("selected");
+            }
+          }
+        }
       }
+    }
+
+    function submitReadingFlow() {
+      const selected = Array.from(selectedAnswerIndexes);
+      if (!selected.length) {
+        alert("Chọn 1 đáp án rồi bấm Next nhé 😌");
+        return;
+      }
+
+      readingSelections[index] = selected[0];
+
+      if (index < questions.length - 1) {
+        index += 1;
+        loadQuestion();
+        return;
+      }
+
+      score = 0;
+      wrongAnswers = [];
+      readingResults = [];
+
+      questions.forEach((question, questionIndex) => {
+        const selectedIndex = readingSelections[questionIndex];
+        const selectedOption = question.options[selectedIndex];
+        const correctOption = question.options.find((option) => option.correct);
+        const isCorrect = Boolean(selectedOption && selectedOption.correct);
+
+        if (isCorrect) {
+          score += 1;
+        } else {
+          wrongAnswers.push({
+            question: question.q,
+            selected: selectedOption ? selectedOption.text : "(không chọn)",
+            correct: correctOption ? correctOption.text : ""
+          });
+        }
+
+        readingResults.push({
+          question: question.q,
+          selected: selectedOption ? selectedOption.text : "(không chọn)",
+          correct: correctOption ? correctOption.text : "",
+          explanation: question.explanation || "Không có giải thích.",
+          isCorrect
+        });
+      });
+
+      elements.score.textContent = score;
+      finishQuiz();
     }
 
     function playSound(audioEl) {
@@ -1242,6 +1302,13 @@ Lily realized that the answer wasn't forcing herself (4) ______ foods she had al
 
     function submitAnswer(isTimeout = false) {
       if (submitted) {
+        return;
+      }
+
+      if (activeQuizMode === "reading") {
+        if (!isTimeout) {
+          submitReadingFlow();
+        }
         return;
       }
 
@@ -1406,6 +1473,24 @@ Lily realized that the answer wasn't forcing herself (4) ______ foods she had al
 
     function showWrongAnswers() {
       elements.reviewPanel.classList.remove("hidden");
+
+      if (activeQuizMode === "reading" && readingResults.length) {
+        elements.reviewPanel.innerHTML = "<h3>📋 Kết quả chi tiết (kèm giải thích)</h3>";
+
+        readingResults.forEach((item, order) => {
+          const block = document.createElement("div");
+          block.className = "review-block";
+          block.innerHTML = `
+            <p><strong>Question ${order + 1}:</strong> ${item.question}</p>
+            <p style="color:${item.isCorrect ? "#22c55e" : "#ef4444"};">Bạn chọn: ${item.selected}</p>
+            <p style="color:#22c55e;">Đáp án đúng: ${item.correct}</p>
+            <p style="color:#cbd5e1;">Giải thích: ${item.explanation}</p>
+          `;
+          elements.reviewPanel.appendChild(block);
+        });
+        return;
+      }
+
       elements.reviewPanel.innerHTML = "<h3>📋 Các câu bạn làm sai</h3>";
 
       wrongAnswers.forEach((item, order) => {
@@ -1472,6 +1557,12 @@ Lily realized that the answer wasn't forcing herself (4) ______ foods she had al
       showRank();
       showStatistics();
 
+      if (activeQuizMode === "reading") {
+        elements.reviewBtn.classList.add("hidden");
+        showWrongAnswers();
+        return;
+      }
+
       if (wrongAnswers.length > 0) {
         elements.reviewBtn.classList.remove("hidden");
       } else {
@@ -1500,8 +1591,11 @@ Lily realized that the answer wasn't forcing herself (4) ______ foods she had al
       elements.shortAnswerInput.value = "";
       elements.shortAnswerInput.disabled = false;
       elements.shortAnswerInput.removeEventListener("keypress", handleShortAnswerEnter);
+      elements.submitBtn.textContent = "Nộp đáp án";
       activeQuizMode = "default";
       activeReading = null;
+      readingSelections = [];
+      readingResults = [];
       applyQuizLayout();
       elements.name.focus();
     }
