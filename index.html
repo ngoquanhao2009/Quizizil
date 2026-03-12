@@ -86,10 +86,6 @@
       position: relative;
     }
 
-    .container.reading-mode {
-      width: min(96vw, 1080px);
-    }
-
     .music-btn {
       margin-top: 6px;
       padding: 8px 12px;
@@ -193,46 +189,6 @@
       white-space: pre-line;
       text-align: left;
       line-height: 1.45;
-    }
-
-    .quiz-layout {
-      display: block;
-    }
-
-    #quiz.reading-active .quiz-layout {
-      display: grid;
-      grid-template-columns: minmax(300px, 1.05fr) minmax(320px, 1fr);
-      gap: 14px;
-      align-items: start;
-    }
-
-    .reading-pane {
-      text-align: left;
-      background: rgba(15, 23, 42, 0.7);
-      border: 1px solid rgba(148, 163, 184, 0.35);
-      border-radius: 12px;
-      padding: 14px;
-      max-height: 480px;
-      overflow-y: auto;
-    }
-
-    .reading-title {
-      margin: 0 0 10px;
-      color: #22d3ee;
-      font-size: 16px;
-      font-weight: 800;
-      letter-spacing: 0.2px;
-    }
-
-    .reading-content {
-      white-space: pre-line;
-      color: #cbd5e1;
-      line-height: 1.62;
-      font-size: 14px;
-    }
-
-    .question-pane {
-      text-align: left;
     }
 
     .question-image {
@@ -431,20 +387,6 @@
       font-weight: 800;
     }
 
-    @media (max-width: 860px) {
-      .container.reading-mode {
-        width: min(96vw, 760px);
-      }
-
-      #quiz.reading-active .quiz-layout {
-        grid-template-columns: 1fr;
-      }
-
-      .reading-pane {
-        max-height: 280px;
-      }
-    }
-
     @media (max-width: 640px) {
       .footer-container {
         flex-direction: column;
@@ -476,10 +418,8 @@
         <br />
         <select id="subject">
           <option value="">-- Chọn môn học --</option>
-          <option value="tin11">Tin học 11</option>
           <option value="ls11gk2">Kiểm tra giữa kì II môn Lịch Sử 11</option>
           <option value="sinh11gk2">Kiểm tra giữa kì II môn Sinh học 11</option>
-          <option value="readingidea">Bài đọc ý tưởng (2 phần)</option>
           <option value="tester">TESTER</option>
         </select>
         <br />
@@ -494,20 +434,12 @@
         </div>
         <div class="progress-bar"><div class="progress" id="progress"></div></div>
         <p class="meta" id="progressText">Đang ở câu 1/28</p>
-        <div id="quizLayout" class="quiz-layout">
-          <div id="readingPane" class="reading-pane hidden">
-            <h3 id="readingTitle" class="reading-title"></h3>
-            <div id="readingContent" class="reading-content"></div>
-          </div>
-          <div class="question-pane">
-            <h3 id="question"></h3>
-            <img id="questionImage" class="question-image hidden" alt="Hình minh họa câu hỏi" />
-            <div id="answers"></div>
-            <input id="shortAnswerInput" type="text" placeholder="Nhập câu trả lời..." class="hidden" />
-            <button id="submitBtn">Nộp đáp án</button>
-            <div id="answerBox" class="answer-box"></div>
-          </div>
-        </div>
+        <h3 id="question"></h3>
+        <img id="questionImage" class="question-image hidden" alt="Hình minh họa câu hỏi" />
+        <div id="answers"></div>
+        <input id="shortAnswerInput" type="text" placeholder="Nhập câu trả lời..." class="hidden" />
+        <button id="submitBtn">Nộp đáp án</button>
+        <div id="answerBox" class="answer-box"></div>
       </div>
 
       <div id="result" class="hidden">
@@ -554,74 +486,6 @@
     }
     
     window.addEventListener("load", initializeVisitorCounter);
-
-    const questionBank = [
-      { q: "Câu 1. Hệ điều hành nào được phát triển từ mã nguồn mở và ra mắt lần đầu năm 1991?", a: ["Windows", "Linux", "macOS", "Android"], c: 1 },
-      { q: "Câu 2. Ngôn ngữ lập trình nào được sử dụng phổ biến nhất trong việc phát triển hệ điều hành?", a: ["C++", "Java", "Python", "Ruby"], c: 0 },
-      { q: "Câu 3. Người dùng đăng ký sử dụng dịch vụ và được cấp một không gian lưu trữ trực tuyến gọi là?", a: ["Nhà lưu trữ", "Cầu kết nối", "Bát online", "Ổ đĩa trực tuyến"], c: 3 },
-      { q: "Câu 4. Tải tệp lên ổ đĩa trực tuyến cho người dùng để…", a: ["Xóa các tệp và file trong máy tính mình đi", "Lưu trữ và sử dụng", "Mua bán thông tin lưu trữ của nhau", "Giải trí"], c: 1 },
-      { q: "Câu 5. Những hành vi, hành động nào sau đây bị nghiêm cấm trong môi trường mạng?", a: ["Sử dụng mật mã để bảo vệ thông tin mạng.", "Thực hiện tấn công mạng, khủng bố mạng, gián điệp mạng, tội phạm mạng; gây sự cố, tấn công, xâm nhập, chiếm quyền điều khiển, làm sai lệch, gián đoạn, ngưng trệ, tê liệt hoặc phá hoại hệ thống thông tin quan trọng về an ninh quốc gia.", "Nghiên cứu, phân tích thông tin an ninh mạng.", "Tuyên truyền cách phòng chống tội phạm trong môi trường mạng."], c: 1 },
-      { q: "Câu 6. Khi có một yêu cầu thanh toán hoặc chuyển tiền, cung cấp thông tin cá nhân ngay lập tức từ số điện thoại lạ chúng ta cần:", a: ["Dừng lại, không gửi", "Chuyển tiền ngay", "Cung cấp thông tin cá nhân", "Cung cấp số tài khoản ngân hàng, mã OTP"], c: 0 },
-      { q: "Câu 7. Cập nhật dữ liệu là ...", a: ["Quá trình ghi (lưu trữ) thông tin (dữ liệu) trong một phương tiện lưu trữ.", "Quá trình thêm, xóa và chỉnh sửa dữ liệu.", "Quá trình tìm kiếm, sắp xếp hay lọc ra các dữ liệu theo những tiêu chí nào đó từ dữ liệu đã có.", "Quá trình phân tích, thống kê, tính toán từ dữ liệu đã có để được thông tin cần thiết."], c: 1 },
-      { q: "Câu 8. Quá trình thêm, xóa và chỉnh sửa dữ liệu thường được gọi là ...", a: ["Lưu trữ dữ liệu.", "Cập nhật dữ liệu.", "Truy xuất dữ liệu.", "Khai thác thông tin."], c: 1 },
-      { q: "Câu 9. Công việc nào dưới đây KHÔNG phải là công việc cập nhật dữ liệu?", a: ["Ghi chép (thêm) dữ liệu mới thu thập được.", "Xóa dữ liệu không còn ý nghĩa.", "Sửa chữa dữ liệu đã có để đảm bảo tính chính xác của dữ liệu.", "Tìm kiếm các dữ liệu thỏa mãn một tiêu chí xác định."], c: 3 },
-      { q: "Câu 10. Phát biểu nào sai trong các phát biểu sau khi nói về khoá chính?", a: ["Một bảng có thể có nhiều khoá chính", "Mỗi bảng có ít nhất một khoá", "Xác định khoá phụ thuộc vào quan hệ logic của các dữ liệu chứ không phụ thuộc vào giá trị các dữ liệu", "Nên chọn khoá chính là khoá có ít thuộc tính nhất"], c: 0 },
-      { q: "Câu 11. Giả sử một bảng có 2 trường Aid (số bảo hiểm) và TenNS (họ tên) thì nên chọn trường Aid làm khoá chính hơn vì.", a: ["Trường Aid là duy nhất, trong khi đó trường TenNS không phải là duy nhất", "Trường Aid là kiểu số, trong khi đó trường TenNS không phải là kiểu số", "Trường Aid đứng trước trường TenNS", "Trường Aid là trường ngắn hơn"], c: 0 },
-      { q: "Câu 12. CSDL quan hệ là:", a: ["Là CSDL lưu trữ dữ liệu dưới dạng các bảng có quan hệ với nhau.", "Mô hình dữ liệu quan hệ nhiều bảng với nhau", "Mô hình hướng đối tượng trong bảng", "Mô hình cơ sở quan hệ CSDL."], c: 0 },
-      { q: "Câu 13. Trong mô hình quan hệ, về mặt cấu trúc thì dữ liệu được thể hiện trong các:", a: ["Cột (Field).", "Hàng (Record).", "Bảng (Table).", "Báo cáo (Report)"], c: 2 },
-      { q: "Câu 14. Em hãy điền vào chỗ trống: nếu tên trường có chứa dấu cách thì cần dùng dấu nào để đánh dấu bắt đầu và kết thúc tên trường?", a: ["( )", "‘ ’", "[ ]", "“ ”"], c: 2 },
-      { q: "Câu 15. Trong mẫu câu truy vấn của SQL, mệnh đề SELECT dùng để làm gì?", a: ["Xác định điều kiện lọc dữ liệu", "Thêm dữ liệu vào bảng", "Xác định dữ liệu được lấy từ đâu", "Xác định thông tin ta muốn hiển thị"], c: 3 },
-      { q: "Câu 16. Trong mẫu câu truy vấn của SQL, mệnh đề FROM dùng để làm gì?", a: ["Xác định điều kiện lọc dữ liệu", "Xác định dữ liệu được lấy từ đâu", "Xác định thông tin ta muốn hiển thị", "Xóa dữ liệu trong bảng"], c: 1 },
-      { q: "Câu 17. Cho truy vấn SELECT [Họ và tên], [Giới tính], [Toán] FROM [HỌC SINH 11] WHERE [Giới tính] = “Nữ”, truy vấn cho biết thông tin nào?", a: ["Đưa ra danh sách gồm: họ và tên, giới tính, điểm môn Toán của tất cả các học sinh nữ", "Đưa ra danh sách gồm: họ và tên, giới tính, điểm môn Toán của tất cả các học sinh nam", "Đưa ra danh sách gồm: họ và tên, giới tính, điểm môn Toán của tất cả các học sinh", "Đưa ra danh sách gồm: họ và tên, giới tính của tất cả các học sinh"], c: 0 },
-      { q: "Câu 18. Khi thực hiện thao tác lọc dữ liệu ta sử dụng:", a: ["Mẫu hỏi (Query)", "Biểu mẫu (Form)", "Liên kết bảng", "Báo cáo (report)"], c: 0 },
-      { q: "Câu 19. Trong CSDL, việc thực hiện lọc dữ liệu theo yêu cầu nào đó gọi là gì?", a: ["Tạo biểu mẫu (tạo Form)", "Thiết kế bảng", "Truy vấn dữ liệu", "Tạo báo cáo"], c: 2 },
-      { q: "Câu 20. Để lọc ra tất cả học sinh khá, ta dùng biểu thức nào sau đây đối với “Điểm Trung bình”?", a: [">=6.5 OR <8", ">=6.5 AND <8", ">=6.5 NO <8", ">=6.5 BETWEEN <8"], c: 1 },
-      { q: "Câu 21. Việc ghi điểm vào sổ điểm được thực hiện thường xuyên, mỗi khi có điểm đánh giá thường xuyên, giữa kì hay cuối kì. Việc ghi chép này gọi là ...?", a: ["Lưu trữ dữ liệu.", "Khai thác thông tin.", "Truy xuất dữ liệu.", "Cập nhật dữ liệu."], c: 3 },
-      { q: "Câu 22. Ngôn ngữ truy vấn CSDL phổ biến hiện nay là:", a: ["ExceL", "Word", "Access", "SQL"], c: 3 },
-      { q: "Câu 23. Trong mô hình cơ sở dữ liệu quan hệ, mỗi hàng (record) trong một bảng phải:", a: ["Có thể trùng lặp hoàn toàn với hàng khác", "Có ít nhất một trường để trống", "Được xác định duy nhất bởi khóa chính", "Chỉ chứa dữ liệu kiểu số"], c: 2 },
-      { q: "Câu 24. Trong câu lệnh SQL, mệnh đề WHERE dùng để:", a: ["Sắp xếp dữ liệu theo thứ tự tăng hoặc giảm", "Xác định điều kiện lọc các bản ghi", "Thêm một bản ghi mới vào bảng", "Xác định bảng chứa dữ liệu"], c: 1 },
-
-      {
-        q: "Câu 25: Giờ kiểm tra môn Tin học, An muốn mở file bài tập “Baitap1.docx” đã lưu trong ổ đĩa D của máy tính để nộp cho giáo viên. An thực hiện thao tác mở ổ đĩa D và tìm kiếm file “Baitap1.docx”.\nMột số bạn cho rằng:",
-        a: [
-          "a) An đang thực hiện thao tác cập nhật dữ liệu.",
-          "b) An đang thực hiện thao tác truy xuất dữ liệu.",
-          "c) An đang thực hiện thao tác khai thác thông tin.",
-          "d) An đang thực hiện thao tác thu thập dữ liệu."
-        ],
-        c: [1]
-      },
-      {
-        q: "Câu 26: Trong các phát biểu dưới đây, phát biểu nào đúng với câu truy vấn SQL sau?\nSELECT [Họ và tên], [Lương], [Trợ cấp]\nFROM [KT-LƯƠNG]\nWHERE (Lương <7000000)",
-        a: [
-          "a) Hiển thị những bản ghi có giá trị trường Lương chưa đến 7000000 trong bảng KT-LƯƠNG.",
-          "b) Hiển thị các trường Họ và tên, Lương, Trợ cấp của những bản ghi thoả mãn điều kiện (Lương < 7000000).",
-          "c) Lấy ra từ bảng KT-LƯƠNG các bản ghi thoả mãn điều kiện (Lương < 7000000), chỉ hiển thị các trường Họ và tên, Lương, Trợ cấp của những bản ghi này.",
-          "d) Lấy ra từ bảng KT-LƯƠNG một bảng con chỉ có các trường Họ và tên, Lương, Trợ cấp và chỉ gồm các bản ghi thoả mãn điều kiện (Lương<7000000)."
-        ],
-        c: [0, 1, 2, 3]
-      },
-      {
-        q: "Câu 27: Hệ thống nào sau đây là hệ CSDL?",
-        a: [
-          "a) Phần mềm hệ quản trị CSDL Microsoft Access và CSDL quản lí học vụ của một trường học.",
-          "b) Chương trình “Quản lí học sinh” truy cập và cập nhật trực tiếp vào tệp dữ liệu “Họcsinh” (gồm các trường Mãsố, Họtên, MãLớp) và tệp dữ liệu Lớp (gồm các trường MãLớp, TênLớp).",
-          "c) Chương trình “Quản lí học sinh” truy cập và cập nhật bảng Họcsinh (Mãsố, Họtên, Mãlớp) và bảng Lớp (Mãlớp, Tênlớp) thông qua phần mềm hệ quản trị CSDL MySQL.",
-          "d) Phần mềm hệ quản trị CSDL MySQL lưu trữ bảng HọcSinh (Mãsố, Họtên, Mãlớp) và bảng Lớp (MãLớp, TênLớp)."
-        ],
-        c: [0, 2, 3]
-      },
-      {
-        q: "Câu 28: Cho câu truy vấn:\nSELECT [Tên sản phẩm], [Đơn giá]\nFROM [SANPHAM]\nWHERE [Đơn giá] > 1000000",
-        a: [
-          "a) Hiển thị toàn bộ sản phẩm trong bảng SANPHAM.",
-          "b) Hiển thị các sản phẩm có đơn giá lớn hơn 1.000.000 và chỉ hiển thị 2 trường Tên sản phẩm, Đơn giá.",
-          "c) Hiển thị tất cả các trường của sản phẩm có đơn giá lớn hơn 1.000.000.",
-          "d) Xóa các sản phẩm có đơn giá lớn hơn 1.000.000."
-        ],
-        c: [1]
-      }
-    ];
 
     const historyQuestionBank = [
       { q: "Câu 1. Tình hình kinh tế nước ta thời nhà Trần từ nửa sau thế kỉ XIV, có đặc điểm là", a: ["kinh tế có bước phát triển mới, nông nghiệp ổn định.", "kinh tế suy yếu, nhiều năm bị mất mùa, đói kém.", "kinh tế phát triển vượt bậc do chính sách mở cửa của nhà nước.", "kinh tế thương nghiệp, thủ công nghiệp phát triển mạnh."], c: 1 },
@@ -822,37 +686,7 @@
       }
     ];
 
-    const readingIdeaMaterial = {
-      title: "Bài đọc: Thành phố học tập thông minh",
-      content: `Thành phố Sơn Hà triển khai chương trình "Học tập suốt đời" cho học sinh trung học trong bối cảnh chuyển đổi số.
-
-Chương trình có ba trụ cột chính. Thứ nhất, thư viện cộng đồng mở từ 6h đến 22h, cho phép học sinh mượn sách giấy miễn phí và đọc tại chỗ. Thứ hai, nền tảng học trực tuyến của thành phố cung cấp hơn 1200 bài học ngắn theo từng chủ đề. Thứ ba, mỗi trường đều có một không gian "maker" để học sinh làm dự án theo nhóm.
-
-Tuy vậy, thành phố không xem công nghệ là giải pháp duy nhất. Nhà trường triển khai thêm hoạt động "1 giờ không màn hình" vào buổi tối, khuyến khích học sinh đọc sách giấy, ghi chép tay và thảo luận cùng gia đình.
-
-Sau một năm, tỉ lệ hoàn thành bài tập tăng 18%, số lượt mượn sách tăng 42% và số dự án nhóm tăng đều ở tất cả khối lớp. Tuy nhiên, khu vực vùng ven vẫn gặp khó vì internet chưa ổn định, còn nhiều giáo viên cần thời gian để làm quen phương pháp dạy mới.
-
-Để khắc phục, thành phố mở điểm wifi công cộng, tổ chức nhóm hỗ trợ kỹ năng số cho phụ huynh và điều chỉnh cách đánh giá: giảm phụ thuộc vào một bài kiểm tra cuối kì, tăng điểm cho quá trình và sản phẩm dự án.
-
-Thông điệp trung tâm của chương trình là: công nghệ nên đóng vai trò công cụ hỗ trợ, còn việc học hiệu quả vẫn cần kỷ luật cá nhân, sự đồng hành của gia đình và định hướng chuyên môn từ giáo viên.`
-    };
-
-    const readingIdeaQuestionBank = [
-      { q: "Câu 1: Chương trình học tập suốt đời của thành phố có mấy trụ cột chính?", a: ["2", "3", "4", "5"], c: 1 },
-      { q: "Câu 2: Nội dung nào KHÔNG thuộc ba trụ cột chính của chương trình?", a: ["Thư viện cộng đồng mở rộng giờ", "Nền tảng học trực tuyến", "Không gian maker theo nhóm", "Bắt buộc học thêm ban đêm có thu phí"], c: 3 },
-      { q: "Câu 3: Hoạt động '1 giờ không màn hình' nhằm mục tiêu nào?", a: ["Thay thế hoàn toàn học trực tuyến", "Khuyến khích đọc sách giấy, ghi chép và thảo luận", "Giảm thời gian học ở trường", "Tăng thời lượng giải trí trên điện thoại"], c: 1 },
-      { q: "Câu 4: Sau một năm, chỉ số nào tăng 42%?", a: ["Tỉ lệ hoàn thành bài tập", "Số dự án nhóm", "Số lượt mượn sách", "Số giáo viên mới"], c: 2 },
-      { q: "Câu 5: Khó khăn chính ở khu vực vùng ven là gì?", a: ["Thiếu sách giấy", "Internet chưa ổn định", "Không có học sinh tham gia", "Thiếu phòng học maker"], c: 1 },
-      { q: "Câu 6: Giải pháp nào được nêu để hỗ trợ phụ huynh?", a: ["Miễn hoàn toàn học phí", "Phát máy tính cho mọi gia đình", "Tổ chức nhóm hỗ trợ kỹ năng số", "Chuyển toàn bộ lớp học sang online"], c: 2 },
-      { q: "Câu 7: Cách đánh giá mới được điều chỉnh theo hướng nào?", a: ["Chỉ dựa vào thi cuối kì", "Tăng điểm cho quá trình và dự án", "Bỏ toàn bộ kiểm tra", "Chấm điểm theo thời gian online"], c: 1 },
-      { q: "Câu 8: Thông điệp trung tâm của bài đọc là gì?", a: ["Công nghệ thay thế vai trò giáo viên", "Chỉ cần tự học là đủ", "Học hiệu quả cần công nghệ hỗ trợ, kỷ luật cá nhân, gia đình và giáo viên", "Học trực tuyến luôn tốt hơn học trực tiếp"], c: 2 }
-    ];
-
     const questionLibraries = {
-      tin11: {
-        label: "Tin học 11",
-        questions: questionBank
-      },
       ls11gk2: {
         label: "Kiểm tra giữa kì II môn Lịch Sử 11",
         questions: historyQuestionBank
@@ -874,13 +708,6 @@ Thông điệp trung tâm của chương trình là: công nghệ nên đóng va
           { q: "Câu 11: Quá trình phát triển ở sinh vật bao gồm mấy biến đổi cơ bản?", type: "short", answer: ["3", "ba"] },
           { q: "Câu 12: Một hạt nảy mầm thành cây con / Một tế bào vi khuẩn phân chia làm đôi / Con sâu biến đổi thành nhộng rồi thành bướm / Một cái cây cao thêm 10cm.\n\nCó bao nhiêu ví dụ mô tả sự phát triển ở sinh vật?", type: "short", answer: ["2", "hai"] }
         ]
-      },
-      readingidea: {
-        label: "Bài đọc ý tưởng (2 phần)",
-        mode: "reading",
-        shuffleQuestions: false,
-        reading: readingIdeaMaterial,
-        questions: readingIdeaQuestionBank
       },
       tester: {
         label: "TESTER",
@@ -911,8 +738,6 @@ Thông điệp trung tâm của chương trình là: công nghệ nên đóng va
     let stats = [];
     let selectedAnswerIndexes = new Set();
     let submitted = false;
-    let activeQuizMode = "default";
-    let activeReading = null;
 
     const elements = {
       container: document.getElementById("container"),
@@ -935,9 +760,6 @@ Thông điệp trung tâm của chương trình là: công nghệ nên đóng va
       statsBox: document.getElementById("statsBox"),
       reviewBtn: document.getElementById("reviewBtn"),
       reviewPanel: document.getElementById("reviewPanel"),
-      readingPane: document.getElementById("readingPane"),
-      readingTitle: document.getElementById("readingTitle"),
-      readingContent: document.getElementById("readingContent"),
       progress: document.getElementById("progress"),
       progressText: document.getElementById("progressText"),
       position: document.getElementById("position"),
@@ -991,22 +813,6 @@ Thông điệp trung tâm của chương trình là: công nghệ nên đóng va
       }
     }
 
-    function applyQuizLayout() {
-      const isReadingMode = activeQuizMode === "reading" && activeReading;
-      elements.container.classList.toggle("reading-mode", isReadingMode);
-      elements.quiz.classList.toggle("reading-active", isReadingMode);
-
-      if (isReadingMode) {
-        elements.readingPane.classList.remove("hidden");
-        elements.readingTitle.textContent = activeReading.title || "Bài đọc";
-        elements.readingContent.textContent = activeReading.content || "";
-      } else {
-        elements.readingPane.classList.add("hidden");
-        elements.readingTitle.textContent = "";
-        elements.readingContent.textContent = "";
-      }
-    }
-
     function startQuiz() {
       player = elements.name.value.trim();
       selectedSubject = elements.subject.value;
@@ -1025,16 +831,11 @@ Thông điệp trung tâm của chương trình là: công nghệ nên đóng va
       }
 
       selectedSubjectLabel = subjectPack.label;
-      activeQuizMode = subjectPack.mode || "default";
-      activeReading = subjectPack.reading || null;
 
       questions = normalizeQuestions(subjectPack.questions);
-      const shouldShuffleQuestions = subjectPack.shuffleQuestions !== false;
-      if (shouldShuffleQuestions) {
-        shuffle(questions);
-      }
+      shuffle(questions);
       questions.forEach((q) => {
-        if (q.type === "multiple" && q.options && subjectPack.shuffleOptions !== false) {
+        if (q.type === "multiple" && q.options) {
           shuffle(q.options);
         }
       });
@@ -1056,7 +857,6 @@ Thông điệp trung tâm của chương trình là: công nghệ nên đóng va
       elements.start.classList.add("hidden");
       elements.result.classList.add("hidden");
       elements.quiz.classList.remove("hidden");
-      applyQuizLayout();
 
       loadQuestion();
     }
@@ -1165,16 +965,6 @@ Thông điệp trung tâm của chương trình là: công nghệ nên đóng va
 
     function toggleAnswer(optionIndex, button) {
       if (submitted) {
-        return;
-      }
-
-      if (activeQuizMode === "reading") {
-        selectedAnswerIndexes.clear();
-        Array.from(elements.answers.children).forEach((answerButton) => {
-          answerButton.classList.remove("selected");
-        });
-        selectedAnswerIndexes.add(optionIndex);
-        button.classList.add("selected");
         return;
       }
 
@@ -1447,9 +1237,6 @@ Thông điệp trung tâm của chương trình là: công nghệ nên đóng va
       elements.shortAnswerInput.value = "";
       elements.shortAnswerInput.disabled = false;
       elements.shortAnswerInput.removeEventListener("keypress", handleShortAnswerEnter);
-      activeQuizMode = "default";
-      activeReading = null;
-      applyQuizLayout();
       elements.name.focus();
     }
 
