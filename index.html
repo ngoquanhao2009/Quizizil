@@ -770,6 +770,67 @@ Khi bạn gửi thư viện mới, nội dung bài đọc và toàn bộ câu h�
       }
     ];
 
+    const testerQuestionBank = [
+      { q: "I. Vocabulary\n\nCâu 1: When the cat woke up from its nap, it started ______ slowly as the sunlight hit its face.", a: ["whispering", "snoring", "staring", "blinking"], c: 3 },
+      { q: "Câu 2: Before launching any advertising campaign, the company needs to ______ the target audience carefully.", a: ["research", "influence", "promote", "persuade"], c: 0 },
+      { q: "Câu 3: The ______ of the smartphone has transformed communication around the world.", a: ["invent", "invention", "invented", "inventor"], c: 1 },
+      { q: "Câu 4: The marketing team designed a colorful ______ to place near the airport for greater visibility.", a: ["flyer", "billboard", "slogan", "jingle"], c: 1 },
+      { q: "Câu 5: Everyone remembers the brand because its radio ______ is extremely catchy and fun.", a: ["campaign", "banner", "jingle", "display"], c: 2 },
+      { q: "Câu 6: Volunteers walked around the neighborhood giving out ______ to advertise the charity event.", a: ["billboards", "flyers", "logos", "luxury goods"], c: 1 },
+      { q: "Câu 7: Using environmentally friendly materials helps the company strengthen its ______ in the market.", a: ["brand image", "free sample", "slogan", "glossy magazine"], c: 0 },
+      { q: "Câu 8: The store specializes in selling ______ such as premium leather bags and designer shoes.", a: ["flyers", "campaigns", "luxury goods", "endorsements"], c: 2 },
+      { q: "Câu 9: After a few minutes, I began to ______ that the pain in my leg had completely disappeared.", a: ["view", "realize", "detect", "consider"], c: 1 },
+      { q: "Câu 10: Most shops ______ their newest items near the entrance to attract more customers.", a: ["display", "persuade", "target", "launch"], c: 0 },
+      { q: "Câu 11: I couldn't fall asleep because my brother was lying next to me and ______ loudly.", a: ["whispering", "shouting", "snuffling", "snoring"], c: 3 },
+      { q: "Câu 12: Athletes need a fast ______ to respond quickly during competitions.", a: ["react", "reactive", "reaction", "reacting"], c: 2 },
+      { q: "Câu 13: She made the ______ to study biology after attending a very inspiring lecture.", a: ["decide", "decision", "decisive", "deciding"], c: 1 },
+      { q: "Câu 14: The company offered customers a ______ sample of its new lotion to encourage them to try it.", a: ["free", "special", "great", "luxury"], c: 0 },
+      { q: "Câu 15: Young children often find it difficult to distinguish ______ similar colors.", a: ["from", "between", "about", "with"], c: 1 },
+      { q: "Câu 16: A ______ percentage of students failed the test; almost everyone passed.", a: ["tiny", "massive", "whopping", "considerable"], c: 0 },
+      { q: "Câu 17: The firefighters ______ for their quick actions during the forest fire.", a: ["were praised", "praised", "were praising", "had praised"], c: 0 },
+      { q: "Câu 18: We should take another route because the main bridge is currently ______.", a: ["been repaired", "being repaired", "be repaired", "repairing"], c: 1 },
+
+      { q: "II. Grammar & Reported Speech\n\nCâu 19: Tom said, \"Please contact me later tonight.\"", a: ["Tom told us contacting him later tonight.", "Tom told us to contacted him later tonight.", "Tom told not us to contact him later tonight.", "Tom told us to contact him later tonight."], c: 3 },
+      { q: "Câu 20: How do students remember new vocabulary?", a: ["How are new words remembered?", "How are new words remembered by students?", "How new words are remembered?", "New words are remembered how?"], c: 1 },
+      { q: "Câu 21: Cindy said, \"I haven’t spoken to Anna since last month.\"", a: ["Cindy said she doesn't speak to Anna since the previous month.", "Cindy said she wasn't speaking to Anna since the previous month.", "Cindy said she hasn't spoken to Anna since the previous month.", "Cindy said she hadn’t spoken to Anna since the previous month."], c: 3 },
+      { q: "Câu 22: Mr. Jim said that he ______ satisfied with the final report.", a: ["weren't", "isn't", "wasn't", "aren't"], c: 2 },
+      { q: "Câu 23: Someone cleaned the classroom this morning.", a: ["The classroom was cleaned this morning.", "The classroom was cleaned this morning by someone.", "The classroom this morning was cleaned.", "This morning the classroom cleaned."], c: 0 },
+      { q: "Câu 24: Why don’t you get your bike ______ at the shop?", a: ["repairs", "repair", "repaired", "to repair"], c: 2 },
+      { q: "Câu 25: Kate said: \"Tom, do you like my hairstyle?\"", a: ["Kate asked Tom if he liked her hairstyle.", "Kate asked Tom if you liked her hairstyle.", "Kate asked Tom if he liked your hairstyle.", "Kate asked Tom if he likes her hairstyle."], c: 0 },
+      { q: "Câu 26: They asked whether the meeting would continue ______.", a: ["the next day", "day next", "next day", "the day next"], c: 0 },
+      { q: "Câu 27: Over 30 new exhibitions ______ at the city museum since January.", a: ["were shown", "had been showing", "have been shown", "have shown"], c: 2 },
+      { q: "Câu 28: They postponed all outdoor activities because of the storm.", a: ["All outdoor activities because of the storm were postponed.", "All outdoor activities were postponed because of the storm.", "All outdoor activities was postponed because of the storm.", "All outdoor activities are postponed by them because of the storm."], c: 1 },
+      { q: "Câu 29: People advised us not to swim in the river.", a: ["We were advised not swimming in the river.", "We were advised not to swim in the river by people.", "We weren't advised to swim in the river.", "We were advised not to swim in the river."], c: 3 },
+      { q: "Câu 30: The telephone ______ by Alexander Graham Bell.", a: ["was invented", "is discovered", "has been discovered", "was discover"], c: 0 },
+      { q: "Câu 31: Victor said he ______ tired after the trip.", a: ["is", "will be", "was", "may be"], c: 2 },
+      { q: "Câu 32: She said she ______ attend the meeting on Monday.", a: ["won't", "can't", "doesn't", "couldn’t"], c: 3 },
+      { q: "Câu 33: \"This woman helped me yesterday,\" said the boy.", a: ["The boy said that woman helped me yesterday.", "The boy said that woman has helped him yesterday.", "The boy said that woman him yesterday.", "The boy said that woman had helped him the day before."], c: 3 },
+      { q: "Câu 34: \"Don’t forget to lock the door,\" said Dad to me.", a: ["Dad told me not forget to lock the door.", "Dad told me not to forget to lock the door.", "Dad told me not to forget to locked the door.", "Dad said me not to forget to lock the door."], c: 1 },
+
+      { q: "III. Causative Form\n\nCâu 35: I’ll ______ the mechanic check the brakes for me.", a: ["have", "get", "make", "let"], c: 0 },
+      { q: "Câu 36: We had our house ______ last week.", a: ["paint", "painted", "painting", "to paint"], c: 1 },
+      { q: "Câu 37: She will have the gardener ______ the flowers this afternoon.", a: ["water", "watered", "watering", "waters"], c: 0 },
+      { q: "Câu 38: I had my laptop ______ yesterday.", a: ["repair", "repaired", "repairing", "to repair"], c: 1 },
+      { q: "Câu 39: They had the students ______ the classroom after the event.", a: ["clean", "cleaned", "cleaning", "to clean"], c: 0 },
+      { q: "Câu 40: We are having the roof ______ at the moment.", a: ["fix", "fixed", "fixing", "to fix"], c: 1 },
+      { q: "Câu 41: She had someone ______ her luggage to the taxi.", a: ["carry", "carried", "carrying", "carries"], c: 0 },
+      { q: "Câu 42: My mom will have the dress ______ before the wedding.", a: ["sew", "sewed", "sewing", "sewn"], c: 3 },
+      { q: "Câu 43: The manager had the staff ______ a new report.", a: ["prepare", "prepared", "preparing", "to prepare"], c: 0 },
+      { q: "Câu 44: I had my phone ______ because the screen was cracked.", a: ["replace", "replaced", "replacing", "to replace"], c: 1 },
+
+      { q: "IV. Reading Comprehension - Reading 1\n\nFor sensitive eaters like Emma, enjoying a variety of foods can be surprisingly difficult. Many dishes that other people find delicious may (1) ______ completely different to her because her sense of taste is unusually strong. Spicy snacks feel too hot, and some vegetables are so bitter that they are (2) ______ unpleasant for her to swallow. Her strong physical (3) ______ to certain foods often stops her from trying new things, even when she wants to. When she was younger, her parents believed she would eventually adjust, but she continued to experience flavors (4) ______ from those around her. As a result, she relied heavily on plain meals such as rice or pasta. Now that she is older and wants to improve her eating habits, she is working with a nutritionist to help her develop a more balanced (5) ______ without feeling overwhelmed by strong tastes.\n\nCâu 45: Chọn từ thích hợp cho ô (1).", a: ["see", "hear", "taste", "touch"], c: 2 },
+      { q: "Reading 1 - Câu 46: Chọn từ thích hợp cho ô (2).", a: ["extremely", "extreme", "extremity", "extremist"], c: 0 },
+      { q: "Reading 1 - Câu 47: Chọn từ thích hợp cho ô (3).", a: ["react", "reactions", "reactivity", "reactive"], c: 1 },
+      { q: "Reading 1 - Câu 48: Chọn từ thích hợp cho ô (4).", a: ["different", "differently", "same", "indifferent"], c: 0 },
+      { q: "Reading 1 - Câu 49: Chọn từ thích hợp cho ô (5).", a: ["diet", "money", "price", "need"], c: 0 },
+
+      { q: "Reading 2\n\nFor someone like Lily, who has always been sensitive to strong flavors, living on her own for the first time quickly became a challenge. Her unusual taste sensitivity was not a (1) ______ concern when she lived with her parents, because they helped prepare balanced meals for her. But once she moved into her own apartment, she noticed that she rarely ate (2) ______. Without anyone to guide or encourage her, she began repeating the same meals every week, choosing only dishes that felt safe and familiar. Over time, she started to worry about possible (3) ______ issues caused by her lack of nutrients. She felt tired more often and knew that her body needed a wider variety of food.\n\nLily realized that the answer wasn’t forcing herself (4) ______ foods she had always avoided. Instead, she looked for alternatives that suited her palate. She searched for vegetables with (5) ______ milder flavors and discovered several options she had never tried before. Although she still has a limited list of foods she truly enjoys, she is proud that her diet is now more balanced and nutritious.\n\nCâu 50: Chọn từ thích hợp cho ô (1).", a: ["seriousion", "seriously", "serious", "seriousness"], c: 2 },
+      { q: "Reading 2 - Câu 51: Chọn từ thích hợp cho ô (2).", a: ["properly", "proper", "properness", "improperly"], c: 0 },
+      { q: "Reading 2 - Câu 52: Chọn từ thích hợp cho ô (3).", a: ["health", "financial", "family", "social"], c: 0 },
+      { q: "Reading 2 - Câu 53: Chọn từ thích hợp cho ô (4).", a: ["eating", "to eat", "ate", "eaten"], c: 1 },
+      { q: "Reading 2 - Câu 54: Chọn từ thích hợp cho ô (5).", a: ["much", "very", "slight", "slightly"], c: 3 }
+    ];
+
     const questionLibraries = {
       ls11gk2: {
         label: "Kiểm tra giữa kì II môn Lịch Sử 11",
@@ -803,13 +864,7 @@ Khi bạn gửi thư viện mới, nội dung bài đọc và toàn bộ câu h�
       },
       tester: {
         label: "TESTER",
-        questions: [
-          {
-            q: "Bạn đã vào môn TESTER thành công. Đây là câu hỏi tạm để kiểm tra truy cập.",
-            a: ["OK", "NO", "Lỗi", "Thoát"],
-            c: 0
-          }
-        ]
+        questions: testerQuestionBank
       }
     };
 
