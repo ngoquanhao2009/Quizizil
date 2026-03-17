@@ -424,6 +424,7 @@
           <option value="">-- Chọn môn học --</option>
           <option value="ls11gk2">Kiểm tra giữa kì II môn Lịch Sử 11</option>
           <option value="sinh11gk2">Kiểm tra giữa kì II môn Sinh học 11</option>
+          <option value="englishshort">Dò bài tiếng Anh full trả lời ngắn</option>
           <option value="tester">TESTER</option>
         </select>
         <br />
@@ -743,6 +744,56 @@
       { q: "Câu 44: I had my phone ______ because the screen was cracked.", a: ["replace", "replaced", "replacing", "to replace"], c: 1 }
     ];
 
+    const englishShortReviewLibrary = [
+      ["renewable energy", "/rɪˈnjuːəbl ˈenədʒi/", "năng lượng tái tạo"],
+      ["pollution", "/pəˈluːʃən/", "ô nhiễm"],
+      ["reduce plastic usage", "/rɪˈdjuːs ˈplæstɪk ˈjuːsɪdʒ/", "giảm sử dụng nhựa"],
+      ["environmental damage", "/ɪnˌvaɪrənˈmentl ˈdæmɪdʒ/", "thiệt hại môi trường"],
+      ["public transport system", "/ˈpʌblɪk ˈtrænspɔːt ˈsɪstəm/", "hệ thống giao thông công cộng"],
+      ["traffic congestion", "/ˈtræfɪk kənˈdʒestʃən/", "tắc nghẽn giao thông"],
+      ["awareness of climate change", "/əˈweənəs əv ˈklaɪmət tʃeɪndʒ/", "nhận thức về biến đổi khí hậu"],
+      ["take action", "/teɪk ˈækʃən/", "hành động"],
+      ["achieve higher scores", "/əˈtʃiːv ˈhaɪə skɔːz/", "đạt điểm cao hơn"],
+      ["introduce stricter laws", "/ˌɪntrəˈdjuːs ˈstrɪktə lɔːz/", "ban hành luật nghiêm khắc hơn"],
+      ["air quality", "/eə ˈkwɒləti/", "chất lượng không khí"],
+      ["train consistently", "/treɪn kənˈsɪstəntli/", "luyện tập đều đặn"],
+      ["fluency", "/ˈfluːənsi/", "sự trôi chảy"],
+      ["online courses", "/ˈɒnlaɪn ˈkɔːsɪz/", "khóa học trực tuyến"],
+      ["be more engaged", "/ɪnˈɡeɪdʒd/", "tham gia tích cực hơn"],
+      ["limit emissions", "/ˈlɪmɪt ɪˈmɪʃənz/", "hạn chế khí thải"],
+      ["global warming", "/ˈɡləʊbl ˈwɔːmɪŋ/", "nóng lên toàn cầu"],
+      ["tourism", "/ˈtʊərɪzəm/", "du lịch"],
+      ["support renewable energy", "/səˈpɔːt rɪˈnjuːəbl ˈenədʒi/", "hỗ trợ năng lượng tái tạo"],
+      ["promote electric vehicles", "/prəˈməʊt ɪˈlektrɪk ˈviːəklz/", "thúc đẩy xe điện"],
+      ["urbanization issues", "/ˌɜːbənaɪˈzeɪʃən ˈɪʃuːz/", "vấn đề đô thị hóa"],
+      ["possible solutions", "/ˈpɒsəbl səˈluːʃənz/", "giải pháp khả thi"],
+      ["struggle with vocabulary", "/ˈstrʌɡl wɪð vəˈkæbjələri/", "gặp khó khăn với từ vựng"],
+      ["difficulties with grammar", "/ˈdɪfɪkəltiz wɪð ˈɡræmə/", "khó khăn với ngữ pháp"],
+      ["sustainability", "/səˌsteɪnəˈbɪləti/", "tính bền vững"],
+      ["social responsibility", "/ˈsəʊʃl rɪˌspɒnsəˈbɪləti/", "trách nhiệm xã hội"],
+      ["physical health", "/ˈfɪzɪkl helθ/", "sức khỏe thể chất"],
+      ["mental health", "/ˈmentl helθ/", "sức khỏe tinh thần"],
+      ["infrastructure", "/ˈɪnfrəstrʌktʃə/", "cơ sở hạ tầng"],
+      ["drastic economic crisis", "/ˈdræstɪk ˌiːkəˈnɒmɪk ˈkraɪsɪs/", "khủng hoảng kinh tế nghiêm trọng"],
+      ["economic growth", "/ˌiːkəˈnɒmɪk ɡrəʊθ/", "tăng trưởng kinh tế"],
+      ["air pollution", "/eə pəˈluːʃən/", "ô nhiễm không khí"],
+      ["invest in renewable energy", "/ɪnˈvest ɪn rɪˈnjuːəbl ˈenədʒi/", "đầu tư vào năng lượng tái tạo"],
+      ["public transport improvements", "/ˈpʌblɪk ˈtrænspɔːt ɪmˈpruːvmənts/", "cải thiện giao thông công cộng"],
+      ["positive customer feedback", "/ˈpɒzətɪv ˈkʌstəmə ˈfiːdbæk/", "phản hồi tích cực từ khách hàng"],
+      ["global temperatures", "/ˈɡləʊbl ˈtemprətʃəz/", "nhiệt độ toàn cầu"],
+      ["safety officers", "/ˈseɪfti ˈɒfɪsəz/", "nhân viên an toàn"],
+      ["implement policy", "/ˈɪmplɪment ˈpɒləsi/", "thực thi chính sách"],
+      ["review results", "/rɪˈvjuː rɪˈzʌlts/", "xem xét kết quả"],
+      ["crime rate", "/kraɪm reɪt/", "tỷ lệ tội phạm"],
+      ["inflation rates", "/ɪnˈfleɪʃən reɪts/", "tỷ lệ lạm phát"]
+    ];
+
+    const englishShortQuestionBank = englishShortReviewLibrary.map(([word, pronunciation, meaning], idx) => ({
+      q: `Câu ${idx + 1}: Nghĩa tiếng Việt: ${meaning}\nPhiên âm: ${pronunciation}\nNhập từ/collocation tiếng Anh:`,
+      type: "short",
+      answer: [word]
+    }));
+
     const questionLibraries = {
       ls11gk2: {
         label: "Kiểm tra giữa kì II môn Lịch Sử 11",
@@ -765,6 +816,11 @@
           { q: "Câu 11: Quá trình phát triển ở sinh vật bao gồm mấy biến đổi cơ bản?", type: "short", answer: ["3", "ba"] },
           { q: "Câu 12: Một hạt nảy mầm thành cây con / Một tế bào vi khuẩn phân chia làm đôi / Con sâu biến đổi thành nhộng rồi thành bướm / Một cái cây cao thêm 10cm.\n\nCó bao nhiêu ví dụ mô tả sự phát triển ở sinh vật?", type: "short", answer: ["2", "hai"] }
         ]
+      },
+      englishshort: {
+        label: "Dò bài tiếng Anh full trả lời ngắn",
+        shuffleQuestions: false,
+        questions: englishShortQuestionBank
       },
       tester: {
         label: "TESTER",
