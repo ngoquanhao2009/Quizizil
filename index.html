@@ -10,9 +10,12 @@
     body {
       margin: 0;
       font-family: Segoe UI, system-ui, sans-serif;
-      background: linear-gradient(-45deg, #0f172a, #1e1b4b, #0f172a, #1e293b);
-      background-size: 400% 400%;
-      animation: gradientBG 15s ease infinite;
+      background-image:
+        linear-gradient(120deg, rgba(2, 6, 23, 0.65), rgba(15, 23, 42, 0.55)),
+        url("Thiết kế chưa có tên.png");
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -29,6 +32,28 @@
       flex-direction: column;
       align-items: center;
       gap: 12px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .petal-layer {
+      position: fixed;
+      inset: 0;
+      overflow: hidden;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .petal {
+      position: absolute;
+      top: -12vh;
+      left: var(--x, 50vw);
+      font-size: var(--size, 18px);
+      opacity: 0.72;
+      filter: drop-shadow(0 2px 3px rgba(0, 0, 0, 0.25));
+      animation: petalFall var(--duration, 18s) linear infinite;
+      animation-delay: var(--delay, 0s);
+      will-change: transform;
     }
 
     .brand {
@@ -213,10 +238,19 @@
       animation: fadeIn 0.5s ease;
     }
 
-    @keyframes gradientBG {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
+    @keyframes petalFall {
+      0% {
+        transform: translate3d(0, -10vh, 0) rotate(0deg);
+      }
+      30% {
+        transform: translate3d(calc(var(--drift, 8vw) * 0.4), 30vh, 0) rotate(110deg);
+      }
+      60% {
+        transform: translate3d(calc(var(--drift, 8vw) * -0.2), 65vh, 0) rotate(220deg);
+      }
+      100% {
+        transform: translate3d(var(--drift, 8vw), 115vh, 0) rotate(360deg);
+      }
     }
 
     @keyframes shine {
@@ -392,6 +426,10 @@
     }
 
     @media (max-width: 640px) {
+      body {
+        background-attachment: scroll;
+      }
+
       .footer-container {
         flex-direction: column;
         gap: 10px;
@@ -402,9 +440,17 @@
         width: 100%;
       }
     }
+
+    @media (prefers-reduced-motion: reduce) {
+      .petal {
+        animation: none;
+        display: none;
+      }
+    }
   </style>
 </head>
 <body>
+  <div class="petal-layer" id="petalLayer" aria-hidden="true"></div>
   <div class="page">
     <div class="brand">
       <img src="logo.png" alt="Logo Trắc Nghiệm Đề Cương" class="brand-logo" />
@@ -490,8 +536,36 @@
         counterElement.textContent = count;
       }
     }
+
+    function initPetals() {
+      if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+        return;
+      }
+      const layer = document.getElementById("petalLayer");
+      if (!layer) {
+        return;
+      }
+
+      const totalPetals = window.innerWidth <= 640 ? 8 : 12;
+      const frag = document.createDocumentFragment();
+
+      for (let i = 0; i < totalPetals; i += 1) {
+        const petal = document.createElement("span");
+        petal.className = "petal";
+        petal.textContent = "🌸";
+        petal.style.setProperty("--x", `${Math.random() * 100}vw`);
+        petal.style.setProperty("--drift", `${(Math.random() * 18 - 9).toFixed(2)}vw`);
+        petal.style.setProperty("--size", `${14 + Math.random() * 10}px`);
+        petal.style.setProperty("--duration", `${14 + Math.random() * 10}s`);
+        petal.style.setProperty("--delay", `${(-Math.random() * 20).toFixed(2)}s`);
+        frag.appendChild(petal);
+      }
+
+      layer.appendChild(frag);
+    }
     
     window.addEventListener("load", initializeVisitorCounter);
+    window.addEventListener("load", initPetals);
 
     const historyFinalHeiQuestionBank = [
       { q: "Câu 1. Nội dung nào sau đây phản ảnh đúng mục đích cải cách của vua Lê Thánh Tông?", a: ["Tăng cường quyền lực của hoàng đế và củng cố bộ máy nhà nước", "Giải quyết tình trạng khủng hoảng trầm trọng của đất nước bấy giờ", "Biến nước ta trở thành cường quốc lớn mạnh hàng đầu trong khu vực.", "Tăng cường tiềm lực đất nước chuẩn bị đối phó với giặc ngoại xâm"], c: 0 },
