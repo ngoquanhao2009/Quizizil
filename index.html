@@ -469,7 +469,6 @@
         <select id="subject">
           <option value="">-- Chọn môn học --</option>
           <option value="sucuoikihei">TRẮC NGHIỆM SỬ CUỐI KÌ HEI</option>
-          <option value="sucuoikihei_ds">SỬ 11 KÌ 2 - ĐÚNG SAI</option>
           <option value="sinh11hk2">TRẮC NGHIỆM SINH 11 CUỐI KÌ 2</option>
         </select>
         <br />
@@ -730,7 +729,7 @@ const historyFinalHeiTrueFalseQuestionBank = [
     const questionLibraries = {
       sucuoikihei: {
         label: "TRẮC NGHIỆM SỬ CUỐI KÌ HEI",
-        questions: historyFinalHeiQuestionBank
+        questions: [...historyFinalHeiQuestionBank, ...historyFinalHeiTrueFalseQuestionBank]
       },
       sinh11hk2: {
         label: "TRẮC NGHIỆM SINH 11 CUỐI KÌ 2",
