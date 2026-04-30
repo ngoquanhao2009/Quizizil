@@ -469,6 +469,7 @@
         <select id="subject">
           <option value="">-- Chọn môn học --</option>
           <option value="sucuoikihei">TRẮC NGHIỆM SỬ CUỐI KÌ HEI</option>
+          <option value="sucuoikihei_ds">SỬ 11 KÌ 2 - ĐÚNG SAI</option>
           <option value="sinh11hk2">TRẮC NGHIỆM SINH 11 CUỐI KÌ 2</option>
         </select>
         <br />
@@ -637,6 +638,37 @@
       { q: "Câu 65. Các quốc gia ở khu vực nào sau đây có nền kinh tế gắn trực tiếp với con đường thương mại, hệ thống cảng biển và tài nguyên trên Biển Đông?", a: ["Đông Bắc Á và Tây Âu", "Đông Bắc Á và Đông Nam Á", "Đông Nam Á và Nam Á", "Nam Á và Tây Á"], c: 1 },
       { q: "Câu 66. Ở Biển Đông, nguồn tài nguyên thiên nhiên nào sau đây có trữ lượng vào loại lớn nhất thế giới?", a: ["Muối biển", "Băng cháy", "Dầu khí", "Quặng sắt"], c: 2 }
     ];
+
+const historyFinalHeiTrueFalseQuestionBank = [
+  { q: "Câu 1. Đọc đoạn tư liệu sau đây: a. Đối với Việt Nam, Biển Đông có vai trò quan trọng trong việc cung cấp nguồn tài nguyên phong phú để phát triển đất nước.", a: ["Đúng","Sai"], c: 0 },
+  { q: "Câu 1. Đọc đoạn tư liệu sau đây: b. Đối với Việt Nam, Biển Đông là cửa ngõ quan trọng để Việt Nam giao thương với nhiều nước trên thế giới.", a: ["Đúng","Sai"], c: 0 },
+  { q: "Câu 1. Đọc đoạn tư liệu sau đây: c. Việt Nam được đánh giá là quốc gia có lợi thế và tiềm năng to lớn về tài nguyên biển, tạo không gian trọng yếu để phát triển văn hóa.", a: ["Đúng","Sai"], c: 1 },
+  { q: "Câu 1. Đọc đoạn tư liệu sau đây: d. Biển Đông là khu vực tập trung các tuyến đường chiến lược nên có tầm quan trọng về quốc phòng, an ninh đối với Việt Nam.", a: ["Đúng","Sai"], c: 1 },
+  { q: "Câu 2. Đọc đoạn tư liệu sau đây: a. Việt Nam chủ trương đấu tranh ngoại giao nhằm nhượng bộ chia sẻ, quyền lợi với các nước có tranh chấp chủ quyền đối với quần đảo Hoàng Sa và quần đảo Trường Sa.", a: ["Đúng","Sai"], c: 1 },
+  { q: "Câu 2. Đọc đoạn tư liệu sau đây: b. Việt Nam là Nhà nước đầu tiên xác lập chủ quyền và quản lý liên tục đối với quần đảo Hoàng Sa và quần đảo Trường Sa trong lịch sử.", a: ["Đúng","Sai"], c: 0 },
+  { q: "Câu 2. Đọc đoạn tư liệu sau đây: c. Chủ trương của Việt Nam trong việc bảo vệ quyền, chủ quyền và các lợi ích hợp pháp ở Biển Đông là  không đánh đổi chủ quyền để đổi lấy hòa bình viễn vông.", a: ["Đúng","Sai"], c: 0 },
+  { q: "Câu 2. Đọc đoạn tư liệu sau đây: d. Đối với các tranh chấp chủ quyền biển, đảo, Việt Nam chủ trương giải quyết các tranh chấp thông qua vai trò của tòa án quốc tế.", a: ["Đúng","Sai"], c: 1 },
+  { q: "Câu 3. Đọc đoạn tư liệu sau đây: a. Đoạn trích trong cuốn Phủ biên tạp lục của Lê Quý Đôn trình bày quá trình hình thành và phát triển của quần đảo Hoàng Sa.", a: ["Đúng","Sai"], c: 1 },
+  { q: "Câu 3. Đọc đoạn tư liệu sau đây: b. Nhà Nguyễn đặt đội Hoàng Sa và đội Bắc Hải nhằm thực hiện quyền quản lý của mình đối với quần đảo Hoàng Sa và Trường Sa.", a: ["Đúng","Sai"], c: 0 },
+  { q: "Câu 3. Đọc đoạn tư liệu sau đây: c. Đội Hoàng Sa do nhà Nguyễn thành lập gồm 70 người, thực hiện nhiệm vụ của mình tại quần đảo Hoàng Sa định kì hàng năm từ tháng 2 đến tháng 10.", a: ["Đúng","Sai"], c: 1 },
+  { q: "Câu 3. Đọc đoạn tư liệu sau đây: d. Một trong những nhiệm vụ của đội Hoàng Sa và đội Bắc Hải là khai thác sản vật, thu lượm hàng hóa của những con tàu gặp nạn ở quần đảo Hoàng Sa và Trường Sa.", a: ["Đúng","Sai"], c: 0 },
+  { q: "Câu 4.  Cho đoạn tư liệu sau: a. “ Sự kiện 14 – 3” được nhắc đến ở đây chính là cuộc đấu tranh anh dũng của các chiến sĩ hải quân Việt Nam chống lại cuộc tấn công của tàu chiến Trung Quốc trên đảo Gạc Ma.", a: ["Đúng","Sai"], c: 0 },
+  { q: "Câu 4.  Cho đoạn tư liệu sau: b. Sự kiện Gạc Ma được nhắc lại vừa để khơi dậy mối thù hằn dân tộc, vừa để thế hệ trẻ sống có trách nhiệm và quyết tâm bảo vệ chủ quyền biển, đảo.", a: ["Đúng","Sai"], c: 1 },
+  { q: "Câu 4.  Cho đoạn tư liệu sau: c. Theo trung tá hải quân Nguyễn Viết Chức, trận chiến Gạc Ma là thất bại của người dân Việt Nam trong lịch sử, nỗi đau ấy cần phải được quên đi.", a: ["Đúng","Sai"], c: 1 },
+  { q: "Câu 4.  Cho đoạn tư liệu sau: d. Tài liệu về trận chiến Gạc Ma hiện nay chỉ được ghi chép trong chính sử của Hải quân Việt Nam.", a: ["Đúng","Sai"], c: 1 },
+  { q: "Câu 5. Đọc đoạn tư liệu sau đây: a. Những dẫn chứng được đưa ra trong đoạn tư liệu cho thấy Biển Đông là tuyến đường giao thông biển huyết mạch của khu vực châu Á – Thái Bình Dương.", a: ["Đúng","Sai"], c: 0 },
+  { q: "Câu 5. Đọc đoạn tư liệu sau đây: b. Nhiều quốc gia và vùng lãnh thổ thuộc khu vực Đông Bắc Á và Đông Nam Á có nền kinh tế phụ thuộc trực tiếp vào Biển Đông.", a: ["Đúng","Sai"], c: 0 },
+  { q: "Câu 5. Đọc đoạn tư liệu sau đây: c. Tất cả các tuyến đường hàng hải của Trung Quốc để xuất nhập khẩu hàng hóa, đặc biệt là dầu mỏ đều phải đi qua Biển Đông.", a: ["Đúng","Sai"], c: 1 },
+  { q: "Câu 5. Đọc đoạn tư liệu sau đây: d. Xin – ga – po và Hồng Công là hai cảng biển lớn và hiện đại nhất ở khu vực ven Biển Đông", a: ["Đúng","Sai"], c: 0 },
+  { q: "Câu 6. Đọc đoạn tư liệu sau đây: a. Những dẫn chứng được đưa ra trong đoạn tư liệu cho thấy Biển Đông có tầm quan trọng chiến lược về kinh tế, chính trị - an ninh với nhiều quốc gia.", a: ["Đúng","Sai"], c: 1 },
+  { q: "Câu 6. Đọc đoạn tư liệu sau đây: b. Theo tổ chức UNESCO, Biển Đông là vùng biển có sản lượng đánh bắt hải sản hàng đầu thế giới.", a: ["Đúng","Sai"], c: 1 },
+  { q: "Câu 6. Đọc đoạn tư liệu sau đây: c. Việt Nam là một trong những quốc gia ven Biển Đông có sản lượng đánh bắt hải sản đứng hàng đầu thế giới", a: ["Đúng","Sai"], c: 0 },
+  { q: "Câu 6. Đọc đoạn tư liệu sau đây: d. Biển Đông là vùng biển có sản lượng đánh bắt hải sản chiếm tỉ lệ gần như tuyệt đối trên toàn thế giới.", a: ["Đúng","Sai"], c: 1 },
+  { q: "Câu 7. Đọc đoạn tư liệu sau đây: a. Nghị quyết số 36 – NQ/TW ngày 22 - 10 – 2018 của Đảng Cộng sản Việt Nam đã đưa ra nhiều bằng chứng khẳng định Hoàng Sa và Trường Sa thuộc chủ quyền của Việt Nam.", a: ["Đúng","Sai"], c: 1 },
+  { q: "Câu 7. Đọc đoạn tư liệu sau đây: b. Quá trình xây dựng và bảo vệ Tổ quốc của Việt Nam hiện nay có sự gắn bó mật thiết với Biển Đông.", a: ["Đúng","Sai"], c: 0 },
+  { q: "Câu 7. Đọc đoạn tư liệu sau đây: c. Trách nhiệm phát triển bền vững kinh tế biển không liên quan đến những người dân sống trong khu vực đất liền.", a: ["Đúng","Sai"], c: 1 },
+  { q: "Câu 7. Đọc đoạn tư liệu sau đây: d. Nhiệm vụ phát triển kinh tế biển với đảm bảo an ninh quốc phòng luôn có sự gắn bó mật thiết, không tách rời nhau.", a: ["Đúng","Sai"], c: 0 },
+];
 
     const biology11Hk2QuestionBank = [
       { q: "Câu 1. Phản xạ là", a: ["các phản ứng của cơ thể trả lời các kích thích từ môi trường thông qua hệ thần kinh.", "các phản ứng của cơ thể đối với các kích thích từ môi trường thông qua nội tiết.", "sự thay đổi hình dạng của cơ thể để thích nghi với các kích thích từ môi trường.", "sự di chuyển của cơ thể hướng tới hoặc tránh xa các kích thích từ môi trường."], c: 0 },
