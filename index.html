@@ -470,6 +470,7 @@
           <option value="">-- Chọn môn học --</option>
           <option value="sucuoikihei">TRẮC NGHIỆM SỬ CUỐI KÌ HEI</option>
           <option value="sinh11hk2">TRẮC NGHIỆM SINH 11 CUỐI KÌ 2</option>
+          <option value="vactEmpire">ĐỀ THI ĐÁNH GIÁ NĂNG LỰC VACT EMPIRE</option>
         </select>
         <br />
         <button id="startBtn">Bắt đầu</button>
@@ -492,6 +493,8 @@
             <input id="shortAnswerInput" type="text" placeholder="Nhập câu trả lời..." class="hidden" />
             <button id="submitBtn">Nộp đáp án</button>
             <div id="answerBox" class="answer-box"></div>
+            <div id="explanationBox" class="answer-box hidden" style="margin-top:10px; background:#0f172a; border:1px solid #334155;"></div>
+            <button id="nextQuestionBtn" class="review-btn hidden" type="button">Qua câu khác</button>
           </div>
         </div>
       </div>
@@ -705,6 +708,120 @@ const historyFinalHeiTrueFalseQuestionBank = [
       { q: "Câu 54. Một trang trại nuôi cá lóc nhận thấy vào mùa đông nhiệt độ nước giảm xuống còn 15°C, cá chậm lớn hẳn dù vẫn cung cấp đủ thức ăn. Chủ trang trại đề xuất các giải pháp: (1) Tăng gấp đôi lượng thức ăn để cá có thêm năng lượng chống rét. (2) Dùng bạt che kín mặt ao và sử dụng hệ thống sưởi nâng nhiệt độ nước lên 25°C. (3) Bổ sung thêm các loại vitamin và khoáng chất vào thức ăn. (4) Thay nước ao liên tục để làm sạch môi trường nước. (5) Giảm mật độ nuôi bằng cách chuyển bớt cá sang ao khác rộng hơn. Dưới góc độ sinh học, có bao nhiêu giải pháp trực tiếp giúp cải thiện tốc độ sinh trưởng của cá trong điều kiện nhiệt độ thấp này?", type: "short", answer: "2" },
     ];
 
+    const vactEmpireQuestionBank = [
+      {
+        q: "Trong đoạn trích về Trương Viên, việc chuyển từ lời đối thoại sang điệu hát trần tình thể hiện đặc điểm nào của chèo?",
+        a: [
+          "Lời thoại chủ yếu dùng để kể lại những biến cố đã hoàn tất trước khi nhân vật xuất hiện.",
+          "Lời nói và lời hát được kết hợp để nhân vật vừa tham gia tình huống vừa bộc lộ hoàn cảnh, tâm trạng.",
+          "Lời hát thay thế hoàn toàn hành động sân khấu nhằm làm chậm sự phát triển của cốt truyện.",
+          "Lời hát tách nhân vật khỏi tình huống giao tiếp để chuyển sang lời bình luận của tác giả."
+        ],
+        c: 1,
+        hint: "Gợi ý giải: Chèo là loại hình sân khấu có sự phối hợp giữa lời thoại, lời hát và hành động. Khi nhân vật vừa đối đáp vừa chuyển sang hát, nó không tách khỏi tình huống mà còn làm nổi lên hoàn cảnh, tâm trạng. Vì vậy đáp án đúng là B: lời nói và lời hát được kết hợp để nhân vật vừa tham gia tình huống vừa bộc lộ cảm xúc."
+      },
+      {
+        q: "Cách giới thiệu nhân vật Tú Uyên trong đoạn trích có đặc điểm nào sau đây?",
+        a: [
+          "Đặt nhân vật trong hoàn cảnh thái bình để làm nổi bật khát vọng lập công, giúp đời.",
+          "Khắc họa nhân vật qua lời tự đánh giá để thể hiện ý thức về tài năng và phẩm giá.",
+          "Kết hợp giới thiệu lai lịch với lời ngợi ca để làm nổi bật vẻ đẹp lí tưởng của nhân vật.",
+          "Nhấn mạnh sự che chở của đất nước đối với bóng dáng nhân vật."
+        ],
+        c: 2,
+        hint: "Gợi ý giải: Đoạn trích không chỉ nêu tên tuổi, lai lịch mà còn có lời ca ngợi, tán dương nhân vật. Đây là kiểu giới thiệu nhân vật bằng cách kết hợp sự thật lịch sử với lời đánh giá mang sắc thái ngợi ca để nâng tầm nhân vật thành hình tượng lí tưởng. Đáp án đúng là C."
+      },
+      {
+        q: "Nội dung chính được thể hiện trong đoạn trích Bái thạch vi huynh phú là gì?",
+        a: [
+          "Sự tôn sùng, ngưỡng mộ và niềm tri kỷ của tác giả trước khí phách kiên cường, tiết tháo thanh cao của phiến đá tự nhiên.",
+          "Lòng thương cảm và niềm tiếc nuối của nhân vật trữ tình trước số phận cô đơn, trơ trọi của đá giữa cõi hồng trần.",
+          "Khát vọng ngang tàng của bậc đại trượng phu muốn mượn khí thế trời đất để chống đỡ cương thường, lưu danh muôn thuở.",
+          "Vẻ đẹp kì vĩ, hoang sơ của núi non ngàn xưa được tái hiện qua bút pháp tả thực giàu hình ảnh và âm thanh."
+        ],
+        c: 0,
+        hint: "Gợi ý giải: Tác giả đặt phiến đá như một hình tượng có phẩm chất hiên ngang, kiên cường, không khuất phục trước thời gian. Đó là cách ngợi ca khí phách, đồng thời bộc lộ niềm tri kỷ sâu sắc. Vì vậy đáp án đúng là A, chứ không phải tả cảnh đơn thuần hay thương cảm."
+      },
+      {
+        q: "Việc sử dụng những từ ngữ như “được mấy ông”, “hỏi lung tung” trong bài thơ Chợ Đồng có tác dụng chủ yếu nào?",
+        a: [
+          "Tạo giọng điệu bông đùa, thể hiện sự hài hước của người dân trước những lo toan cuối năm.",
+          "Tạo giọng điệu châm biếm, thể hiện thái độ chế giễu những người hỏi nợ trong phiên chợ Tết.",
+          "Tạo giọng điệu tự nhiên, gần lời ăn tiếng nói, làm nổi bật cảnh sinh hoạt làng quê cùng nỗi buồn kín đáo.",
+          "Tạo giọng điệu khách quan, thiên về ghi chép, giúp cảnh chợ hiện lên tách biệt với cảm xúc người viết."
+        ],
+        c: 2,
+        hint: "Gợi ý giải: Từ ngữ đời thường như “được mấy ông”, “hỏi lung tung” khiến bài thơ gần gũi, mộc mạc, không quá trau chuốt. Hơn nữa, nó vừa mô tả cuộc sống chợ làng vừa gợi sự buồn chán, lo toan của người dân trước mùa xuân. Đáp án đúng là C."
+      },
+      {
+        q: "Xác định phương thức biểu đạt chính của bài thơ Sa bẫy:",
+        a: ["Biểu cảm", "Miêu tả", "Tự sự", "Thuyết minh"],
+        c: 2,
+        hint: "Gợi ý giải: Bài thơ kể lại một sự việc có diễn biến rõ ràng: Bé Mây dựng bẫy, chuột sa bẫy, mèo nằm mơ… Đây là kiểu kể chuyện bằng văn bản thơ. Vì vậy phương thức biểu đạt chính là tự sự, không phải miêu tả hay biểu cảm thuần túy."
+      },
+      {
+        q: "Trong văn bản về Gia Long, cụm từ “Châu về Hợp Phố” có nghĩa là:",
+        a: [
+          "Đất nước sau phân tranh lại thu về một mối.",
+          "Vật quý thất lạc nay lại trở về chốn cũ.",
+          "Vùng đất linh thiêng thu hút nhân tài tụ hội.",
+          "Cơ đồ qua cơn đổ nát được trùng tu nguyên vẹn."
+        ],
+        c: 0,
+        hint: "Gợi ý giải: Cụm từ này mang sắc thái mơ ước đất nước được thống nhất, khôi phục sự hòa hợp sau thời kỳ loạn lạc. Nó gợi ý ý niệm “đất nước quay về một mối”, phù hợp với hoàn cảnh dựng nước của Gia Long. Vậy đáp án đúng là A."
+      },
+      {
+        q: "Trong cuộc đối thoại trong đoạn Nhu nhược, việc người chủ lặp lại “Tôi có ghi vào sổ rồi mà”, “Tôi có ghi đây mà” chủ yếu có tác dụng gì?",
+        a: [
+          "Trấn an cô gia sư rằng công việc đã được ghi nhận, qua đó khuyến khích cô trình bày đầy đủ ý kiến.",
+          "Đưa sổ ghi chép ra để hai bên cùng đối chiếu, từ đó thống nhất lại mức tiền công và thời gian làm việc.",
+          "Viện dẫn sổ ghi chép làm căn cứ để áp đặt lời xác nhận của mình và gạt đi lời đính chính của cô gia sư.",
+          "Giải thích các khoản khấu trừ bằng sổ ghi chép, qua đó làm rõ những ngày cô gia sư đã được nghỉ."
+        ],
+        c: 2,
+        hint: "Gợi ý giải: Người chủ dùng “sổ” như một cái cớ để khẳng định quyền lực, không thực sự muốn lắng nghe cô gia sư. Cách nói này mang tính áp đặt, chối bỏ sự giải thích của người bị thiệt thòi. Vì vậy đáp án đúng là C."
+      },
+      {
+        q: "Nhận định nào sau đây thể hiện khái quát giá trị nhận thức của việc xây dựng hình ảnh những giấc mơ trong bài Giấc mơ của anh hề?",
+        a: [
+          "Những nghịch cảnh trong đời sống chỉ là thử thách tạm thời, rồi mọi bất công và nhục nhằn của con người nhất định sẽ được bù đắp xứng đáng trong tương lai tươi sáng của lịch sử.",
+          "Những giấc mơ phản ánh khát vọng đổi đời của con người, nhưng cũng cho thấy thực tế nghiệt ngã mà họ phải chịu đựng, từ đó thức tỉnh ý thức đấu tranh để thoát khỏi bất công.",
+          "Những giấc mơ thể hiện vẻ đẹp của tâm hồn con người: dù bị đọa đày, họ vẫn luôn khao khát hạnh phúc, công lý và ánh sáng, qua đó khẳng định tư tưởng nhân văn sâu sắc của tác giả.",
+          "Những giấc mơ là tiếng nói của tiềm thức, giúp con người tạm quên đi thực tại, nhưng không thể thay đổi được số phận của chính mình."
+        ],
+        c: 1,
+        hint: "Gợi ý giải: Những giấc mơ trong văn bản không đơn thuần là mơ tưởng xa vời, mà là hình ảnh phản ánh khát vọng sống tốt hơn của con người khi thực tại đầy bất công. Họ muốn thoát khỏi nghèo khổ, sỉ nhục, và điều đó dẫn đến ý thức đấu tranh. Đáp án đúng là B."
+      },
+      {
+        q: "Chi tiết “Người ta trả tiền công nhưng cha từ chối, không lấy tiền của ai bao giờ” nói lên điều gì về nhân vật người cha trong Người cha già?",
+        a: [
+          "Làm nổi bật sự rộng lòng của cha: giúp người bằng hiểu biết của mình mà không đặt lợi ích vật chất lên trước.",
+          "Lí giải sự thanh thản của cha: có nguồn thu nhập ổn định nên không còn nhu cầu nhận thù lao từ công việc.",
+          "Nhấn mạnh lòng tự trọng của cha: muốn giữ vị thế của một cán bộ lão thành khi giúp đỡ những người xung quanh.",
+          "Khắc họa thú vui tuổi già của cha: tìm thấy niềm vui trong việc dịch chữ nên coi tiền công là điều không đáng bận tâm."
+        ],
+        c: 0,
+        hint: "Gợi ý giải: Hành động từ chối tiền công cho thấy cha không xem việc giúp người như một việc kiếm tiền, mà là sự đóng góp bằng tri thức, lòng tốt và trách nhiệm với cộng đồng. Đó là biểu hiện của sự rộng lượng và nhân hậu. Đáp án đúng là A."
+      },
+      {
+        q: "Câu in đậm trong văn bản Chí Phèo là:",
+        a: ["Lời người kể chuyện", "Lời độc thoại nội tâm", "Lời nửa trực tiếp", "Lời nhân vật"],
+        c: 2,
+        hint: "Gợi ý giải: Văn bản vừa có sự dẫn dắt của người kể chuyện, vừa có tiếng nói của nhân vật được lồng vào một cách gần với suy nghĩ nội tâm. Hình thức ấy gọi là lời nửa trực tiếp: người kể kể lại suy nghĩ, cảm xúc của nhân vật nhưng vẫn giữ sắc thái lời nói của nhân vật. Vậy đáp án đúng là C."
+      },
+      {
+        q: "Việc miêu tả liên tiếp các trạng thái “lảo đảo”, “ngã dụi”, “nằm bệt”, “lết lết” của con chó trong Con chó xấu xí có tác dụng chủ yếu nào?",
+        a: [
+          "Tạo nhịp điệu vui tươi để làm sáng bớt nỗi đau báo thù của nhân vật.",
+          "Khắc họa sự suy kiệt và sự dằn vặt của nỗi đau khi con chó sắp chết.",
+          "Thể hiện sự thờ ơ của con người trước cái chết của loài vật.",
+          "Làm nổi bật sự mạnh mẽ của chủ nhân bằng cách đối chiếu với nỗi khổ của chó."
+        ],
+        c: 1,
+        hint: "Gợi ý giải: Các động từ miêu tả liên tiếp cho thấy sự yếu ớt, kiệt sức, và cái chết dần dần của con chó. Đó là cách khắc họa sâu sắc tình trạng suy kiệt và nỗi đau thương của một con vật cũn rất kiệt sức. Đáp án đúng là B."
+      }
+    ];
+
     const questionLibraries = {
       sucuoikihei: {
         label: "TRẮC NGHIỆM SỬ CUỐI KÌ HEI",
@@ -713,6 +830,10 @@ const historyFinalHeiTrueFalseQuestionBank = [
       sinh11hk2: {
         label: "TRẮC NGHIỆM SINH 11 CUỐI KÌ 2",
         questions: biology11Hk2QuestionBank
+      },
+      vactEmpire: {
+        label: "ĐỀ THI ĐÁNH GIÁ NĂNG LỰC VACT EMPIRE",
+        questions: vactEmpireQuestionBank
       }
     };
 
@@ -747,7 +868,9 @@ const historyFinalHeiTrueFalseQuestionBank = [
       answers: document.getElementById("answers"),
       shortAnswerInput: document.getElementById("shortAnswerInput"),
       answerBox: document.getElementById("answerBox"),
+      explanationBox: document.getElementById("explanationBox"),
       submitBtn: document.getElementById("submitBtn"),
+      nextQuestionBtn: document.getElementById("nextQuestionBtn"),
       time: document.getElementById("time"),
       score: document.getElementById("score"),
       final: document.getElementById("final"),
@@ -908,6 +1031,10 @@ const historyFinalHeiTrueFalseQuestionBank = [
       
       elements.answerBox.classList.remove("show");
       elements.answerBox.textContent = "";
+      elements.explanationBox.classList.add("hidden");
+      elements.explanationBox.textContent = "";
+      elements.nextQuestionBtn.classList.add("hidden");
+      elements.nextQuestionBtn.disabled = false;
       selectedAnswerIndexes = new Set();
       submitted = false;
       elements.submitBtn.disabled = false;
@@ -983,6 +1110,21 @@ const historyFinalHeiTrueFalseQuestionBank = [
       }
     }
 
+    function showExplanation(current, { isCorrect, selectedText, correctText }) {
+      const explanationText = current.hint || current.explanation || "Đây là đáp án đúng vì nó phù hợp với nội dung và logic của bài.";
+      elements.explanationBox.innerHTML = isCorrect
+        ? ""
+        : `<strong>💡 Cách giải:</strong><br>${explanationText}`;
+
+      if (isCorrect) {
+        elements.explanationBox.classList.add("hidden");
+        elements.explanationBox.textContent = "";
+        return;
+      }
+
+      elements.explanationBox.classList.remove("hidden");
+    }
+
     function submitAnswer(isTimeout = false) {
       if (submitted) {
         return;
@@ -991,9 +1133,7 @@ const historyFinalHeiTrueFalseQuestionBank = [
       const current = questions[index];
 
       if (current.type === "short") {
-        // Handle short answer
         const userAnswer = elements.shortAnswerInput.value.trim().toLowerCase();
-        
         if (!isTimeout && !userAnswer) {
           alert("Nhập câu trả lời rồi bấm nộp nhé 😌");
           return;
@@ -1014,6 +1154,7 @@ const historyFinalHeiTrueFalseQuestionBank = [
           elements.answerBox.textContent = `✅ Chính xác! Bạn nhập: "${userAnswer}"`;
           elements.answerBox.classList.add("show");
           elements.answerBox.style.background = "#0f8a0f";
+          showExplanation(current, { isCorrect: true, selectedText: userAnswer, correctText: current.answers.join(" hoặc ") });
         } else {
           playSound(elements.soundWrong);
           elements.container.classList.add("shake", "flash");
@@ -1024,7 +1165,7 @@ const historyFinalHeiTrueFalseQuestionBank = [
           elements.answerBox.textContent = `❌ Sai rồi! Đáp án đúng: ${correctAnswer}`;
           elements.answerBox.classList.add("show");
           elements.answerBox.style.background = "#8a0f0f";
-          
+          showExplanation(current, { isCorrect: false, selectedText: userAnswer || "(không nhập gì)", correctText: correctAnswer });
           wrongAnswers.push({
             question: current.q,
             selected: userAnswer || "(không nhập gì)",
@@ -1032,7 +1173,6 @@ const historyFinalHeiTrueFalseQuestionBank = [
           });
         }
       } else {
-        // Handle multiple choice
         if (!isTimeout && selectedAnswerIndexes.size === 0) {
           alert("Chọn ít nhất 1 đáp án rồi bấm nộp nhé 😌");
           return;
@@ -1064,6 +1204,10 @@ const historyFinalHeiTrueFalseQuestionBank = [
           score += 1;
           elements.score.textContent = score;
           playSound(elements.soundCorrect);
+          elements.answerBox.textContent = "✅ Chính xác!";
+          elements.answerBox.classList.add("show");
+          elements.answerBox.style.background = "#0f8a0f";
+          showExplanation(current, { isCorrect: true, selectedText: "", correctText: "" });
         } else {
           const selectedWrongButton = buttons.find((btn) => {
             const optionIndex = Number(btn.dataset.optionIndex);
@@ -1104,12 +1248,14 @@ const historyFinalHeiTrueFalseQuestionBank = [
             correct: correctAnswer
           });
 
-          elements.answerBox.textContent = `Đáp án đúng là: ${correctAnswer}`;
+          elements.answerBox.textContent = `❌ Sai rồi! Đáp án đúng là: ${correctAnswer}`;
           elements.answerBox.classList.add("show");
+          elements.answerBox.style.background = "#8a0f0f";
+          showExplanation(current, { isCorrect: false, selectedText: selectedAnswer, correctText: correctAnswer });
         }
       }
 
-      setTimeout(nextQuestion, 1500);
+      elements.nextQuestionBtn.classList.remove("hidden");
     }
 
     function showStatistics() {
@@ -1251,6 +1397,11 @@ const historyFinalHeiTrueFalseQuestionBank = [
     elements.restartBtn.addEventListener("click", restart);
     elements.reviewBtn.addEventListener("click", showWrongAnswers);
     elements.submitBtn.addEventListener("click", () => submitAnswer(false));
+    elements.nextQuestionBtn.addEventListener("click", () => {
+      if (submitted) {
+        nextQuestion();
+      }
+    });
     elements.musicBtn.addEventListener("click", () => {
       toggleBgm().catch(() => {
         elements.bgMusic.pause();
