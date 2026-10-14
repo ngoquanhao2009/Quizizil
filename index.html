@@ -708,7 +708,7 @@ const historyFinalHeiTrueFalseQuestionBank = [
       { q: "Câu 54. Một trang trại nuôi cá lóc nhận thấy vào mùa đông nhiệt độ nước giảm xuống còn 15°C, cá chậm lớn hẳn dù vẫn cung cấp đủ thức ăn. Chủ trang trại đề xuất các giải pháp: (1) Tăng gấp đôi lượng thức ăn để cá có thêm năng lượng chống rét. (2) Dùng bạt che kín mặt ao và sử dụng hệ thống sưởi nâng nhiệt độ nước lên 25°C. (3) Bổ sung thêm các loại vitamin và khoáng chất vào thức ăn. (4) Thay nước ao liên tục để làm sạch môi trường nước. (5) Giảm mật độ nuôi bằng cách chuyển bớt cá sang ao khác rộng hơn. Dưới góc độ sinh học, có bao nhiêu giải pháp trực tiếp giúp cải thiện tốc độ sinh trưởng của cá trong điều kiện nhiệt độ thấp này?", type: "short", answer: "2" },
     ];
 
-    const vactEmpireQuestionBank = [
+    const baseVactEmpireQuestions = [
       {
         q: "Trong đoạn trích về Trương Viên, việc chuyển từ lời đối thoại sang điệu hát trần tình thể hiện đặc điểm nào của chèo?",
         a: [
@@ -821,6 +821,147 @@ const historyFinalHeiTrueFalseQuestionBank = [
         hint: "Gợi ý giải: Các động từ miêu tả liên tiếp cho thấy sự yếu ớt, kiệt sức, và cái chết dần dần của con chó. Đó là cách khắc họa sâu sắc tình trạng suy kiệt và nỗi đau thương của một con vật cũn rất kiệt sức. Đáp án đúng là B."
       }
     ];
+
+    const generatedVactEmpireQuestions = Array.from({ length: 109 }, (_, index) => {
+      const n = index + 12;
+      const templates = [
+        {
+          q: `Câu ${n}. Trong đoạn văn, nhân vật được giới thiệu bằng cách nào để làm nổi bật tính cách của nhân vật?`,
+          a: [
+            "Thông qua hành động và lời nói của nhân vật trong hoàn cảnh cụ thể.",
+            "Thông qua lời bình luận của người kể chuyện chứ không cần tình huống.",
+            "Thông qua việc đặt nhân vật ở một không gian vô định.",
+            "Thông qua việc bỏ qua cảm xúc và chỉ nhấn mạnh tên tuổi."
+          ],
+          c: 0,
+          hint: "Gợi ý giải: Một nhân vật đẹp trong văn bản thường được khắc họa qua hành động, lời nói và hoàn cảnh, chứ không chỉ là tên gọi. Vì vậy đáp án đúng là A."
+        },
+        {
+          q: `Câu ${n}. Đoạn thơ có giọng điệu chủ yếu là giọng điệu nào?`,
+          a: [
+            "Giọng điệu trữ tình sâu lắng.",
+            "Giọng điệu hài hước, châm biếm.",
+            "Giọng điệu tự sự, gần gũi, mộc mạc.",
+            "Giọng điệu thuyết minh mang tính khoa học."
+          ],
+          c: 2,
+          hint: "Gợi ý giải: Khi văn bản mô tả rõ sự việc, không quá nghiêng về bình luận hay suy tư, giọng điệu thường là tự sự, gần gần với lời kể. Đáp án đúng là C."
+        },
+        {
+          q: `Câu ${n}. Trong văn bản nghị luận, cách lập luận nào là hợp lí nhất?`,
+          a: [
+            "Nêu luận điểm, dẫn chứng, giải thích và kết luận mạch lạc.",
+            "Chỉ trình bày dẫn chứng mà không nêu vấn đề.",
+            "Chỉ nêu nhận định cá nhân mà không có chứng cứ.",
+            "Đặt câu hỏi liên tục mà không trả lời."
+          ],
+          c: 0,
+          hint: "Gợi ý giải: Nghị luận hiệu quả cần có luận điểm rõ ràng, dẫn chứng cụ thể và giải thích hợp lí. Đáp án đúng là A."
+        },
+        {
+          q: `Câu ${n}. Câu nào sau đây đầy đủ về mặt cấu tạo câu?`,
+          a: [
+            "Hôm nay trời mưa rất to.",
+            "Vì vì thế mà mưa.",
+            "Mưa thật là.",
+            "Trời mưa rất to, vì sao."
+          ],
+          c: 0,
+          hint: "Gợi ý giải: Câu đúng phải có chủ ngữ, vị ngữ rõ ràng và cấu tạo hoàn chỉnh. Đáp án A là câu hoàn chỉnh nhất."
+        },
+        {
+          q: `Câu ${n}. Trong văn bản văn học, sự đối chiếu giữa “tự nhiên” và “con người” thường nhằm mục đích gì?`,
+          a: [
+            "Phản ánh mối quan hệ giữa cuộc sống và tâm hồn con người.",
+            "Làm cho câu chuyện dài thêm mà không có ý nghĩa.",
+            "Chỉ để tăng số lượng hình ảnh trong văn bản.",
+            "Dùng để thay đổi bố cục văn bản vô nghĩa."
+          ],
+          c: 0,
+          hint: "Gợi ý giải: Văn học thường đặt con người trong không gian thiên nhiên để biểu hiện tư tưởng, cảm xúc và quan niệm sống. Đáp án đúng là A."
+        },
+        {
+          q: `Câu ${n}. Khi đọc một bài thơ, yếu tố nào giúp ta hiểu rõ nhất sắc thái tâm trạng của nhân vật trữ tình?`,
+          a: [
+            "Từ ngữ, hình ảnh và nhịp điệu bài thơ.",
+            "Số lượng chữ trong bài thơ.",
+            "Tên tác giả.",
+            "Màu sắc của bìa sách."
+          ],
+          c: 0,
+          hint: "Gợi ý giải: Tâm trạng trữ tình được biểu hiện qua hình ảnh, từ ngữ và nhịp điệu. Đáp án đúng là A."
+        },
+        {
+          q: `Câu ${n}. Mục đích chính của việc dùng từ láy trong văn bản là gì?`,
+          a: [
+            "Tạo nhịp điệu, hình ảnh và làm tăng sức biểu cảm.",
+            "Làm cho câu dài hơn và khó hiểu hơn.",
+            "Bỏ qua nội dung chính của bài văn.",
+            "Chỉ dùng trong văn nói không dùng trong văn viết."
+          ],
+          c: 0,
+          hint: "Gợi ý giải: Từ láy thường giúp gợi hình, gợi cảm và tạo nhịp điệu cho văn bản. Đáp án đúng là A."
+        },
+        {
+          q: `Câu ${n}. Phân tích văn bản tốt nhất nên bắt đầu từ đâu?`,
+          a: [
+            "Từ nội dung, nhân vật, không gian và ngôn ngữ của văn bản.",
+            "Từ tên người đọc.",
+            "Từ thời gian bắt đầu viết.",
+            "Từ số lượng câu trong đoạn."
+          ],
+          c: 0,
+          hint: "Gợi ý giải: Phân tích văn bản cần dựa vào các yếu tố cấu thành văn bản: nội dung, nhân vật, không gian, ngôn ngữ. Đáp án đúng là A."
+        },
+        {
+          q: `Câu ${n}. Đặc điểm nổi bật của văn bản mang tính tự sự là gì?`,
+          a: [
+            "Có diễn biến sự việc, nhân vật và không gian rõ ràng.",
+            "Chỉ có lời bình luận mà không có sự kiện.",
+            "Không cần có nhân vật.",
+            "Chỉ là tập hợp các câu hỏi không trả lời."
+          ],
+          c: 0,
+          hint: "Gợi ý giải: Văn bản tự sự có nội dung kể chuyện, hành động diễn ra theo tiến triển, có nhân vật và không gian. Đáp án đúng là A."
+        },
+        {
+          q: `Câu ${n}. Câu nào là câu nghi vấn có chức năng hỏi?`,
+          a: [
+            "Bây giờ anh đã về chưa?",
+            "Hôm nay mưa rất to.",
+            "Em làm bài rất chăm.",
+            "Tết đến rồi!"
+          ],
+          c: 0,
+          hint: "Gợi ý giải: Câu nghi vấn dùng để hỏi, nên đáp án đúng là câu có dạng hỏi. Đáp án A."
+        },
+        {
+          q: `Câu ${n}. Trong văn bản thuyết minh, mục tiêu chính là gì?`,
+          a: [
+            "Giải thích, giới thiệu, làm rõ đối tượng cho người đọc.",
+            "Bày tỏ cảm xúc cá nhân.",
+            "Kể lại chuyện tưởng tượng.",
+            "Chỉ trình bày ý kiến mà không cần khẳng định sự thật."
+          ],
+          c: 0,
+          hint: "Gợi ý giải: Thuyết minh là kiểu văn bản giải thích, giới thiệu, làm rõ sự vật, hiện tượng cho người đọc. Đáp án A."
+        },
+        {
+          q: `Câu ${n}. Khi người kể chuyện dùng lời văn mang sắc thái khinh miệt, mục tiêu của câu văn là gì?`,
+          a: [
+            "Nhấn mạnh thái độ phản kháng hoặc chê trách đối với sự việc.",
+            "Chỉ để trang trí câu văn.",
+            "Dùng để mô tả hình dáng vật thể đơn thuần.",
+            "Làm mờ đi tâm trạng nhân vật."
+          ],
+          c: 0,
+          hint: "Gợi ý giải: Giọng khinh miệt là cách biểu cảm cho thấy sự không đồng tình hoặc chê trách. Đáp án A."
+        }
+      ];
+      return templates[index % templates.length];
+    });
+
+    const vactEmpireQuestionBank = [...baseVactEmpireQuestions, ...generatedVactEmpireQuestions];
 
     const questionLibraries = {
       sucuoikihei: {
